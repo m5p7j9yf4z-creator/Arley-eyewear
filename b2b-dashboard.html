@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arley B2B | Partner Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+:root {
+  --bg: #fbfbfa;
+  --border: #e5e5e3;
+  --text: #222222;
+  --text-muted: #767676;
+  --white: #ffffff;
+  --accent-hover: #b5b5b2;
+  --accent-danger: #a94442;
+}
+body { 
+  font-family: 'Inter', sans-serif; 
+  margin: 0;
+  display: flex; 
+  height: 100vh; 
+  background: var(--bg); 
+  color: var(--text); 
+  -webkit-font-smoothing: antialiased; 
+}
+/* Sivupalkki */
+nav { 
+  width: 250px; 
+  border-right: 1px solid var(--border);
+  padding: 40px; 
+  display: flex; 
+  flex-direction: column; 
+  background: #fff; 
+  box-sizing: border-box; 
+}
+.logo-img { 
+  width: 140px; 
+  margin-bottom: 50px; 
+}
+.menu-item { 
+  margin-bottom: 25px; 
+  cursor: pointer; 
+  color: var(--text-muted); 
+  text-transform: uppercase; 
+  font-size: 0.75rem;
+  letter-spacing: 1px; 
+  transition: color 0.2s; 
+}
+.menu-item:hover, .menu-item.active { 
+  color: var(--text); 
+  font-weight: 600; 
+}
+/* Alavalikon tyylit (Accordion) */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding-left: 15px;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+.submenu.open { 
+  max-height: 200px; 
+}
+.sub-menu-item {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.sub-menu-item:hover, .sub-menu-item.active { 
+  color: var(--text); 
+  font-weight: 500; 
+}
+.nav-footer { 
+  margin-top: auto; 
+}
+/* Pääsisältö */
+main { 
+  flex: 1; 
+  padding: 40px; 
+  overflow-y: auto; 
+  display: flex; 
+  flex-direction: column; 
+}
+header { 
+  display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+  margin-bottom: 40px; 
+  flex-shrink: 0; 
+}
+.lang-switch { 
+  font-size: 0.8rem; 
+  letter-spacing: 1px; 
+}
+.lang-btn { 
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  color: var(--text-muted); 
+  padding: 0 5px;
+  font-family: inherit; 
+}
+.lang-btn.active { 
+  color: #222; 
+  font-weight: 600; 
+}
+/* Dynaamiset näkymät (Tabit) */
+.content-view { 
+  display: none; 
+}
+.content-view.active { 
+  display: block; 
+}
+/* Paneelit ja yleisasettelu */
+.main-panel, .side-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 22px;
+  box-sizing: border-box;
+}
+.portal-grid { 
+  display: grid; 
+  grid-template-columns: 2fr 1fr; 
+  gap: 30px;
+  align-items: start; 
+}
+.panel-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start; 
+  margin-bottom: 18px; 
+}
+h2 { 
+  font-size: 1.25rem; 
+  font-weight: 400; 
+  margin: 0; 
+  letter-spacing: 1px; 
+  text-transform: uppercase; 
+}
+/* Tilauslomakkeen matriisityylit */
+.clear-btn { 
+  background: none; 
+  border: none; 
+  color: var(--text-muted); 
+  font-family: inherit; 
+  font-size: 0.75rem; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  cursor: pointer; 
+  padding: 3px 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease; 
+}
+.clear-btn:hover { 
+  color: var(--accent-danger); 
+  border-bottom: 1px solid var(--accent-danger); 
+}
+.form-group { 
+  margin-bottom: 18px; 
+}
+label { 
+  display: block; 
+  font-size: 0.75rem; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px; 
+  margin-bottom: 8px; 
+  color: var(--text-muted); 
+}
+select, textarea { 
+  width: 100%; 
+  padding: 10px 12px; 
+  font-family: inherit; 
+  font-size: 0.9rem;
+  border: 1px solid var(--border); 
+  border-radius: 4px; 
+  background-color: var(--bg); 
+  color: var(--text); 
+  outline: none; 
+  box-sizing: border-box; 
+}
+textarea { 
+  resize: vertical; 
+  min-height: 70px; 
+  font-size: 0.85rem; 
+}
+.matrix-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 15px; 
+}
+.matrix-table th { 
+  text-align: left;
+  padding: 10px; 
+  font-size: 0.75rem; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  color: var(--text-muted); 
+  border-bottom: 2px solid var(--border); 
+}
+.matrix-table td { 
+  padding: 10px; 
+  border-bottom: 1px solid var(--border); 
+  font-size: 0.9rem; 
+}
+.qty-input { 
+  width: 60px; 
+  padding: 6px; 
+  border: 1px solid var(--border); 
+  border-radius: 4px; 
+  text-align: center; 
+  font-family: inherit; 
+  font-size: 0.9rem; 
+}
+.qty-input:disabled { 
+  background-color: #f5f5f3; 
+  opacity: 0.4; 
+  cursor: not-allowed; 
+}
+.price-label { 
+  display: block; 
+  font-size: 0.8rem; 
+  font-weight: 500; 
+  color: var(--text); 
+  margin-top: 4px; 
+}
+.sku-label { 
+  font-family: monospace; 
+  font-size: 0.8rem; 
+  color: var(--text-muted); 
+  display: block; 
+  margin-top: 2px;
+}
+/* Yhteenveto */
+.summary-items-container { 
+  margin-bottom: 18px; 
+  max-height: 280px; 
+  overflow-y: auto; 
+}
+.summary-row { 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 10px; 
+  font-size: 0.95rem; 
+}
+.summary-details { 
+  display: flex; 
+  justify-content: space-between; 
+  flex-grow: 1;
+  margin-right: 15px; 
+}
+.remove-item-btn { 
+  background: none; 
+  border: none; 
+  color: var(--text-muted); 
+  cursor: pointer; 
+  font-size: 0.85rem; 
+  padding: 2px 6px;
+}
+.remove-item-btn:hover { 
+  color: var(--accent-danger); 
+}
+.summary-total { 
+  border-top: 1px solid var(--border);
+  padding-top: 12px; 
+  margin-bottom: 18px; 
+  font-weight: 600; 
+  font-size: 1.1rem;
+}
+.submit-btn { 
+  width: 100%; 
+  background-color: var(--text); 
+  padding: 12px; 
+  font-family: inherit;
+  color: var(--white); 
+  border: none; 
+  font-size: 0.9rem;
+  font-weight: 500; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+  cursor: pointer;
+  border-radius: 4px; 
+  transition: opacity 0.2s ease; 
+}
+.submit-btn:hover { 
+  opacity: 0.9;
+}
+/* KARUSELLI */
+.portfolio-carousel { 
+  display: grid; 
+  grid-auto-flow: column; 
+  grid-auto-columns: 540px; 
+  gap: 35px; 
+  overflow-x: auto;
+  padding: 25px 0 45px 0; 
+  scroll-snap-type: x mandatory; 
+  scrollbar-width: thin; 
+  scrollbar-color: var(--border) transparent; 
+}
+.portfolio-carousel::-webkit-scrollbar { 
+  height: 4px; 
+}
+.portfolio-carousel::-webkit-scrollbar-thumb { 
+  background: var(--border); 
+  border-radius: 10px; 
+}
+.portfolio-item { 
+  aspect-ratio: 5 / 4; 
+  background-size: cover; 
+  background-position: center; 
+  background-color: #f4f4f2;
+  border: 1px solid var(--border); 
+  border-radius: 4px; 
+  position: relative; 
+  cursor: pointer; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+  padding: 25px; 
+  box-sizing: border-box;
+  transition: transform 0.3s ease, border-color 0.3s ease; 
+  overflow: hidden; 
+}
+/* VAALEA MASKI KUVAN PÄÄLLE */
+.portfolio-item::before { 
+  content: ""; 
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1; 
+  transition: opacity 0.3s ease; 
+}
+.portfolio-item:hover { 
+  transform: translateY(-4px); 
+  border-color: var(--accent-hover);
+}
+.portfolio-item:hover::before { 
+  opacity: 0;
+}
+.portfolio-item h3 { 
+  margin: 0; 
+  font-weight: 400;
+  font-size: 1.1rem; 
+  letter-spacing: 0.5px; 
+  z-index: 2; 
+  color: var(--text); 
+  transition: color 0.3s ease;
+}
+.view-details-btn { 
+  position: absolute; 
+  top: 40px; 
+  right: 40px; 
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border); 
+  color: var(--text);
+  padding: 8px 16px; 
+  font-family: inherit; 
+  font-size: 0.75rem; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: all 0.2s ease;
+  z-index: 10; 
+}
+.view-details-btn:hover { 
+  background: var(--text); 
+  color: var(--white); 
+  border-color: var(--text); 
+}
+/* MODAALINEN ESIKATSELU-NÄKYMÄ */
+.modal-overlay { 
+  display: none;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  background: rgba(0,0,0,0.4); 
+  z-index: 2000; 
+  justify-content: center; 
+  align-items: center;
+}
+.modal-overlay.active { 
+  display: flex; 
+}
+.modal-container { 
+  background: var(--bg); 
+  width: 90vw; 
+  max-width: 1200px; 
+  height: 85vh; 
+  border-radius: 8px; 
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; 
+  overflow: hidden; 
+  position: relative; 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+}
+.modal-close { 
+  position: absolute; 
+  top: 25px; 
+  right: 25px;
+  background: none; 
+  border: none; 
+  font-size: 1.5rem; 
+  cursor: pointer;
+  color: var(--text); 
+  z-index: 2100; 
+}
+.modal-gallery { 
+  background: #fff; 
+  padding: 20px;
+  overflow: hidden; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+  border-right: 1px solid var(--border); 
+  height: 100%; 
+  box-sizing: border-box;
+}
+.modal-gallery img { 
+  width: 100%; 
+  flex: 1; 
+  object-fit: cover; 
+  background: #fafaf9; 
+  border-radius: 4px; 
+  min-height: 0; 
+}
+.modal-details { 
+  padding: 40px;
+  overflow-y: auto; 
+  display: flex; 
+  flex-direction: column; 
+}
+.modal-code-badge { 
+  font-family: monospace; 
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  background: rgba(0,0,0,0.05);
+  padding: 6px 12px; 
+  display: inline-block; 
+  border-radius: 4px; 
+  margin-bottom: 15px; 
+  align-self: flex-start; 
+}
+.config-section { 
+  margin-bottom: 20px; 
+  border-top: 1px solid var(--border);
+  padding-top: 15px; 
+}
+.config-label { 
+  font-size: 0.75rem; 
+  font-weight: 600; 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px; 
+  margin-bottom: 10px; 
+  color: var(--text-muted); 
+} 
+.option-group { 
+  display: flex; 
+  gap: 8px; 
+  flex-wrap: wrap; 
+}
+.preview-btn { 
+  background: none; 
+  border: 1px solid var(--border); 
+  padding: 6px 12px;
+  font-size: 0.8rem; 
+  cursor: pointer; 
+  border-radius: 4px; 
+  transition: all 0.25s;
+}
+.preview-btn.active { 
+  background: var(--text); 
+  color: var(--white); 
+  border-color: var(--text); 
+}
+.preview-btn:disabled { 
+  opacity: 0.15; 
+  cursor: not-allowed; 
+}
+.preview-color-btn { 
+  width: 30px; 
+  height: 30px; 
+  border-radius: 4px; 
+  border: 1px solid var(--border); 
+  cursor: pointer; 
+  transition: all 0.2s; 
+}
+.preview-color-btn.active { 
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--text);
+}
+.preview-color-btn:disabled { 
+  opacity: 0.15; 
+  cursor: not-allowed; 
+}
+.specs-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 5px;
+}
+.specs-table td { 
+  padding: 8px 0; 
+  border-bottom: 1px solid var(--border); 
+  font-size: 0.85rem; 
+  font-weight: 300;
+}
+.specs-table td:last-child { 
+  text-align: right; 
+  font-weight: 500; 
+}
+</style>
+</head>
+<body>
+<nav>
+  <img src="arley-logo.svg" alt="Arley Eyewear" class="logo-img">
+  <div id="nav-item-order" class="menu-item active" onclick="switchView('order')" data-translate="nav-order">Tilauslomake</div>
+  <div id="nav-item-collection-parent" class="menu-item" onclick="toggleSubmenu()" data-translate="nav-collection">Mallistot</div>
+  <div id="collection-submenu" class="submenu">
+    <div id="sub-item-uh26" class="sub-menu-item" onclick="switchCollection('collection', 'uh26')">Urban Heritage 26</div>
+  </div>
+  <div id="nav-item-history" class="menu-item" onclick="switchView('history')" data-translate="nav-history">Tilaushistoria</div>
+  <div class="nav-footer">
+    <div class="menu-item" style="margin-bottom: 0;" onclick="window.close()" data-translate="nav-logout">Kirjaudu ulos</div>
+  </div>
+</nav>
+<main>
+  <header>
+    <div style="font-size: 0.85rem; color: var(--text-muted);">
+      <span data-translate="customer">Asiakas</span>: <strong>Synsam Finland Oy</strong> (ID: 40921)
+    </div>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="lang-fi" onclick="setLanguage('fi')">FI</button> | 
+      <button class="lang-btn" id="lang-en" onclick="setLanguage('en')">EN</button>
+    </div>
+  </header>
+  
+  <div id="view-order" class="content-view active">
+    <div class="portal-grid">
+      <div class="main-panel">
+        <div class="panel-header">
+          <h2 id="t-form-title">Tilauslomake</h2>
+          <button id="t-clear-btn" class="clear-btn" onclick="clearEntireOrder()">Tyhjennä tilaus</button>
+        </div>
+        <div class="form-group">
+          <label id="t-label-model" for="model-select">Valitse kehysmalli</label>
+          <select id="model-select" onchange="loadModelMatrix()">
+            <option value="d001">Urban Heritage 26 D001 (Soft Rectangle)</option>
+            <option value="d002">Urban Heritage 26 D002 (Classic Panto)</option>
+            <option value="d003">Urban Heritage 26 D003 (Navigator)</option>
+            <option value="d004">Urban Heritage 26 D004 (Cat-Eye)</option>
+            <option value="d005">Urban Heritage 26 D005 (Panto)</option>
+            <option value="d006">Urban Heritage 26 D006 (Modern Panto)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label id="t-label-size" for="size-select">Koko</label>
+          <select id="size-select" onchange="loadModelMatrix()">
+            <option value="M">Medium (M)</option>
+            <option value="L">Large (L)</option>
+          </select>
+        </div>
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th id="t-th-texture">Tekstuuri / Väri</th>
+              <th id="t-th-onyx">Onyx</th>
+              <th id="t-th-slate">Deep Slate</th>
+              <th id="t-th-brown">Chocolate Brown</th>
+              <th id="t-th-plum">Ink Plum</th>
+            </tr>
+          </thead>
+          <tbody id="matrix-body"></tbody>
+        </table>
+      </div>
+      <div class="side-panel">
+        <h2 id="t-summary-title">Yhteenveto</h2>
+        <div class="summary-items-container" id="summary-items"></div>
+        <div class="summary-total">
+          <div class="summary-row" style="margin-bottom: 0;">
+            <span id="t-total-label">Yhteensä (alv 0%)</span>
+            <span id="total-price">0,00 €</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label id="t-label-notes" for="order-notes">Tilauksen lisätiedot / Viesti</label>
+          <textarea id="order-notes"></textarea>
+        </div>
+        <button id="t-submit-btn" class="submit-btn" onclick="submitOrder()">Lähetä tilaus</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-collection" class="content-view">
+    <div class="main-panel" style="margin-bottom: 30px;">
+      <h2 class="section-title" data-translate="title-collection">URBAN HERITAGE 26 - MALLISTO</h2>
+      <p style="margin-top: 10px; color: var(--text-muted); font-size: 0.95rem;" data-translate="subtitle-collection">
+        Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.
+      </p>
+    </div>
+    <div class="portfolio-carousel" id="carousel-grid">
+      <div class="portfolio-item" data-model="d001" onclick="openPreviewModal('d001', event)" style="background-image: url('images/d001-onyx-micro-dot.png');">
+        <h3>Urban Heritage 26 D001</h3>
+      </div>
+      <div class="portfolio-item" data-model="d002" onclick="openPreviewModal('d002', event)" style="background-image: url('images/d002-chocolate-brown-plain.png');">
+        <h3>Urban Heritage 26 D002</h3>
+      </div>
+      <div class="portfolio-item" data-model="d003" onclick="openPreviewModal('d003', event)" style="background-image: url('images/d003-deep-slate-Fluted.png');">
+        <h3>Urban Heritage 26 D003</h3>
+      </div>
+      <div class="portfolio-item" data-model="d004" onclick="openPreviewModal('d004', event)" style="background-image: url('images/d004-onyx-plain.jpg');">
+        <h3>Urban Heritage 26 D004</h3>
+      </div>
+      <div class="portfolio-item" data-model="d005" onclick="openPreviewModal('d005', event)" style="background-image: url('images/d005-onyx-plain.jpg');">
+        <h3>Urban Heritage 26 D005</h3>
+      </div>
+      <div class="portfolio-item" data-model="d006" onclick="openPreviewModal('d006', event)" style="background-image: url('images/d006-onyx-plain.jpg');">
+        <h3>Urban Heritage 26 D006</h3>
+      </div>
+    </div>
+  </div>
+
+        <div id="view-collection-empty" class="content-view">
+            <div class="main-panel">
+                <h2>Nordic Minimal 27</h2>
+                <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.95rem;">
+                    Tämä mallisto julkaistaan myöhemmin. Odottaa 3D-vedoksia ja tuotantotestejä.
+                </p>
+            </div>
+        </div>
+
+        <div id="view-history" class="content-view"><div class="main-panel"><h2 data-translate="nav-history">Tilaushistoria</h2></div></div>
+    </main>
+
+    <div id="preview-modal" class="modal-overlay" onclick="closePreviewModal()">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closePreviewModal()">✕</button>
+            
+            <div class="modal-gallery">
+                <img id="modal-main-img" src="" alt="Main View">
+                <img id="modal-front-img" src="" alt="Front View">
+            </div>
+            
+            <div class="modal-details">
+                <h2 id="modal-title" style="margin-bottom: 5px;">Urban Heritage 26</h2>
+                <div id="modal-meta" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:20px;"></div>
+                
+                <div id="modal-sku" class="modal-code-badge">-</div>
+                
+                <div class="config-section">
+                    <div class="config-label" data-translate="lbl-texture">Valitse tekstuuri</div>
+                    <div class="option-group" id="modal-texture-group"></div>
+                </div>
+                
+                <div class="config-section">
+                    <div class="config-label" data-translate="lbl-color">Valitse väri</div>
+                    <div class="option-group" id="modal-color-group"></div>
+                </div>
+                
+                <div class="config-section">
+                    <div class="config-label" data-translate="lbl-size">Koko</div>
+                    <div class="option-group">
+                        <button class="preview-btn active" id="m-size-m" onclick="selectModalSize('M')">M</button>
+                        <button class="preview-btn" id="m-size-l" onclick="selectModalSize('L')">L</button>
+                    </div>
+                </div>
+                
+                <div class="config-section">
+                    <div class="config-label" data-translate="lbl-specs">Tekniset mitat</div>
+                    <table class="specs-table">
+                        <tr><td data-translate="spec-frame">Kehyksen leveys</td><td id="m-spec-frame">134 mm</td></tr>
+                        <tr><td data-translate="spec-lens">Linssin leveys</td><td id="m-spec-lens">49 mm</td></tr>
+                        <tr><td data-translate="spec-bridge">Sillan leveys</td><td id="m-spec-bridge">19 mm</td></tr>
+                        <tr><td data-translate="spec-temple">Aisan pituus</td><td id="m-spec-temple">130 mm</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'fi';
+        let currentCart = {};
+        
+        let activeModalModel = 'd001';
+        let modalOptions = { texture: 'plain', color: 'onyx', size: 'M' };
+
+        const translations = {
+            fi: {
+                "nav-order": "Tilauslomake", "nav-collection": "Mallistot", "nav-history": "Tilaushistoria", "nav-logout": "Kirjaudu ulos",
+                customer: "Asiakas", formTitle: "Tilauslomake", clearBtn: "Tyhjennä tilaus", labelModel: "Valitse kehysmalli",
+                labelSize: "Koko", thTexture: "Tekstuuri / Väri", thOnyx: "Onyx", thSlate: "Deep Slate", thBrown: "Chocolate Brown", thPlum: "Ink Plum",
+                summaryTitle: "Yhteenveto", emptyCart: "Ei tuotteita valittuna.", totalLabel: "Yhteensä (alv 0%)", labelNotes: "Tilauksen lisätiedot / Viesti",
+                placeholderNotes: "Kirjoita tähän viestit valmistukselle...", submitBtn: "Lähetä tilaus", confirmClear: "Haluatko tyhjentää korin?",
+                alertEmpty: "Valitse vähintään yksi tuote.", alertSuccessLocal: "Tilaus ladattu CSV-muodossa!",
+                texPlain: "Plain", texFluted: "Fluted", texMicrodot: "Microdot", texStriated: "Striated", "lbl-texture": "Valitse tekstuuri",
+                "lbl-color": "Valitse väri", "lbl-size": "Koko", "lbl-specs": "Tekniset mitat", "spec-frame": "Kehyksen leveys", "spec-lens": "Linssin leveys",
+                "spec-bridge": "Sillan leveys", "spec-temple": "Aisan pituus", "btn-view": "Vaihtoehdot",
+                "genre-unisex": "Unisex", "genre-female": "Naiset",
+                "title-collection": "URBAN HERITAGE 26 - MALLISTO",
+                "subtitle-collection": "Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat."
+            },
+            en: {
+                "nav-order": "Order Form", "nav-collection": "Collections", "nav-history": "Order History", "nav-logout": "Log out",
+                customer: "Customer", formTitle: "Order Form", clearBtn: "Clear order", labelModel: "Select frame model",
+                labelSize: "Size", thTexture: "Texture / Color", thOnyx: "Onyx", thSlate: "Deep Slate", thBrown: "Chocolate Brown", thPlum: "Ink Plum",
+                summaryTitle: "Summary", emptyCart: "No products selected.", totalLabel: "Total (VAT 0%)", labelNotes: "Order Notes",
+                placeholderNotes: "Enter details for manufacturing...", submitBtn: "Submit Order", confirmClear: "Clear all?",
+                alertEmpty: "Select at least one product.", alertSuccessLocal: "Order exported as CSV!",
+                texPlain: "Plain", texFluted: "Fluted", texMicrodot: "Microdot", texStriated: "Striated", "lbl-texture": "Select texture",
+                "lbl-color": "Select color", "lbl-size": "Size", "lbl-specs": "Technical specs", "spec-frame": "Frame width", "spec-lens": "Lens width",
+                "spec-bridge": "Bridge width", "spec-temple": "Temple length", "btn-view": "Options",
+                "genre-unisex": "Unisex", "genre-female": "Female Targeted",
+                "title-collection": "URBAN HERITAGE 26 - COLLECTION",
+                "subtitle-collection": "Click on any model card to open preview, technical details and order configurations."
+            }
+        };
+
+        const modelsData = {
+            'd001': { shape: 'Soft Rectangle', gender: 'unisex', specs: { M: [134, 49, 19, 130], L: [139, 51, 20, 135] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000001_D001POXM', 'slate': '000004_D001PDSM', 'brown': '000007_D001PCBM', 'plum': '000009_D001PIPM' }, 'fluted': { 'onyx': '000002_D001FOXM', 'slate': '000005_D001FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000003_D001DOXM', 'slate': '000006_D001DDSM', 'brown': '000008_D001DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000010_D001SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000011_D001POXL', 'slate': '000014_D001PDSL', 'brown': '000017_D001PCBL', 'plum': '000019_D001PIPL' }, 'fluted': { 'onyx': '000012_D001FOXL', 'slate': '000015_D001FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000013_D001DOXL', 'slate': '000016_D001DDSL', 'brown': '000018_D001DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000020_D001SIPL' } } },
+            'd002': { shape: 'Classic Panto', gender: 'unisex', specs: { M: [132, 47, 21, 140], L: [137, 49, 22, 145] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000021_D002POXM', 'slate': '000024_D002PDSM', 'brown': '000027_D002PCBM', 'plum': '000029_D002PIPM' }, 'fluted': { 'onyx': '000022_D002FOXM', 'slate': '000025_D002FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000023_D002DOXM', 'slate': '000026_D002DDSM', 'brown': '000028_D002DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000030_D002SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000031_D002POXL', 'slate': '000034_D002PDSL', 'brown': '000037_D002PCBL', 'plum': '000039_D002PIPL' }, 'fluted': { 'onyx': '000032_D002FOXL', 'slate': '000035_D002FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000033_D002DOXL', 'slate': '000036_D002DDSL', 'brown': '000038_D002DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000040_D002SIPL' } } },
+            'd003': { shape: 'Navigator', gender: 'unisex', specs: { M: [140, 55, 16, 145], L: [145, 57, 17, 150] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000041_D003POXM', 'slate': '000044_D003PDSM', 'brown': '000047_D003PCBM', 'plum': '000048_D003PIPM' }, 'fluted': { 'onyx': '000042_D003FOXM', 'slate': '000045_D003FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000043_D003DOXM', 'slate': '000046_D003DDSM', 'brown': false, 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000049_D003SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000050_D003POXL', 'slate': '000053_D003PDSL', 'brown': '000056_D003PCBL', 'plum': '000057_D003PIPL' }, 'fluted': { 'onyx': '000051_D003FOXL', 'slate': '000054_D003FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000052_D003DOXL', 'slate': '000055_D003DDSL', 'brown': false, 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000058_D003SIPL' } } },
+            'd004': { shape: 'Cat-Eye', gender: 'female', specs: { M: [133, 51, 18, 135], L: [138, 53, 19, 140] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000059_D004POXM', 'slate': '000061_D004PDSM', 'brown': '000063_D004PCBM', 'plum': '000065_D004PIPM' }, 'fluted': { 'onyx': false, 'slate': false, 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000060_D004DOXM', 'slate': '000062_D004DDSM', 'brown': '000064_D004DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000066_D004SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000067_D004POXL', 'slate': '000069_D004PDSL', 'brown': '000071_D004PCBL', 'plum': '000073_D004PIPL' }, 'fluted': { 'onyx': false, 'slate': false, 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000068_D004DOXL', 'slate': '000070_D004DDSL', 'brown': '000072_D004DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000074_D004SIPL' } } },
+            'd005': { shape: 'Panto', gender: 'unisex', specs: { M: [131, 46, 22, 140], L: [136, 48, 23, 145] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000075_D005POXM', 'slate': '000078_D005PDSM', 'brown': '000081_D005PCBM', 'plum': '000083_D005PIPM' }, 'fluted': { 'onyx': '000076_D005FOXM', 'slate': '000079_D005FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000077_D005DOXM', 'slate': '000080_D005DDSM', 'brown': '000082_D005DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000084_D005SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000085_D005POXL', 'slate': '000088_D005PDSL', 'brown': '000091_D005PCBL', 'plum': '000093_D005PIPL' }, 'fluted': { 'onyx': '000086_D005FOXL', 'slate': '000089_D005FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000087_D005DOXL', 'slate': '000090_D005DDSL', 'brown': '000092_D005DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000094_D005SIPL' } } },
+            'd006': { shape: 'Modern Panto', gender: 'unisex', specs: { M: [133, 48, 20, 140], L: [138, 50, 21, 145] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000095_D006POXM', 'slate': '000098_D006PDSM', 'brown': '000101_D006PCBM', 'plum': '000103_D006PIPM' }, 'fluted': { 'onyx': '000096_D006FOXM', 'slate': '000099_D006FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000107_D006DOXL', 'slate': '000110_D006DDSL', 'brown': '000112_D006DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000104_D006SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000105_D006POXL', 'slate': '000108_D006PDSL', 'brown': '000111_D006PCBL', 'plum': '000113_D006PIPL' }, 'fluted': { 'onyx': '000106_D006FOXL', 'slate': '000109_D006FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000107_D006DOXL', 'slate': '000110_D006DDSL', 'brown': '000112_D006DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000114_D006SIPL' } } }
+        };
+
+        const textures = ['plain', 'fluted', 'microdot', 'striated'];
+        const colors = ['onyx', 'slate', 'brown', 'plum'];
+        const colorHex = { onyx: '#1a1a1a', slate: '#3a3f47', brown: '#3d3025', plum: '#2e1e2d' };
+
+        function setLanguage(langCode) {
+            currentLang = langCode;
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[currentLang][key];
+                    } else {
+                        el.textContent = translations[currentLang][key];
+                    }
+                }
+            });
+            document.getElementById('lang-fi').classList.toggle('active', langCode === 'fi');
+            document.getElementById('lang-en').classList.toggle('active', langCode === 'en');
+            updateStaticLabels();
+            loadModelMatrix();
+            
+            // Jos esikatseluikkuna on auki kieltä vaihdettaessa, päivitetään sen sisältö turvallisesti
+            if (document.getElementById('preview-modal').classList.contains('active')) {
+                const m = activeModalModel;
+                const s = modalOptions.size;
+                
+                const texDataKey = modalOptions.texture; 
+                const colDataKey = modalOptions.color;
+
+                const skuFull = modelsData[m][s][texDataKey][colDataKey];
+                document.getElementById('modal-sku').textContent = skuFull ? skuFull.split('_')[1] : '-';
+
+                const modelMeta = modelsData[m];
+                const translatedGender = translations[currentLang][`genre-${modelMeta.gender}`];
+                document.getElementById('modal-meta').textContent = `${modelMeta.shape} | ${translatedGender}`;
+
+                // Muutetaan kirjaimet pieniksi vain tiedostonimiä varten
+                const tFile = texDataKey.toLowerCase();
+                const cFile = colDataKey.toLowerCase();
+
+                document.getElementById('modal-main-img').src = `images/${m}-${cFile}-${tFile}-main.png`;
+                document.getElementById('modal-front-img').src = `images/${m}-${cFile}-${tFile}-front.png`;
+
+                const specs = modelsData[m].specs[s];
+                document.getElementById('m-spec-frame').textContent = specs[0] + ' mm';
+                document.getElementById('m-spec-lens').textContent = specs[1] + ' mm';
+                document.getElementById('m-spec-bridge').textContent = specs[2] + ' mm';
+                document.getElementById('m-spec-temple').textContent = specs[3] + ' mm';
+            }
+        }
+
+        function updateStaticLabels() {
+            const t = translations[currentLang];
+            document.getElementById('nav-item-order').textContent = t["nav-order"];
+            document.getElementById('nav-item-collection-parent').textContent = t["nav-collection"];
+            document.getElementById('t-form-title').textContent = t.formTitle;
+            document.getElementById('t-clear-btn').textContent = t.clearBtn;
+            document.getElementById('t-label-model').textContent = t.labelModel;
+            document.getElementById('t-label-size').textContent = t.labelSize;
+            document.getElementById('t-th-texture').textContent = t.thTexture;
+            document.getElementById('t-th-onyx').textContent = t.thOnyx;
+            document.getElementById('t-th-slate').textContent = t.thSlate;
+            document.getElementById('t-th-brown').textContent = t.thBrown;
+            document.getElementById('t-th-plum').textContent = t.thPlum;
+            document.getElementById('t-summary-title').textContent = t.summaryTitle;
+            document.getElementById('t-total-label').textContent = t.totalLabel;
+            document.getElementById('t-label-notes').textContent = t.labelNotes;
+            document.getElementById('t-submit-btn').textContent = t.submitBtn;
+        }
+
+        /* Alavalikon avaaminen ja sulkeminen */
+        function toggleSubmenu() {
+            const submenu = document.getElementById('collection-submenu');
+            submenu.classList.toggle('open');
+        }
+
+        /* Mallistokohtainen näkymänvaihto */
+        function switchCollection(viewId, subItemId) {
+            document.querySelectorAll('.content-view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('nav .menu-item').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('.sub-menu-item').forEach(sm => sm.classList.remove('active'));
+            
+            document.getElementById(`view-${viewId}`).classList.add('active');
+            document.getElementById('nav-item-collection-parent').classList.add('active');
+            document.getElementById(`sub-item-${subItemId}`).classList.add('active');
+        }
+
+        function switchView(viewId) {
+            document.querySelectorAll('.content-view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('nav .menu-item').forEach(m => m.classList.remove('active'));
+            document.querySelectorAll('.sub-menu-item').forEach(sm => sm.classList.remove('active'));
+            
+            document.getElementById(`view-${viewId}`).classList.add('active');
+            document.getElementById(`nav-item-${viewId}`).classList.add('active');
+            
+            if (viewId !== 'collection') {
+                document.getElementById('collection-submenu').classList.remove('open');
+            }
+        }
+
+        function quickOrder(modelId, event) {
+            if (event && event.target.classList.contains('view-details-btn')) return;
+            document.getElementById('model-select').value = modelId;
+            switchView('order');
+            loadModelMatrix();
+        }
+
+        function loadModelMatrix() {
+            const model = document.getElementById('model-select').value;
+            const size = document.getElementById('size-select').value;
+            const tbody = document.getElementById('matrix-body');
+            tbody.innerHTML = '';
+
+            const data = modelsData[model][size];
+            const price = data.price;
+
+            textures.forEach(tex => {
+                const tr = document.createElement('tr');
+                const tdName = document.createElement('td');
+                tdName.innerHTML = `<strong>${translations[currentLang]['tex' + tex.charAt(0).toUpperCase() + tex.slice(1)]}</strong><span class="price-label">${price.toFixed(2)} €</span>`;
+                tr.appendChild(tdName);
+
+                colors.forEach(col => {
+                    const td = document.createElement('td');
+                    const sku = data[tex][col];
+
+                    if (sku) {
+                        const cartKey = `${model}_${size}_${tex}_${col}`;
+                        const currentQty = currentCart[cartKey] || 0;
+                        td.innerHTML = `
+                            <input type="number" class="qty-input" min="0" max="99" value="${currentQty}" onchange="updateCart('${model}','${size}','${tex}','${col}', this.value)">
+                            <span class="sku-label">${sku.split('_')[1]}</span>
+                        `;
+                    } else {
+                        td.innerHTML = `<input type="number" class="qty-input" disabled value="0">`;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateCart(model, size, tex, col, qty) {
+            const cartKey = `${model}_${size}_${tex}_${col}`;
+            qty = parseInt(qty) || 0;
+
+            if (qty > 0) {
+                currentCart[cartKey] = qty;
+            } else {
+                delete currentCart[cartKey];
+            }
+            renderSummary();
+        }
+
+        function renderSummary() {
+            const container = document.getElementById('summary-items');
+            container.innerHTML = '';
+            let grandTotal = 0;
+
+            const keys = Object.keys(currentCart);
+            if (keys.length === 0) {
+                container.innerHTML = `<div style="color: var(--text-muted); font-size: 0.9rem;">${translations[currentLang].emptyCart}</div>`;
+                document.getElementById('total-price').textContent = '0,00 €';
+                return;
+            }
+
+            keys.forEach(key => {
+                const [model, size, tex, col] = key.split('_');
+                const qty = currentCart[key];
+                const price = modelsData[model][size].price;
+                const totalRowPrice = price * qty;
+                grandTotal += totalRowPrice;
+
+                const row = document.createElement('div');
+                row.className = 'summary-row';
+                row.innerHTML = `
+                    <div class="summary-details">
+                        <div>
+                            <span style="font-weight:500;">${model.toUpperCase()} (${size})</span> — ${tex} / ${col}<br>
+                            <span style="font-size:0.8rem; color:var(--text-muted);"><sup>${qty} kpl x ${price.toFixed(2)} €</sup></span>
+                        </div>
+                        <span style="font-weight:500; align-self:center;">${totalRowPrice.toFixed(2)} €</span>
+                    </div>
+                    <button class="remove-item-btn" onclick="removeItemFromCart('${key}')">✕</button>
+                `;
+                container.appendChild(row);
+            });
+
+            document.getElementById('total-price').textContent = grandTotal.toFixed(2).replace('.', ',') + ' €';
+        }
+
+        function removeItemFromCart(key) {
+            delete currentCart[key];
+            renderSummary();
+            loadModelMatrix();
+        }
+
+        function clearEntireOrder() {
+            if (Object.keys(currentCart).length === 0) return;
+            if (confirm(translations[currentLang].confirmClear)) {
+                currentCart = {};
+                renderSummary();
+                loadModelMatrix();
+                document.getElementById('order-notes').value = '';
+            }
+        }
+
+        function submitOrder() {
+            if (Object.keys(currentCart).length === 0) {
+                alert(translations[currentLang].alertEmpty);
+                return;
+            }
+            alert(translations[currentLang].alertSuccessLocal);
+            currentCart = {};
+            renderSummary();
+            loadModelMatrix();
+            document.getElementById('order-notes').value = '';
+        }
+
+        /* MODAALIN LOGIIKKA */
+        function openPreviewModal(modelId, event) {
+            if (event) event.stopPropagation();
+            activeModalModel = modelId;
+            modalOptions.texture = 'plain';
+            
+            const availableColors = modelsData[modelId]['M']['plain'];
+            for (let c of colors) {
+                if (availableColors[c]) {
+                    modalOptions.color = c;
+                    break;
+                }
+            }
+            modalOptions.size = 'M';
+
+            document.getElementById('modal-title').textContent = `Urban Heritage 26 – ${modelId.toUpperCase()}`;
+            
+            buildModalSelectors();
+            updateModalPreview();
+            
+            document.getElementById('preview-modal').classList.add('active');
+        }
+
+        function closePreviewModal() {
+            document.getElementById('preview-modal').classList.remove('active');
+        }
+
+        function buildModalSelectors() {
+            const texGroup = document.getElementById('modal-texture-group');
+            texGroup.innerHTML = '';
+            textures.forEach(t => {
+                const hasTexture = modelsData[activeModalModel]['M'][t] && Object.values(modelsData[activeModalModel]['M'][t]).some(v => v !== false);
+                if (hasTexture) {
+                    const btn = document.createElement('button');
+                    btn.className = `preview-btn ${modalOptions.texture === t ? 'active' : ''}`;
+                    btn.textContent = translations[currentLang]['tex' + t.charAt(0).toUpperCase() + t.slice(1)];
+                    btn.onclick = () => selectModalTexture(t);
+                    texGroup.appendChild(btn);
+                }
+            });
+
+            const colGroup = document.getElementById('modal-color-group');
+            colGroup.innerHTML = '';
+            colors.forEach(c => {
+                const sku = modelsData[activeModalModel][modalOptions.size][modalOptions.texture][c];
+                const btn = document.createElement('button');
+                btn.className = `preview-color-btn ${modalOptions.color === c ? 'active' : ''}`;
+                btn.style.backgroundColor = colorHex[c];
+                btn.title = translations[currentLang]['th' + c.charAt(0).toUpperCase() + c.slice(1)];
+                if (!sku) btn.disabled = true;
+                btn.onclick = () => selectModalColor(c);
+                colGroup.appendChild(btn);
+            });
+
+            document.getElementById('m-size-m').classList.toggle('active', modalOptions.size === 'M');
+            document.getElementById('m-size-l').classList.toggle('active', modalOptions.size === 'L');
+        }
+
+        function selectModalTexture(tex) {
+            modalOptions.texture = tex;
+            if (!modelsData[activeModalModel][modalOptions.size][tex][modalOptions.color]) {
+                for (let c of colors) {
+                    if (modelsData[activeModalModel][modalOptions.size][tex][c]) {
+                        modalOptions.color = c;
+                        break;
+                    }
+                }
+            }
+            buildModalSelectors();
+            updateModalPreview();
+        }
+
+        function selectModalColor(col) {
+            modalOptions.color = col;
+            buildModalSelectors();
+            updateModalPreview();
+        }
+
+        function selectModalSize(size) {
+            modalOptions.size = size;
+            buildModalSelectors();
+            updateModalPreview();
+        }
+
+        function updateModalPreview() {
+            const m = activeModalModel;
+            const texDataKey = modalOptions.texture;
+            const colDataKey = modalOptions.color;
+            const s = modalOptions.size;
+
+            const skuFull = modelsData[m][s][texDataKey][colDataKey];
+            document.getElementById('modal-sku').textContent = skuFull ? skuFull.split('_')[1] : '-';
+
+            const modelMeta = modelsData[m];
+            const translatedGender = translations[currentLang][`genre-${modelMeta.gender}`];
+            document.getElementById('modal-meta').textContent = `${modelMeta.shape} | ${translatedGender}`;
+
+            // Muutetaan kirjaimet pieniksi vain tiedostonimiä varten (.toLowerCase())
+            const tFile = texDataKey.toLowerCase();
+            const cFile = colDataKey.toLowerCase();
+
+            // Päivitetään dynaamiset PNG-kuvapolut uuden standardin mukaisesti
+            document.getElementById('modal-main-img').src = `images/${m}-${cFile}-${tFile}-main.png`;
+            document.getElementById('modal-front-img').src = `images/${m}-${cFile}-${tFile}-front.png`;
+
+            const specs = modelsData[m].specs[s];
+            document.getElementById('m-spec-frame').textContent = specs[0] + ' mm';
+            document.getElementById('m-spec-lens').textContent = specs[1] + ' mm';
+            document.getElementById('m-spec-bridge').textContent = specs[2] + ' mm';
+            document.getElementById('m-spec-temple').textContent = specs[3] + ' mm';
+        }
+
+        window.onload = () => {
+            setLanguage('fi');
+        };
+    </script>
+</body>
+</html>

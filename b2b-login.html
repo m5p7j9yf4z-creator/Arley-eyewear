@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Arley Eyewear | Partner Portal Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fbfbfa;
+            --text-main: #222222;
+            --text-muted: #767676;
+            --border-color: #e5e5e3;
+            --white: #ffffff;
+            --input-bg: #f5f5f3;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Takaisin-linkki ja kielivalikko yläkulmassa */
+        .top-nav {
+            padding: 40px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        /* Minimaalinen B2B kielikytkin */
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0 2px;
+            font-family: inherit;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            color: var(--text-main);
+        }
+
+        .lang-btn.active {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Kirjautumiskonttia nostettu reilusti ylemmäs */
+        .login-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin-bottom: 22vh;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 380px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        /* Logo sovitettu alla olevan tekstin leveyteen */
+        .brand-logo-img {
+            width: 170px;
+            height: auto;
+            margin: 0 auto 17px auto;
+            display: block;
+        }
+
+        .portal-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* Lomake-elementit */
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .form-input {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            background-color: var(--white);
+            border-color: var(--text-main);
+        }
+
+        .login-btn {
+            width: 100%;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border: none;
+            padding: 16px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #000000;
+        }
+        
+        .login-btn:active {
+            transform: scale(0.99);
+        }
+
+        /* Alaosan linkit */
+        .login-footer-links {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .login-footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .login-footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Virheilmoitusalue */
+        .error-message {
+            color: #c94a4a;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="index.html" class="back-link" data-translate="nav-back">← Takaisin pääsivulle</a>
+        
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLanguage('fi', event)">FI</button>
+            <span style="color: var(--border-color);">|</span>
+            <button class="lang-btn" onclick="setLanguage('en', event)">EN</button>
+        </div>
+    </div>
+
+    <div class="login-wrapper">
+        <div class="login-container">
+            
+            <div class="brand-header">
+                <img src="arley-logo.svg" alt="Arley Eyewear" class="brand-logo-img">
+                <div class="portal-tag" data-translate="portal-tag">B2B Partner Portal</div>
+            </div>
+
+            <div id="login-error" class="error-message" data-translate="error-auth">Virheellinen käyttäjätunnus tai salasana.</div>
+
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" for="partner-id" data-translate="lbl-username">Käyttäjätunnus / ID</label>
+                    <input class="form-input" type="text" id="partner-id" required placeholder="optikko@liike.fi" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="partner-password" data-translate="lbl-password">Salasana</label>
+                    <input class="form-input" type="password" id="partner-password" required placeholder="••••••••" autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="login-btn" data-translate="btn-login">Kirjaudu sisään</button>
+            </form>
+
+            <div class="login-footer-links">
+                <a href="index.html#contact" data-translate="link-forgot">Unohtuiko salasana?</a>
+                <span style="color: var(--border-color);">•</span>
+                <a href="index.html#contact" data-translate="link-apply">Hae jälleenmyyjäksi</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'fi';
+
+        const translations = {
+            fi: {
+                "page-title": "Arley Eyewear | B2B Partner Portal",
+                "nav-back": "← Takaisin pääsivulle",
+                "portal-tag": "B2B Partner Portal",
+                "error-auth": "Virheellinen käyttäjätunnus tai salasana.",
+                "lbl-username": "Käyttäjätunnus / ID",
+                "lbl-password": "Salasana",
+                "btn-login": "Kirjaudu sisään",
+                "link-forgot": "Unohtuiko salasana?",
+                "link-apply": "Hae jälleenmyyjäksi",
+                "placeholder-user": "optikko@liike.fi",
+                "alert-success": "Kirjautuminen onnistui! Siirrytään tilaussivulle..."
+            },
+            en: {
+                "page-title": "Arley Eyewear | B2B Partner Portal Login",
+                "nav-back": "← Back to main site",
+                "portal-tag": "B2B Partner Portal",
+                "error-auth": "Invalid username or password.",
+                "lbl-username": "Username / Partner ID",
+                "lbl-password": "Password",
+                "btn-login": "Login",
+                "link-forgot": "Forgot password?",
+                "link-apply": "Apply for retailer account",
+                "placeholder-user": "optician@store.com",
+                "alert-success": "Login successful! Redirecting to dashboard..."
+            }
+        };
+
+        function setLanguage(l, e) {
+            currentLang = l;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            if(e) e.target.classList.add('active');
+            
+            const t = translations[l];
+            
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                el.textContent = t[el.getAttribute('data-translate')];
+            });
+            
+            document.getElementById('page-title').textContent = t["page-title"];
+            document.getElementById('partner-id').placeholder = t["placeholder-user"];
+            
+            document.documentElement.lang = l;
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('partner-id').value;
+            const password = document.getElementById('partner-password').value;
+            const errorDiv = document.getElementById('login-error');
+
+            if (id.trim() !== "" && password === "arley2026") {
+                errorDiv.style.display = 'none';
+                
+                // TÄRKEÄ MUUTOS: Tallennetaan kumppanin nimi istuntoon ennen siirtymistä
+                sessionStorage.setItem('partnerName', 'Optikkoliike Silmäterä');
+                
+                // 1. Avataan tilaussivu uuteen ikkunaan
+                window.open('b2b-dashboard.html', '_blank');
+                
+                // 2. Palautetaan nykyinen kirjautumissivu etusivulle
+                window.location.href = 'index.html';
+            } else {
+                errorDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

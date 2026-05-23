@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Arley Eyewear | Collection</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   BASE
+========================================================= */
+
+html{
+    scroll-padding-top:95px;
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#fbfbfa;
+    --text:#222222;
+    --text-muted:#767676;
+    --border:#e5e5e3;
+    --accent-hover:#b5b5b2;
+    --white:#ffffff;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    margin:0;
+    padding-top:95px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--border);
+    background:var(--bg);
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+    height:95px;
+}
+
+.logo-link{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+}
+
+.logo-img{
+    height:55px;
+    width:auto;
+    display:block;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+}
+
+nav a{
+    margin-left:30px;
+    text-decoration:none;
+    color:var(--text);
+    font-size:.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:color .3s ease;
+}
+
+nav a:hover{
+    color:var(--text-muted);
+}
+
+.b2b-link{
+    margin-left:30px;
+    text-decoration:none;
+    color:var(--text);
+    font-size:.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    opacity:.65;
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:all .3s ease;
+}
+
+.b2b-link:hover{
+    opacity:1;
+    border-color:var(--text);
+}
+
+.lang-switch{
+    margin-left:40px;
+    display:flex;
+    gap:8px;
+    font-size:.8rem;
+}
+
+.lang-btn{
+    background:none;
+    border:none;
+    color:var(--text-muted);
+    cursor:pointer;
+    padding:0 2px;
+    font-family:inherit;
+    letter-spacing:1px;
+}
+
+.lang-btn.active{
+    color:var(--text);
+    font-weight:600;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    padding:100px 8%;
+    background-image:url('images/hero-main.webp');
+    background-size:cover;
+    background-position:center right;
+    border-bottom:1px solid var(--border);
+    min-height:85vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:650px;
+    background:rgba(251,251,250,.85);
+    padding:40px;
+    border-radius:4px;
+    backdrop-filter:blur(4px);
+}
+
+.hero h1{
+    font-weight:300;
+    font-size:3.2rem;
+    line-height:1.15;
+    letter-spacing:-0.5px;
+    margin:0 0 30px 0;
+}
+
+.hero p{
+    font-size:1.1rem;
+    font-weight:300;
+    margin:0;
+}
+
+/* =========================================================
+   COLLECTION INTRO
+========================================================= */
+
+.collection-intro{
+    padding:40px 8% 20px;
+    max-width:750px;
+}
+
+.collection-intro h2{
+    font-weight:300;
+    font-size:2.2rem;
+    letter-spacing:1px;
+    margin:0 0 25px;
+}
+
+.collection-intro p{
+    font-size:1.15rem;
+    font-weight:300;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.welcome-tag{
+    font-size:.85rem;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    border-left:2px solid var(--text);
+    padding-left:15px;
+}
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+
+.portfolio-carousel{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:540px;
+    gap:35px;
+    overflow-x:auto;
+    padding:25px 8% 60px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;
+    scrollbar-color:var(--border) transparent;
+}
+
+.portfolio-carousel::-webkit-scrollbar{
+    height:4px;
+}
+
+.portfolio-carousel::-webkit-scrollbar-thumb{
+    background:var(--border);
+    border-radius:10px;
+}
+
+.portfolio-item{
+    aspect-ratio:5 / 4;
+    background-size:cover;
+    background-position:center;
+    background-color:#f4f4f2;
+    border:1px solid var(--border);
+    border-radius:4px;
+    position:relative;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:25px;
+    overflow:hidden;
+    transition:transform .3s ease,border-color .3s ease;
+}
+
+.portfolio-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.75);
+    z-index:1;
+    transition:opacity .3s ease;
+}
+
+.portfolio-item:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent-hover);
+}
+
+.portfolio-item:hover::before{
+    opacity:0;
+}
+
+.portfolio-item h3{
+    margin:0;
+    font-weight:400;
+    font-size:1.1rem;
+    letter-spacing:.5px;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    z-index:2000;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-overlay.active{
+    display:flex;
+}
+
+.modal-container{
+    background:var(--bg);
+    width:90vw;
+    max-width:1200px;
+    height:85vh;
+    border-radius:8px;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
+.modal-close{
+    position:absolute;
+    top:25px;
+    right:25px;
+    background:none;
+    border:none;
+    font-size:1.5rem;
+    cursor:pointer;
+    color:var(--text);
+    z-index:2100;
+}
+
+.modal-gallery{
+    background:#fff;
+    padding:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    border-right:1px solid var(--border);
+}
+
+.modal-gallery img{
+    width:100%;
+    flex:1;
+    object-fit:cover;
+    background:#fafaf9;
+    border-radius:4px;
+    min-height:0;
+}
+
+.modal-details{
+    padding:40px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-code-badge{
+    font-family:monospace;
+    font-size:1.1rem;
+    font-weight:600;
+    background:rgba(0,0,0,.05);
+    padding:6px 12px;
+    display:inline-block;
+    border-radius:4px;
+    margin-bottom:15px;
+    align-self:flex-start;
+}
+
+.config-section{
+    margin-bottom:20px;
+    border-top:1px solid var(--border);
+    padding-top:15px;
+}
+
+.config-label{
+    font-size:.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:10px;
+    color:var(--text-muted);
+}
+
+.option-group{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.preview-btn{
+    background:none;
+    border:1px solid var(--border);
+    padding:6px 12px;
+    font-size:.8rem;
+    cursor:pointer;
+    border-radius:4px;
+    transition:all .25s;
+}
+
+.preview-btn.active{
+    background:var(--text);
+    color:#fff;
+    border-color:var(--text);
+}
+
+.preview-color-btn{
+    width:30px;
+    height:30px;
+    border-radius:4px;
+    border:1px solid var(--border);
+    cursor:pointer;
+}
+
+.preview-color-btn.active{
+    box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--text);
+}
+
+.specs-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.specs-table td{
+    padding:8px 0;
+    border-bottom:1px solid var(--border);
+    font-size:.85rem;
+    font-weight:300;
+}
+
+.specs-table td:last-child{
+    text-align:right;
+    font-weight:500;
+}
+
+/* =========================================================
+   INNOVATION
+========================================================= */
+
+.innovation-section{
+    padding:60px 8% 100px;
+    border-top:1px solid var(--border);
+}
+
+.innovation-section h2{
+    font-weight:300;
+    font-size:2rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin:0 0 70px;
+    position:relative;
+    padding-bottom:26px;
+}
+
+/* subtle divider line */
+
+.innovation-section h2::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:1px;
+    background:rgba(0,0,0,0.06);
+}
+
+/* =========================================================
+   INNOVATION CONTAINER
+========================================================= */
+
+.innovation-container{
+    width:100%;
+}
+
+/* =========================================================
+   PROCESS GRID
+========================================================= */
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:46px;
+    width:100%;
+}
+
+.process-card{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.process-number{
+    font-size:1.4rem;
+    font-weight:300;
+    color:#9a9a97;
+    margin-bottom:22px;
+    letter-spacing:1px;
+}
+
+.process-card h3{
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    line-height:1.5;
+    margin:0 0 22px;
+    padding-bottom:18px;
+    border-bottom:1px solid var(--border);
+}
+
+.process-card p{
+    color:var(--text-muted);
+    font-size:1.08rem;
+    line-height:1.82;
+    font-weight:300;
+    margin:0 0 34px;
+    max-width:95%;
+    flex-grow:1;
+}
+
+/* =========================================================
+   PROCESS IMAGES
+========================================================= */
+
+.process-image{
+    width:100%;
+    aspect-ratio:5 / 4;
+    background:#FBFBFA;
+    overflow:hidden;
+    border:1px solid rgba(0,0,0,0.04);
+    margin-top:auto;
+}
+
+.process-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* =========================================================
+   TECH SPECS
+========================================================= */
+
+.tech-specs{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:46px;
+    width:100%;
+
+    margin-top:72px;
+    padding-top:42px;
+}
+
+/* divider line */
+
+.tech-specs::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:1px;
+    background:rgba(0,0,0,0.06);
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section{
+    padding:60px 8% 100px;
+    border-top:1px solid var(--border);
+}
+
+.about-container{
+    width:100%;
+}
+
+.about-section h2{
+    font-weight:300;
+    font-size:2rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin:0 0 60px;
+}
+
+.about-block{
+    margin-bottom:60px;
+}
+
+.about-block h3{
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin:0 0 15px;
+}
+
+.about-block p{
+    color:var(--text-muted);
+    font-size:1.05rem;
+    line-height:1.8;
+    font-weight:300;
+    margin:0;
+}
+
+/* =========================================================
+   SECTION DIVIDERS
+========================================================= */
+
+.about-section h2,
+.contact-section h2{
+    position:relative;
+    padding-bottom:26px;
+}
+
+.about-section h2::after,
+.contact-section h2::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100%;
+    bottom:0;
+    height:1px;
+    background:rgba(0,0,0,0.06);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    .process-grid{
+        gap:40px;
+    }
+
+    .tech-specs{
+        grid-template-columns:repeat(2,1fr);
+        gap:50px;
+    }
+
+}
+
+@media(max-width:1024px){
+
+    .process-grid{
+        grid-template-columns:1fr;
+        gap:70px;
+    }
+
+    .process-card p{
+        max-width:none;
+    }
+
+    .tech-specs{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-section{
+    padding:60px 8% 100px;
+    border-top:1px solid var(--border);
+}
+
+.contact-container{
+    width:100%;
+}
+
+.contact-section h2{
+    font-weight:300;
+    font-size:2rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin:0 0 40px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:var(--bg);
+    padding:0 8%;
+    border-top:1px solid var(--border);
+    height:95px;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:100%;
+}
+
+.footer-bottom{
+    font-size:.8rem;
+    color:var(--text-muted);
+}
+
+.footer-socials{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.footer-socials a{
+    color:var(--text-muted);
+    text-decoration:none;
+    font-size:.82rem;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    transition:opacity .25s ease;
+}
+
+.footer-socials a:hover{
+    opacity:.55;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    body{
+        padding-top:85px;
+    }
+
+    header{
+        height:85px;
+        padding:20px 4%;
+    }
+
+    .hero{
+        padding:60px 4%;
+        background-position:center;
+    }
+
+    .hero-content{
+        padding:25px;
+    }
+
+    .hero h1{
+        font-size:2.4rem;
+    }
+
+    .portfolio-carousel{
+        grid-auto-columns:82vw;
+        padding-left:4%;
+        padding-right:4%;
+    }
+
+    .modal-container{
+        grid-template-columns:1fr;
+        height:95vh;
+    }
+
+    .modal-details{
+        padding:25px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+<a href="index.html" class="logo-link">
+<img src="images/logo.svg" alt="Arley Eyewear" class="logo-img">
+</a>
+
+<nav>
+
+<a href="#collections" data-translate="nav-collections">
+Mallistot
+</a>
+
+<a href="#innovation" data-translate="nav-innovation">
+Innovaatio
+</a>
+
+<a href="#about" data-translate="nav-about">
+Tarina
+</a>
+
+<a href="#contact" data-translate="nav-contact">
+Yhteys
+</a>
+
+<a href="b2b-login.html" class="b2b-link">
+B2B Portal
+</a>
+
+<div class="lang-switch">
+
+<button
+class="lang-btn active"
+id="btn-lang-fi"
+onclick="setLanguage('fi', event)">
+FI
+</button>
+
+<span>|</span>
+
+<button
+class="lang-btn"
+id="btn-lang-en"
+onclick="setLanguage('en', event)">
+EN
+</button>
+
+</div>
+
+</nav>
+
+</header>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1 data-translate="hero-title">
+Hienovaraista muotoilua. Teknologista avantgardea.
+</h1>
+
+<p data-translate="hero-desc">
+Arley yhdistää edistyksellisen ainetta lisäävän valmistuksen
+ja skandinaavisen minimalismin keveiksi,
+rakenteellisesti kestäviksi ja ilmeikkäiksi silmälasikehyksiksi.
+</p>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     COLLECTION
+========================================================= -->
+
+<section class="collection-intro" id="collections">
+
+<h2 data-translate="title-collection">
+URBAN HERITAGE 26 - MALLISTO
+</h2>
+
+<p data-translate="subtitle-collection">
+Klikkaa tuotekorttia avataksesi mallin esikatselun,
+tarkemmat tekniset tiedot ja tilausvalinnat.
+</p>
+
+<div class="welcome-tag" data-translate="coll-welcome">
+Welcome to the collection
+</div>
+
+</section>
+
+<div class="portfolio-carousel">
+
+<div class="portfolio-item"
+onclick="openPreviewModal('d001')"
+style="background-image:url('images/carousel-uh26/d001/d001.webp');">
+<h3>Urban Heritage 26 – D001</h3>
+</div>
+
+<div class="portfolio-item"
+onclick="openPreviewModal('d002')"
+style="background-image:url('images/carousel-uh26/d002/d002.webp');">
+<h3>Urban Heritage 26 – D002</h3>
+</div>
+
+<div class="portfolio-item"
+onclick="openPreviewModal('d003')"
+style="background-image:url('images/carousel-uh26/d003/d003.webp');">
+<h3>Urban Heritage 26 – D003</h3>
+</div>
+
+<div class="portfolio-item"
+onclick="openPreviewModal('d004')"
+style="background-image:url('images/carousel-uh26/d004/d004.webp');">
+<h3>Urban Heritage 26 – D004</h3>
+</div>
+
+<div class="portfolio-item"
+onclick="openPreviewModal('d005')"
+style="background-image:url('images/carousel-uh26/d005/d005.webp');">
+<h3>Urban Heritage 26 – D005</h3>
+</div>
+
+<div class="portfolio-item"
+onclick="openPreviewModal('d006')"
+style="background-image:url('images/carousel-uh26/d006/d006.webp');">
+<h3>Urban Heritage 26 – D006</h3>
+</div>
+
+</div>
+
+<!-- =========================================================
+     INNOVATION
+========================================================= -->
+<section class="innovation-section" id="innovation">
+
+    <h2 data-translate="innov-heading">
+        Innovaatio & Tekniikka
+    </h2>
+
+    <div class="innovation-container">
+
+        <!-- PROCESS GRID -->
+        <div class="process-grid">
+
+            <!-- CARD 01 -->
+            <div class="process-card">
+
+                <div class="process-number">
+                    01
+                </div>
+
+                <h3 data-translate="proc-t1">
+                    Muotoilu & Iterointi
+                </h3>
+
+                <p data-translate="proc-p1">
+                    Arleyn estetiikka rakentuu arkkitehtonisen luonnostelun ja tarkan ergonomisen analyysin kautta. Jokainen siluetti käy läpi useita iterointivaiheita optimaalisen tasapainon, istuvuuden ja visuaalisen rytmin saavuttamiseksi.
+                </p>
+
+                <div class="process-image">
+                    <img
+                        src="images/process-design.webp"
+                        alt="Arley eyewear technical sketch"
+                    >
+                </div>
+
+            </div>
+
+            <!-- CARD 02 -->
+            <div class="process-card">
+
+                <div class="process-number">
+                    02
+                </div>
+
+                <h3 data-translate="proc-t2">
+                    Digitaalinen Suunnittelu
+                </h3>
+
+                <p data-translate="proc-p2">
+                    Vision kääntäminen tarkasti suunnitelluksi digitaaliseksi geometriaksi. Kehittyneet parametriset DfAM-menetelmät mahdollistavat rakenteellisen eheyden optimoinnin hienovaraisimmassakin muotokielessä.
+                </p>
+
+                <div class="process-image">
+                    <img
+                        src="images/process-cad.webp"
+                        alt="CAD workflow controller illustration"
+                    >
+                </div>
+
+            </div>
+
+            <!-- CARD 03 -->
+            <div class="process-card">
+
+                <div class="process-number">
+                    03
+                </div>
+
+                <h3 data-translate="proc-t3">
+                    Kerrosrakenteinen Valmistus
+                </h3>
+
+                <p data-translate="proc-p3">
+                    Digitaalisen suunnittelun toteuttaminen fyysiseksi muodoksi korkean tarkkuuden EOS SLS -teknologian avulla. Kerrosrakenteinen valmistus mahdollistaa kevyet, monimutkaiset ja poikkeuksellisen kestävät geometriat ilman ylimääräistä hukkamateriaalia.
+                </p>
+
+                <div class="process-image">
+                    <img
+                        src="images/process-sls.webp"
+                        alt="EOS SLS manufacturing illustration"
+                    >
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TECH SPECS -->
+        <div class="tech-specs">
+
+            <!-- TECH 01 -->
+            <div class="tech-card">
+
+                <h3 data-translate="tech-head-1">
+                    VALMISTUSTEKNOLOGIA
+                </h3>
+
+                <p data-translate="tech-list-1">
+                    Optimoitu EOS-pohjainen SLS-valmistus rakenteellisesti tarkkoihin ja kevyisiin geometrioihin.
+                </p>
+
+                <p data-translate="tech-list-2">
+                    Teollisuustason additive manufacturing -prosessi erittäin tarkalla mittapysyvyydellä.
+                </p>
+
+            </div>
+
+            <!-- TECH 02 -->
+            <div class="tech-card">
+
+                <h3 data-translate="tech-head-2">
+                    MATERIAALI
+                </h3>
+
+                <p data-translate="tech-list-3">
+                    Polyamidi 12 [PA12]
+                </p>
+
+                <p data-translate="tech-list-4">
+                    Kevyt, erittäin kestävä ja ihoystävällinen tekninen materiaali päivittäiseen käyttöön.
+                </p>
+
+            </div>
+
+            <!-- TECH 03 -->
+            <div class="tech-card">
+
+                <h3 data-translate="tech-head-3">
+                    PINTAKÄSITTELY
+                </h3>
+
+                <p data-translate="tech-list-5">
+                    Automatisoitu DyeMansion PowerShot C + S -viimeistely luo tasaisen ja hienostuneen pinnan.
+                </p>
+
+                <p data-translate="tech-list-6">
+                    DeepDye Coloring [DDC] mahdollistaa pitkäikäisen ja syvävärjätyn lopputuloksen.
+                </p>
+
+            </div>
+
+            <!-- TECH 04 -->
+            <div class="tech-card">
+
+                <h3 data-translate="tech-head-4">
+                    KOMPONENTIT
+                </h3>
+
+                <p data-translate="tech-list-7">
+                    Integroitu UV-stabilointi auttaa säilyttämään materiaalin pitkäaikaisen kestävyyden.
+                </p>
+
+                <p data-translate="tech-list-8">
+                    OBE GmbH & Co -saranajärjestelmät sulavaan liikkeeseen ja rakenteelliseen luotettavuuteen.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+ ABOUT
+========================================================= -->
+
+<section class="about-section" id="about">
+
+<div class="about-container">
+
+<h2 data-translate="about-title">
+Tarina ja visiomme
+</h2>
+
+<div class="about-block">
+
+<h3 data-translate="about-heading">
+Kokemuksen muovaamaa suunnittelua
+</h3>
+
+<p data-translate="about-text">
+Oulusta ponnistava Arley Eyewear ei ole pelkkä muotoilubrändi, vaan yli vuosikymmenen syvällisen Selective Laser Sintering (SLS) -osaamisen huipentuma.
+</p>
+
+</div>
+
+<div class="about-block">
+
+<h3 data-translate="about-heading-2">
+Kestävää arkkitehtuuria kasvoille
+</h3>
+
+<p data-translate="about-text-2">
+Uskomme, että lasit ovat enemmän kuin väline – ne ovat osa kantajansa identiteettiä. Hallitsemalla koko tuotantoketjun ensimmäisestä digitaalisesta pisteestä aina viimeisteltyyn pintakäsittelyyn asti takaamme jokaiselle kehykselle poikkeuksellisen pitkän elinkaaren, keveyden ja ergonomian.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="contact-section" id="contact">
+
+<div class="contact-container">
+
+<h2 data-translate="contact-title">
+Yhteystiedot
+</h2>
+
+<p data-translate="contact-desc">
+Ota yhteyttä — rakennetaan jotain poikkeuksellista yhdessä.
+</p>
+
+<div>
+info@arleyeyewear.com
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-bottom">
+            © 2026 Arley Eyewear
+        </div>
+
+        <div class="footer-socials">
+
+            <a
+                href="https://instagram.com/arleyeyewear"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Instagram
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div id="preview-modal"
+class="modal-overlay"
+onclick="closePreviewModal()">
+
+<div class="modal-container"
+onclick="event.stopPropagation()">
+
+<button class="modal-close"
+onclick="closePreviewModal()">✕</button>
+
+<div class="modal-gallery">
+
+<img id="modal-main-img" src="" alt="">
+<img id="modal-front-img" src="" alt="">
+
+</div>
+
+<div class="modal-details">
+
+<h2 id="modal-title">Urban Heritage 26</h2>
+
+<div id="modal-meta"
+style="font-size:.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;">
+</div>
+
+<div id="modal-sku"
+class="modal-code-badge">
+-
+</div>
+
+<div class="config-section">
+
+<div class="config-label"
+data-translate="modal-texture">
+Valitse tekstuuri
+</div>
+
+<div class="option-group"
+id="modal-texture-group">
+</div>
+
+</div>
+
+<div class="config-section">
+
+<div class="config-label"
+data-translate="modal-color">
+Valitse väri
+</div>
+
+<div class="option-group"
+id="modal-color-group">
+</div>
+
+</div>
+
+<div class="config-section">
+
+<div class="config-label"
+data-translate="modal-size">
+Koko
+</div>
+
+<div class="option-group">
+
+<button
+class="preview-btn active"
+id="m-size-m"
+onclick="selectModalSize('M')">
+M
+</button>
+
+<button
+class="preview-btn"
+id="m-size-l"
+onclick="selectModalSize('L')">
+L
+</button>
+
+</div>
+
+</div>
+
+<div class="config-section">
+
+<div class="config-label"
+data-translate="modal-specs">
+Tekniset mitat
+</div>
+
+<table class="specs-table">
+
+<tr>
+<td data-translate="spec-frame">
+Kehyksen leveys
+</td>
+<td id="m-spec-frame">134 mm</td>
+</tr>
+
+<tr>
+<td data-translate="spec-lens">
+Linssin leveys
+</td>
+<td id="m-spec-lens">49 mm</td>
+</tr>
+
+<tr>
+<td data-translate="spec-bridge">
+Sillan leveys
+</td>
+<td id="m-spec-bridge">19 mm</td>
+</tr>
+
+<tr>
+<td data-translate="spec-temple">
+Aisan pituus
+</td>
+<td id="m-spec-temple">130 mm</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+    fi:{
+
+        "nav-collections":"Mallistot",
+        "nav-innovation":"Innovaatio",
+        "nav-about":"Tarina",
+        "nav-contact":"Yhteys",
+
+        "hero-title":"Hienovaraista muotoilua. Teknologista avantgardea.",
+
+        "hero-desc":"Arley yhdistää edistyksellisen ainetta lisäävän valmistuksen ja skandinaavisen minimalismin keveiksi, rakenteellisesti kestäviksi ja ilmeikkäiksi silmälasikehyksiksi.",
+
+        "title-collection":"URBAN HERITAGE 26 - MALLISTO",
+
+        "subtitle-collection":"Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.",
+
+        "coll-welcome":"Welcome to the collection",
+
+        "innov-heading":"Innovaatio & Tekniikka",
+
+        "proc-t1":"Iterointi & Muotoilu",
+
+        "proc-p1":"Arleyn estetiikka rakentuu arkkitehtonisen luonnostelun ja tarkan ergonomisen analyysin kautta. Jokainen siluetti käy läpi useita iterointivaiheita optimaalisen tasapainon, istuvuuden ja visuaalisen rytmin saavuttamiseksi.",
+
+        "proc-t2":"Digitaalinen Tarkkuus",
+
+        "proc-p2":"Vision kääntäminen tarkasti suunnitelluksi digitaaliseksi geometriaksi. Kehittyneet parametriset DfAM-menetelmät mahdollistavat rakenteellisen eheyden optimoinnin hienovaraisimmassakin muotokielessä.",
+
+        "proc-t3":"Additiivinen Valmistus",
+
+        "proc-p3":"Digitaalisen suunnittelun toteuttaminen fyysiseksi muodoksi korkean tarkkuuden EOS SLS -teknologian avulla. Kerrosrakenteinen valmistus mahdollistaa kevyet, monimutkaiset ja poikkeuksellisen kestävät geometriat ilman ylimääräistä hukkamateriaalia.",
+
+        "tech-head-1":"VALMISTUSTEKNOLOGIA",
+        "tech-head-2":"MATERIAALIOMINAISUUDET",
+        "tech-head-3":"PINTAKÄSITTELY & VIIMEISTELY",
+        "tech-head-4":"KOMPONENTIT & RAKENNE",
+
+        "tech-list-1":"Prosessi: Optimoitu SLS-valmistus (Selective Laser Sintering), joka mahdollistaa tasalaatuisen rakenteen ja korkean mittatarkkuuden.",
+
+        "tech-list-2":"Tarkkuus: EOS-teknologiaan perustuva teollisuustason additive manufacturing -prosessi, optimoitu monimutkaisille ohutseinäisille rakenteille ja tarkalle painojakaumalle.",
+
+        "tech-list-3":"Perusmateriaali: Polyamidi 12 [PA12]",
+
+        "tech-list-4":"Ominaisuudet: Kevyt, erittäin kestävä ja ihoystävällinen tekninen materiaali päivittäiseen käyttöön.",
+
+        "tech-list-5":"Pinnan viimeistely: Automatisoitu DyeMansion PowerShot C + S -prosessointi luo tasaisen, hienostuneen ja korkealaatuisen pintatuntuman.",
+
+        "tech-list-6":"Värjäysjärjestelmä: DyeMansion DM60 DeepDye Coloring [DDC] mahdollistaa syvävärjätyn ja pitkäikäisen lopputuloksen.",
+
+        "tech-list-7":"Suojaus: Integroitu UV-stabilointi auttaa säilyttämään värien syvyyden ja materiaalin kestävyyden päivittäisessä käytössä.",
+
+        "tech-list-8":"Saranarakenteet: Korkean suorituskyvyn OBE GmbH & Co -saranat on valittu sulavan liikkeen, materiaalien yhteensopivuuden ja pitkäaikaisen kestävyyden perusteella.",
+
+        "about-title":"Tarina ja visiomme",
+
+        "about-heading":"Kokemuksen muovaamaa suunnittelua",
+
+        "about-text":"Oulusta ponnistava Arley Eyewear ei ole pelkkä muotoilubrändi, vaan yli vuosikymmenen syvällisen Selective Laser Sintering (SLS) -osaamisen huipentuma.",
+
+        "about-heading-2":"Kestävää arkkitehtuuria kasvoille",
+
+        "about-text-2":"Uskomme, että lasit ovat enemmän kuin väline – ne ovat osa kantajansa identiteettiä. Hallitsemalla koko tuotantoketjun ensimmäisestä digitaalisesta pisteestä aina viimeisteltyyn pintakäsittelyyn asti takaamme jokaiselle kehykselle poikkeuksellisen pitkän elinkaaren, keveyden ja ergonomian.",
+
+        "contact-title":"Yhteystiedot",
+
+        "contact-desc":"Ota yhteyttä — rakennetaan jotain poikkeuksellista yhdessä.",
+
+        "modal-texture":"Valitse tekstuuri",
+        "modal-color":"Valitse väri",
+        "modal-size":"Koko",
+        "modal-specs":"Tekniset mitat",
+
+        "spec-frame":"Kehyksen leveys",
+        "spec-lens":"Linssin leveys",
+        "spec-bridge":"Sillan leveys",
+        "spec-temple":"Aisan pituus"
+
+    },
+
+    en:{
+
+        "nav-collections":"Collections",
+        "nav-innovation":"Innovation",
+        "nav-about":"About",
+        "nav-contact":"Contact",
+
+        "hero-title":"Subtle design. Technological avant-garde.",
+
+        "hero-desc":"Arley combines advanced additive manufacturing and Scandinavian minimalism into lightweight, structurally durable and expressive eyewear frames.",
+
+        "title-collection":"URBAN HERITAGE 26 - COLLECTION",
+
+        "subtitle-collection":"Click on a product card to open preview, technical specifications and configuration options.",
+
+        "coll-welcome":"Welcome to the collection",
+
+        "innov-heading":"Innovation & Engineering",
+
+        "proc-t1":"Iteration & Design",
+
+        "proc-p1":"The Arley aesthetic is shaped through architectural sketching and ergonomic analysis. Every silhouette undergoes multiple iterations to achieve optimal balance, fit and visual rhythm.",
+
+        "proc-t2":"Digital Precision",
+
+        "proc-p2":"Translating vision into precisely engineered digital geometry through advanced parametric DfAM methodologies.",
+
+        "proc-t3":"Additive Manufacturing",
+
+        "proc-p3":"Realizing digital concepts through high-precision EOS SLS manufacturing. Layer-based production enables lightweight, complex and exceptionally durable geometries with minimal material waste.",
+
+        "tech-head-1":"MANUFACTURING TECHNOLOGY",
+        "tech-head-2":"MATERIAL PROPERTIES",
+        "tech-head-3":"SURFACE TREATMENT & FINISHING",
+        "tech-head-4":"COMPONENTS & STRUCTURE",
+
+        "tech-list-1":"Process: Optimized SLS manufacturing (Selective Laser Sintering) engineered for structural consistency and dimensional precision.",
+
+        "tech-list-2":"Precision: EOS-based industrial additive manufacturing optimized for complex thin-walled geometries and balanced weight distribution.",
+
+        "tech-list-3":"Base Material: Polyamide 12 [PA12]",
+
+        "tech-list-4":"Characteristics: Lightweight, highly durable and skin-compatible technical material designed for daily wear.",
+
+        "tech-list-5":"Surface Refinement: Automated DyeMansion PowerShot C + S processing creates a refined and homogeneous premium tactile surface.",
+
+        "tech-list-6":"Coloring System: DyeMansion DM60 DeepDye Coloring [DDC] enables deep coloration with long-term vibrancy and durability.",
+
+        "tech-list-7":"Protection: Integrated UV stabilization helps preserve color depth and long-term material integrity during daily exposure.",
+
+        "tech-list-8":"Hinge System: High-performance hinges by OBE GmbH & Co selected for smooth actuation, material compatibility and long-term reliability.",
+
+        "about-title":"Our Story & Vision",
+
+        "about-heading":"Designed by Experience",
+
+        "about-text":"Hailing from Oulu, Finland, Arley Eyewear is not merely a design label, but the culmination of over a decade of deep Selective Laser Sintering expertise.",
+
+        "about-heading-2":"Sustainable Architecture for the Face",
+
+        "about-text-2":"We believe eyewear is more than a tool — it becomes part of the wearer's identity. By controlling the entire production chain from the first digital point to the final surface finish, we ensure exceptional longevity, lightweight comfort and ergonomics.",
+
+        "contact-title":"Contact",
+
+        "contact-desc":"Get in touch — let's build something exceptional together.",
+
+        "modal-texture":"Select texture",
+        "modal-color":"Select color",
+        "modal-size":"Size",
+        "modal-specs":"Technical specs",
+
+        "spec-frame":"Frame width",
+        "spec-lens":"Lens width",
+        "spec-bridge":"Bridge width",
+        "spec-temple":"Temple length"
+
+    }
+
+};
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+function setLanguage(lang,event){
+
+    if(event){
+        event.preventDefault();
+    }
+
+    document
+        .querySelectorAll('[data-translate]')
+        .forEach(el=>{
+
+            const key =
+                el.getAttribute('data-translate');
+
+            if(translations[lang][key]){
+
+                el.textContent =
+                    translations[lang][key];
+
+            }
+
+        });
+
+    document
+        .getElementById('btn-lang-fi')
+        .classList.toggle('active',lang==='fi');
+
+    document
+        .getElementById('btn-lang-en')
+        .classList.toggle('active',lang==='en');
+
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+const textures = ['plain','fluted','microdot','striated'];
+
+const colors = ['onyx','slate','brown','plum'];
+
+const colorHex = {
+    onyx:'#1a1a1a',
+    slate:'#3a3f47',
+    brown:'#3d3025',
+    plum:'#2e1e2d'
+};
+
+const textureCodes = {
+    plain:'P',
+    fluted:'F',
+    microdot:'D',
+    striated:'S'
+};
+
+const colorCodes = {
+    onyx:'OX',
+    slate:'DS',
+    brown:'CB',
+    plum:'IP'
+};
+
+let activeModalModel = 'd001';
+
+let modalOptions = {
+    texture:'plain',
+    color:'onyx',
+    size:'M'
+};
+
+const modelsData = {
+
+    d001:{
+        shape:'Soft Rectangle',
+        gender:'Unisex',
+
+        specs:{
+            M:[134,49,19,130],
+            L:[139,51,20,135]
+        },
+
+        M:{
+            price:85.00,
+
+            plain:{
+                onyx:'000001_D001POXM',
+                slate:'000004_D001PDSM',
+                brown:'000007_D001PCBM',
+                plum:'000009_D001PIPM'
+            },
+
+            fluted:{
+                onyx:'000002_D001FOXM',
+                slate:'000005_D001FDSM',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000003_D001DOXM',
+                slate:'000006_D001DDSM',
+                brown:'000008_D001DCBM',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000010_D001SIPM'
+            }
+        },
+
+        L:{
+            price:95.00,
+
+            plain:{
+                onyx:'000011_D001POXL',
+                slate:'000014_D001PDSL',
+                brown:'000017_D001PCBL',
+                plum:'000019_D001PIPL'
+            },
+
+            fluted:{
+                onyx:'000012_D001FOXL',
+                slate:'000015_D001FDSL',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000013_D001DOXL',
+                slate:'000016_D001DDSL',
+                brown:'000018_D001DCBL',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000020_D001SIPL'
+            }
+        }
+    },
+
+    d002:{
+        shape:'Classic Panto',
+        gender:'unisex',
+
+        specs:{
+            M:[132,47,21,140],
+            L:[137,49,22,145]
+        },
+
+        M:{
+            price:85.00,
+
+            plain:{
+                onyx:'000021_D002POXM',
+                slate:'000024_D002PDSM',
+                brown:'000027_D002PCBM',
+                plum:'000029_D002PIPM'
+            },
+
+            fluted:{
+                onyx:'000022_D002FOXM',
+                slate:'000025_D002FDSM',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000023_D002DOXM',
+                slate:'000026_D002DDSM',
+                brown:'000028_D002DCBM',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000030_D002SIPM'
+            }
+        },
+
+        L:{
+            price:95.00,
+
+            plain:{
+                onyx:'000031_D002POXL',
+                slate:'000034_D002PDSL',
+                brown:'000037_D002PCBL',
+                plum:'000039_D002PIPL'
+            },
+
+            fluted:{
+                onyx:'000032_D002FOXL',
+                slate:'000035_D002FDSL',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000033_D002DOXL',
+                slate:'000036_D002DDSL',
+                brown:'000038_D002DCBL',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000040_D002SIPL'
+            }
+        }
+    },
+
+    d003:{
+        shape:'Navigator',
+        gender:'unisex',
+
+        specs:{
+            M:[140,55,16,145],
+            L:[145,57,17,150]
+        },
+
+        M:{
+            price:85.00,
+
+            plain:{
+                onyx:'000041_D003POXM',
+                slate:'000044_D003PDSM',
+                brown:'000047_D003PCBM',
+                plum:'000048_D003PIPM'
+            },
+
+            fluted:{
+                onyx:'000042_D003FOXM',
+                slate:'000045_D003FDSM',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000043_D003DOXM',
+                slate:'000046_D003DDSM',
+                brown:false,
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000049_D003SIPM'
+            }
+        },
+
+        L:{
+            price:95.00,
+
+            plain:{
+                onyx:'000050_D003POXL',
+                slate:'000053_D003PDSL',
+                brown:'000056_D003PCBL',
+                plum:'000057_D003PIPL'
+            },
+
+            fluted:{
+                onyx:'000051_D003FOXL',
+                slate:'000054_D003FDSL',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000052_D003DOXL',
+                slate:'000055_D003DDSL',
+                brown:false,
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000058_D003SIPL'
+            }
+        }
+    },
+
+    d004:{
+        shape:'Cat-Eye',
+        gender:'female',
+
+        specs:{
+            M:[133,51,18,135],
+            L:[138,53,19,140]
+        },
+
+        M:{
+            price:85.00,
+
+            plain:{
+                onyx:'000059_D004POXM',
+                slate:'000061_D004PDSM',
+                brown:'000063_D004PCBM',
+                plum:'000065_D004PIPM'
+            },
+
+            fluted:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000060_D004DOXM',
+                slate:'000062_D004DDSM',
+                brown:'000064_D004DCBM',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000066_D004SIPM'
+            }
+        },
+
+        L:{
+            price:95.00,
+
+            plain:{
+                onyx:'000067_D004POXL',
+                slate:'000069_D004PDSL',
+                brown:'000071_D004PCBL',
+                plum:'000073_D004PIPL'
+            },
+
+            fluted:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000068_D004DOXL',
+                slate:'000070_D004DDSL',
+                brown:'000072_D004DCBL',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000074_D004SIPL'
+            }
+        }
+    },
+
+    d005:{
+        shape:'Panto',
+        gender:'unisex',
+
+        specs:{
+            M:[131,46,22,140],
+            L:[136,48,23,145]
+        },
+
+        M:{
+            price:85.00,
+
+            plain:{
+                onyx:'000075_D005POXM',
+                slate:'000078_D005PDSM',
+                brown:'000081_D005PCBM',
+                plum:'000083_D005PIPM'
+            },
+
+            fluted:{
+                onyx:'000076_D005FOXM',
+                slate:'000079_D005FDSM',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000077_D005DOXM',
+                slate:'000080_D005DDSM',
+                brown:'000082_D005DCBM',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000084_D005SIPM'
+            }
+        },
+
+        L:{
+            price:95.00,
+
+            plain:{
+                onyx:'000085_D005POXL',
+                slate:'000088_D005PDSL',
+                brown:'000091_D005PCBL',
+                plum:'000093_D005PIPL'
+            },
+
+            fluted:{
+                onyx:'000086_D005FOXL',
+                slate:'000089_D005FDSL',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000087_D005DOXL',
+                slate:'000090_D005DDSL',
+                brown:'000092_D005DCBL',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000094_D005SIPL'
+            }
+        }
+    },
+
+    d006:{
+        shape:'Modern Panto',
+        gender:'unisex',
+
+        specs:{
+            M:[133,48,20,140],
+            L:[138,50,21,145]
+        },
+
+        M:{
+            price:85.00,
+
+            plain:{
+                onyx:'000095_D006POXM',
+                slate:'000098_D006PDSM',
+                brown:'000101_D006PCBM',
+                plum:'000103_D006PIPM'
+            },
+
+            fluted:{
+                onyx:'000096_D006FOXM',
+                slate:'000099_D006FDSM',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000097_D006DOXM',
+                slate:'000100_D006DDSM',
+                brown:'000102_D006DCBM',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000104_D006SIPM'
+            }
+        },
+
+        L:{
+            price:95.00,
+
+            plain:{
+                onyx:'000105_D006POXL',
+                slate:'000108_D006PDSL',
+                brown:'000111_D006PCBL',
+                plum:'000113_D006PIPL'
+            },
+
+            fluted:{
+                onyx:'000106_D006FOXL',
+                slate:'000109_D006FDSL',
+                brown:false,
+                plum:false
+            },
+
+            microdot:{
+                onyx:'000107_D006DOXL',
+                slate:'000110_D006DDSL',
+                brown:'000112_D006DCBL',
+                plum:false
+            },
+
+            striated:{
+                onyx:false,
+                slate:false,
+                brown:false,
+                plum:'000114_D006SIPL'
+            }
+        }
+    }
+
+};
+
+/* =========================================================
+   OPEN / CLOSE
+========================================================= */
+
+function openPreviewModal(modelId){
+
+    activeModalModel = modelId;
+
+    modalOptions = {
+        texture:'plain',
+        color:'onyx',
+        size:'M'
+    };
+
+    document
+        .getElementById('preview-modal')
+        .classList.add('active');
+
+    document
+        .getElementById('m-size-m')
+        .classList.add('active');
+
+    document
+        .getElementById('m-size-l')
+        .classList.remove('active');
+
+    buildModalSelectors();
+    updateModalPreview();
+}
+
+function closePreviewModal(){
+
+    document
+        .getElementById('preview-modal')
+        .classList.remove('active');
+
+}
+
+/* =========================================================
+   BUILD SELECTORS
+========================================================= */
+
+function buildModalSelectors(){
+
+    /* TEXTURES */
+
+    const texGroup =
+        document.getElementById('modal-texture-group');
+
+    texGroup.innerHTML = '';
+
+    textures.forEach(texture=>{
+
+        const btn =
+            document.createElement('button');
+
+        btn.className =
+            `preview-btn ${
+                modalOptions.texture === texture ? 'active' : ''
+            }`;
+
+        btn.textContent =
+            texture.charAt(0).toUpperCase() +
+            texture.slice(1);
+
+        const textureData =
+            modelsData[activeModalModel]
+            [modalOptions.size]
+            [texture];
+
+        const hasAnyVariant =
+            Object.values(textureData)
+            .some(v => v !== false);
+
+        if(!hasAnyVariant){
+
+            btn.disabled = true;
+            btn.style.opacity = '.25';
+            btn.style.cursor = 'not-allowed';
+
+        }else{
+
+            btn.onclick =
+                ()=>selectModalTexture(texture);
+
+        }
+
+        texGroup.appendChild(btn);
+
+    });
+
+    /* COLORS */
+
+    const colGroup =
+        document.getElementById('modal-color-group');
+
+    colGroup.innerHTML = '';
+
+    colors.forEach(color=>{
+
+        const sku =
+            modelsData[activeModalModel]
+            [modalOptions.size]
+            [modalOptions.texture]
+            [color];
+
+        const btn =
+            document.createElement('button');
+
+        btn.className =
+            `preview-color-btn ${
+                modalOptions.color === color ? 'active' : ''
+            }`;
+
+        btn.style.backgroundColor =
+            colorHex[color];
+
+        if(!sku){
+
+            btn.disabled = true;
+            btn.style.opacity = '.25';
+            btn.style.cursor = 'not-allowed';
+
+        }else{
+
+            btn.onclick =
+                ()=>selectModalColor(color);
+
+        }
+
+        colGroup.appendChild(btn);
+
+    });
+
+}
+
+/* =========================================================
+   TEXTURE
+========================================================= */
+
+function selectModalTexture(texture){
+
+    modalOptions.texture = texture;
+
+    if(
+        !modelsData[activeModalModel]
+        [modalOptions.size]
+        [texture]
+        [modalOptions.color]
+    ){
+
+        for(let c of colors){
+
+            if(
+                modelsData[activeModalModel]
+                [modalOptions.size]
+                [texture]
+                [c]
+            ){
+
+                modalOptions.color = c;
+                break;
+
+            }
+
+        }
+
+    }
+
+    buildModalSelectors();
+    updateModalPreview();
+
+}
+
+/* =========================================================
+   COLOR
+========================================================= */
+
+function selectModalColor(color){
+
+    modalOptions.color = color;
+
+    buildModalSelectors();
+    updateModalPreview();
+
+}
+
+/* =========================================================
+   SIZE
+========================================================= */
+
+function selectModalSize(size){
+
+    modalOptions.size = size;
+
+    buildModalSelectors();
+    updateModalPreview();
+
+}
+
+/* =========================================================
+   UPDATE MODAL
+========================================================= */
+
+function updateModalPreview(){
+
+    const m = activeModalModel;
+    const t = modalOptions.texture;
+    const c = modalOptions.color;
+    const s = modalOptions.size;
+
+    document
+        .getElementById('modal-title')
+        .textContent =
+        `Urban Heritage 26 – ${m.toUpperCase()}`;
+
+    document
+        .getElementById('modal-meta')
+        .textContent =
+        `${modelsData[m].shape} | ${modelsData[m].gender}`;
+
+    const skuFull =
+        modelsData[m][s][t][c];
+
+    document
+        .getElementById('modal-sku')
+        .textContent =
+        skuFull
+            ? skuFull.split('_')[1]
+            : '-';
+
+    document
+        .getElementById('modal-main-img')
+        .src =
+        `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-main.webp`;
+
+    document
+        .getElementById('modal-front-img')
+        .src =
+        `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-front.webp`;
+
+    const specs =
+        modelsData[m].specs[s];
+
+    document
+        .getElementById('m-spec-frame')
+        .textContent =
+        specs[0] + ' mm';
+
+    document
+        .getElementById('m-spec-lens')
+        .textContent =
+        specs[1] + ' mm';
+
+    document
+        .getElementById('m-spec-bridge')
+        .textContent =
+        specs[2] + ' mm';
+
+    document
+        .getElementById('m-spec-temple')
+        .textContent =
+        specs[3] + ' mm';
+
+}
+
+/* =========================================================
+   INIT
+========================================================= */
+
+window.onload = ()=>{
+
+    setLanguage('fi');
+
+};
+
+</script>
+
+</body>
+</html>
