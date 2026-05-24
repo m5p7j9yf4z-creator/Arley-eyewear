@@ -195,15 +195,27 @@ nav a:hover{
 
 .collection-intro{
     padding:60px 8% 20px;
-    max-width:750px;
 }
 
 .collection-intro h2{
- font-weight:300;
- font-size:2.2rem;
- letter-spacing:1px;
- line-height:1.18;
- margin:0 0 25px;
+    font-weight:300;
+    font-size:2.2rem;
+    letter-spacing:1px;
+    line-height:1.18;
+    margin:0 0 38px;
+    position:relative;
+    padding-bottom:26px;
+}
+
+.collection-intro h2::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:100vw;
+    max-width:calc(100vw - 16%);
+    bottom:0;
+    height:1px;
+    background:rgba(0,0,0,0.06);
 }
 
 .collection-intro p{
@@ -211,6 +223,7 @@ nav a:hover{
     font-weight:300;
     line-height:1.7;
     margin-bottom:30px;
+    max-width:760px;
 }
 
 .welcome-tag{
@@ -503,7 +516,7 @@ nav a:hover{
 .process-card h3{
     font-weight:600;
     font-size:1rem;
-    letter-spacing:3px;
+    letter-spacing:1.6px;
     text-transform:uppercase;
     line-height:1.5;
     margin:0 0 14px;
@@ -517,7 +530,7 @@ nav a:hover{
     line-height:1.82;
     font-weight:300;
     margin:0 0 34px;
-    max-width:88%;
+    max-width:100%;
     flex-grow:1;
 }
 
@@ -613,7 +626,7 @@ nav a:hover{
 }
 
 .about-block h3{
-    font-weight:600;
+    font-weight:520;
     font-size:1rem;
     letter-spacing:1px;
     text-transform:uppercase;
@@ -622,11 +635,12 @@ nav a:hover{
 
 .about-block p{
  color:var(--text-muted);
- font-size:1.05rem;
- line-height:1.8;
- font-weight:300;
+ font-size:1rem;
+ line-height:1.7;
+ font-weight:340;
  margin:0;
- max-width:980px;
+ width:100%;
+ max-width:none;
 }
 
 /* =========================================================
@@ -690,7 +704,7 @@ nav a:hover{
 ========================================================= */
 
 .contact-section{
-    padding:60px 8% 100px;
+    padding:80px 8% 110px;
     border-top:1px solid var(--border);
 }
 
@@ -699,11 +713,11 @@ nav a:hover{
 }
 
 .contact-section h2{
-    font-weight:300;
-    font-size:2rem;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    margin:0 0 40px;
+ font-weight:300;
+ font-size:2rem;
+ letter-spacing:2px;
+ text-transform:uppercase;
+ margin:0 0 54px;
 }
 
 .contact-desc{
@@ -711,14 +725,14 @@ nav a:hover{
  font-size:1.05rem;
  font-weight:300;
  line-height:1.8;
- margin:0 0 26px;
- max-width:700px;
+ letter-spacing:0;
+ margin:0 0 38px;
+ max-width:760px;
 }
 
 .contact-email{
- font-size:1.1rem;
- font-weight:400;
- letter-spacing:.2px;
+ font-size:1rem;
+ font-weight:320;
 }
 
 .contact-email a{
@@ -915,12 +929,11 @@ URBAN HERITAGE 26 - MALLISTO
 </h2>
 
 <p data-translate="subtitle-collection">
-Klikkaa tuotekorttia avataksesi mallin esikatselun,
-tarkemmat tekniset tiedot ja tilausvalinnat.
+Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.
 </p>
 
-<div class="welcome-tag" data-translate="coll-welcome">
-Welcome to the collection
+<div class="welcome-tag" data-translate="collection-label">
+WELCOME TO THE COLLECTION
 </div>
 
 </section>
@@ -1364,8 +1377,8 @@ const translations = {
         "hero-subline":"Urbaanin ympäristön muovaama",
         "hero-desc":"Urban Heritage 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
         "title-collection":"URBAN HERITAGE 26 - MALLISTO",
-        "subtitle-collection":"Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.",
-        "coll-welcome":"Welcome to the collection",
+        "subtitle-collection":"Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.",
+        "collection-label":"TERVETULOA MALLISTOON",
         "innov-heading":"Innovaatio & Tekniikka",
         "proc-t1":"Iteraatio & Muotoilu",
         "proc-p1":"Arleyn muotokieli syntyy luonnostelun, materiaalitutkimuksen ja jatkuvan iteroinnin kautta. Jokainen kehys rakentuu vaihe vaiheelta. Linjoja hiotaan, mittasuhteita säädetään ja yksityiskohtia pelkistetään, kunnes kokonaisuus tuntuu tasapainoiselta sekä kädessä että kasvoilla. Urban Heritage -malliston suunnittelussa vaikutteita on haettu kaupunkiarkkitehtuurin rytmistä, kuluneista materiaaleista ja teollisista pinnoista. Lopputulos yhdistää selkeät muodot, hillityn rouheuden ja ergonomian tavalla, joka tuntuu yhtä aikaa modernilta ja tutulta. Jokainen siluetti käy läpi useita versioita ennen lopullista muotoaan. Ei vain ulkonäön, vaan myös istuvuuden ja päivittäisen käyttötuntuman vuoksi.",
@@ -1413,8 +1426,8 @@ const translations = {
         "hero-subline":"Shaped by the urban environment",
         "hero-desc":"Urban Heritage 26 combines architectural surfaces, digital design, and modern SLS manufacturing into lightweight and structurally durable eyewear.",
         "title-collection":"URBAN HERITAGE 26 - COLLECTION",
-        "subtitle-collection":"Click on a product card to open preview, technical specifications and configuration options.",
-        "coll-welcome":"Welcome to the collection",
+        "subtitle-collection":"Click on a product card to open model previews and detailed technical specifications.",
+        "collection-label":"WELCOME TO THE COLLECTION",
         "innov-heading":"Innovation & Engineering",
         "proc-t1":"Iteration & Design",
         "proc-p1":"The Arley design language is shaped through sketching, material exploration, and continuous iteration. Every frame evolves step by step — lines are refined, proportions adjusted, and details reduced until the final form feels balanced both in hand and on the face. The Urban Heritage collection draws inspiration from the rhythm of urban architecture, weathered materials, and industrial surfaces. The result combines clean silhouettes, understated ruggedness, and ergonomic precision in a way that feels both modern and familiar. Each silhouette goes through multiple iterations before reaching its final form — not only in appearance, but also in fit, weight balance, and everyday comfort.",
