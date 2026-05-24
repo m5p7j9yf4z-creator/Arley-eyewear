@@ -122,20 +122,41 @@ header {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 22px;
+  padding: 28px;
   box-sizing: border-box;
+  min-height: 72vh;
+
+  display: flex;
+  flex-direction: column;
 }
 .portal-grid { 
-  display: grid; 
-  grid-template-columns: 2fr 1fr; 
-  gap: 30px;
-  align-items: start; 
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 36px;
+  align-items: stretch;
+}
+.side-panel {
+  position: sticky;
+  top: 40px;
+}
+.side-panel {
+  justify-content: space-between;
+}
+.side-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.summary-items-container {
+  flex: 1;
 }
 .panel-header { 
   display: flex; 
   justify-content: space-between; 
   align-items: flex-start; 
   margin-bottom: 18px; 
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 h2 { 
   font-size: 1.25rem; 
@@ -276,20 +297,21 @@ textarea {
   font-weight: 600; 
   font-size: 1.1rem;
 }
-.submit-btn { 
-  width: 100%; 
-  background-color: var(--text); 
-  padding: 12px; 
+.submit-btn {
+  width: 100%;
+  background-color: var(--text);
+  padding: 12px;
   font-family: inherit;
-  color: var(--white); 
-  border: none; 
+  color: var(--white);
+  border: none;
   font-size: 0.9rem;
-  font-weight: 500; 
-  text-transform: uppercase; 
-  letter-spacing: 2px; 
+  font-weight: 500;
+  text-transform: uppercase;
+  height: 54px;
+  letter-spacing: 0.14em;
   cursor: pointer;
-  border-radius: 4px; 
-  transition: opacity 0.2s ease; 
+  border-radius: 4px;
+  transition: opacity 0.2s ease;
 }
 .submit-btn:hover { 
   opacity: 0.9;
@@ -531,7 +553,9 @@ textarea {
   <div id="collection-submenu" class="submenu">
     <div id="sub-item-uh26" class="sub-menu-item" onclick="switchCollection('collection', 'uh26')">Urban Heritage 26</div>
   </div>
-  <div id="nav-item-history" class="menu-item" onclick="switchView('history')" data-translate="nav-history">Tilaushistoria</div>
+  <div id="nav-item-terms" class="menu-item" onclick="openTermsModal()" data-translate="nav-terms">
+  Yleiset ehdot
+</div>
   <div class="nav-footer">
     <div class="menu-item" style="margin-bottom: 0;" onclick="window.close()" data-translate="nav-logout">Kirjaudu ulos</div>
   </div>
@@ -611,13 +635,13 @@ textarea {
       </p>
     </div>
     <div class="portfolio-carousel" id="carousel-grid">
-      <div class="portfolio-item" data-model="d001" onclick="openPreviewModal('d001', event)" style="background-image: url('images/d001-onyx-micro-dot.png');">
+      <div class="portfolio-item" data-model="d001" onclick="openPreviewModal('d001', event)" style="background-image: url('images/d001-onyx-microdot-main.png');">
         <h3>Urban Heritage 26 D001</h3>
       </div>
       <div class="portfolio-item" data-model="d002" onclick="openPreviewModal('d002', event)" style="background-image: url('images/d002-chocolate-brown-plain.png');">
         <h3>Urban Heritage 26 D002</h3>
       </div>
-      <div class="portfolio-item" data-model="d003" onclick="openPreviewModal('d003', event)" style="background-image: url('images/d003-deep-slate-Fluted.png');">
+      <div class="portfolio-item" data-model="d003" onclick="openPreviewModal('d003', event)" style="background-image: url('images/d003-slate-fluted-main.png');">
         <h3>Urban Heritage 26 D003</h3>
       </div>
       <div class="portfolio-item" data-model="d004" onclick="openPreviewModal('d004', event)" style="background-image: url('images/d004-onyx-plain.jpg');">
@@ -641,7 +665,7 @@ textarea {
             </div>
         </div>
 
-        <div id="view-history" class="content-view"><div class="main-panel"><h2 data-translate="nav-history">Tilaushistoria</h2></div></div>
+        
     </main>
 
     <div id="preview-modal" class="modal-overlay" onclick="closePreviewModal()">
@@ -710,7 +734,11 @@ textarea {
                 "spec-bridge": "Sillan leveys", "spec-temple": "Aisan pituus", "btn-view": "Vaihtoehdot",
                 "genre-unisex": "Unisex", "genre-female": "Naiset",
                 "title-collection": "URBAN HERITAGE 26 - MALLISTO",
-                "subtitle-collection": "Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat."
+                "subtitle-collection": "Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.",
+                "nav-terms": "Yleiset ehdot",
+                "download-pdf": "Lataa PDF",
+                "print-document": "Tulosta dokumentti"
+                
             },
             en: {
                 "nav-order": "Order Form", "nav-collection": "Collections", "nav-history": "Order History", "nav-logout": "Log out",
@@ -724,7 +752,10 @@ textarea {
                 "spec-bridge": "Bridge width", "spec-temple": "Temple length", "btn-view": "Options",
                 "genre-unisex": "Unisex", "genre-female": "Female Targeted",
                 "title-collection": "URBAN HERITAGE 26 - COLLECTION",
-                "subtitle-collection": "Click on any model card to open preview, technical details and order configurations."
+                "subtitle-collection": "Click on any model card to open preview, technical details and order configurations.",
+                "nav-terms": "Terms & Conditions",
+                "download-pdf": "Download PDF",
+                "print-document": "Print document"
             }
         };
 
@@ -1068,9 +1099,82 @@ textarea {
             document.getElementById('m-spec-temple').textContent = specs[3] + ' mm';
         }
 
+        
+        function openTermsModal() {
+
+            const fiFile = "documents/arley-terms-fi.pdf";
+            const enFile = "documents/arley-terms-en.pdf";
+
+            const pdfPath = currentLang === 'fi'
+                ? fiFile
+                : enFile;
+
+            document.getElementById('terms-frame').src = pdfPath;
+
+            document.getElementById('download-terms-btn').href = pdfPath;
+
+            document.getElementById('terms-title').textContent =
+                currentLang === 'fi'
+                    ? 'Yleiset toimitus- ja sopimusehdot'
+                    : 'General Terms and Conditions';
+
+            document.getElementById('terms-modal').classList.add('active');
+        }
+
+        function closeTermsModal() {
+            document.getElementById('terms-modal').classList.remove('active');
+        }
+
+        function printTerms() {
+            document.getElementById('terms-frame').contentWindow.print();
+        }
+
+
         window.onload = () => {
             setLanguage('fi');
         };
     </script>
+
+<div id="terms-modal" class="modal-overlay" onclick="closeTermsModal()">
+
+  <div class="modal-container" onclick="event.stopPropagation()" style="grid-template-columns: 1fr; max-width: 900px; height: 90vh;">
+
+    <button class="modal-close" onclick="closeTermsModal()">✕</button>
+
+    <div class="modal-details" style="padding-top:60px;">
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+
+        <h2 id="terms-title">Terms & Conditions</h2>
+
+        <div style="display:flex; gap:10px;">
+
+          <a
+            id="download-terms-btn"
+            class="preview-btn active"
+            href=""
+            download>
+            Download PDF
+          </a>
+
+          <button class="preview-btn" onclick="printTerms()">
+            Print
+          </button>
+
+        </div>
+
+      </div>
+
+      <iframe
+        id="terms-frame"
+        src=""
+        style="width:100%; height:100%; border:1px solid var(--border); border-radius:6px; background:#fff;">
+      </iframe>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
