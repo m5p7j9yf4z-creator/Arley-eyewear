@@ -163,8 +163,8 @@ nav a:hover{
 .hero h1{
     font-weight:300;
     font-size:3.2rem;
-    line-height:1.15;
-    letter-spacing:-0.5px;
+    line-height:1.05;
+    letter-spacing:-1px;
     margin:0 0 30px 0;
 }
 
@@ -179,15 +179,16 @@ nav a:hover{
 ========================================================= */
 
 .collection-intro{
-    padding:40px 8% 20px;
+    padding:60px 8% 20px;
     max-width:750px;
 }
 
 .collection-intro h2{
-    font-weight:300;
-    font-size:2.2rem;
-    letter-spacing:1px;
-    margin:0 0 25px;
+ font-weight:300;
+ font-size:2.2rem;
+ letter-spacing:1px;
+ line-height:1.18;
+ margin:0 0 25px;
 }
 
 .collection-intro p{
@@ -437,7 +438,7 @@ nav a:hover{
     font-size:2rem;
     letter-spacing:2px;
     text-transform:uppercase;
-    margin:0 0 70px;
+    margin:0 0 38px;
     position:relative;
     padding-bottom:26px;
 }
@@ -467,10 +468,11 @@ nav a:hover{
 ========================================================= */
 
 .process-grid{
-    display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));
-    gap:46px;
-    width:100%;
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:46px;
+ width:100%;
+ align-items:start;
 }
 
 .process-card{
@@ -480,11 +482,7 @@ nav a:hover{
 }
 
 .process-number{
-    font-size:1.4rem;
-    font-weight:300;
-    color:#9a9a97;
-    margin-bottom:22px;
-    letter-spacing:1px;
+ display:none;
 }
 
 .process-card h3{
@@ -493,7 +491,7 @@ nav a:hover{
     letter-spacing:3px;
     text-transform:uppercase;
     line-height:1.5;
-    margin:0 0 22px;
+    margin:0 0 14px;
     padding-bottom:18px;
     border-bottom:1px solid var(--border);
 }
@@ -556,6 +554,25 @@ nav a:hover{
 }
 
 /* =========================================================
+ TECH CARD TYPOGRAPHY
+========================================================= */
+.tech-card h3{
+ font-weight:600;
+ font-size:1rem;
+ letter-spacing:1.2px;
+ line-height:1.5;
+ margin:0 0 18px;
+}
+
+.tech-card p{
+ color:var(--text-muted);
+ font-size:0.98rem;
+ line-height:1.75;
+ font-weight:300;
+ margin:0 0 22px;
+}
+
+/* =========================================================
    ABOUT
 ========================================================= */
 
@@ -589,11 +606,12 @@ nav a:hover{
 }
 
 .about-block p{
-    color:var(--text-muted);
-    font-size:1.05rem;
-    line-height:1.8;
-    font-weight:300;
-    margin:0;
+ color:var(--text-muted);
+ font-size:1.05rem;
+ line-height:1.8;
+ font-weight:300;
+ margin:0;
+ max-width:980px;
 }
 
 /* =========================================================
@@ -673,6 +691,30 @@ nav a:hover{
     margin:0 0 40px;
 }
 
+.contact-desc{
+ color:var(--text-muted);
+ font-size:1.05rem;
+ font-weight:300;
+ line-height:1.8;
+ margin:0 0 26px;
+ max-width:700px;
+}
+
+.contact-email{
+ font-size:1.1rem;
+ font-weight:400;
+ letter-spacing:.2px;
+}
+
+.contact-email a{
+ color:var(--text);
+ text-decoration:none;
+ transition:opacity .25s ease;
+}
+
+.contact-email a:hover{
+ opacity:.6;
+}
 
 /* =========================================================
    FOOTER
@@ -832,13 +874,12 @@ EN
 <div class="hero-content">
 
 <h1 data-translate="hero-title">
-Hienovaraista muotoilua. Teknologista avantgardea.
+Rakenteita kaupungin rytmistä.<br>
+Suunniteltu kerros kerrokselta.
 </h1>
 
 <p data-translate="hero-desc">
-Arley yhdistää edistyksellisen ainetta lisäävän valmistuksen
-ja skandinaavisen minimalismin keveiksi,
-rakenteellisesti kestäviksi ja ilmeikkäiksi silmälasikehyksiksi.
+Urban Heritage yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.
 </p>
 
 </div>
@@ -923,10 +964,6 @@ style="background-image:url('images/carousel-uh26/d006/d006.webp');">
             <!-- CARD 01 -->
             <div class="process-card">
 
-                <div class="process-number">
-                    01
-                </div>
-
                 <h3 data-translate="proc-t1">
                     Muotoilu & Iterointi
                 </h3>
@@ -947,10 +984,6 @@ style="background-image:url('images/carousel-uh26/d006/d006.webp');">
             <!-- CARD 02 -->
             <div class="process-card">
 
-                <div class="process-number">
-                    02
-                </div>
-
                 <h3 data-translate="proc-t2">
                     Digitaalinen Suunnittelu
                 </h3>
@@ -970,10 +1003,6 @@ style="background-image:url('images/carousel-uh26/d006/d006.webp');">
 
             <!-- CARD 03 -->
             <div class="process-card">
-
-                <div class="process-number">
-                    03
-                </div>
 
                 <h3 data-translate="proc-t3">
                     Kerrosrakenteinen Valmistus
@@ -1127,8 +1156,10 @@ Yhteystiedot
 Ota yhteyttä — rakennetaan jotain poikkeuksellista yhdessä.
 </p>
 
-<div>
-info@arleyeyewear.com
+<div class="contact-email">
+  <a href="mailto:info@arley-eyewear.com">
+    info@arley-eyewear.com
+  </a>
 </div>
 
 </div>
@@ -1312,9 +1343,9 @@ const translations = {
         "nav-about":"Tarina",
         "nav-contact":"Yhteys",
 
-        "hero-title":"Hienovaraista muotoilua. Teknologista avantgardea.",
+        "hero-title":"Rakenteita kaupungin rytmistä. Suunniteltu kerros kerrokselta.",
 
-        "hero-desc":"Arley yhdistää edistyksellisen ainetta lisäävän valmistuksen ja skandinaavisen minimalismin keveiksi, rakenteellisesti kestäviksi ja ilmeikkäiksi silmälasikehyksiksi.",
+        "hero-desc":"Urban Heritage yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
 
         "title-collection":"URBAN HERITAGE 26 - MALLISTO",
 
@@ -1324,17 +1355,17 @@ const translations = {
 
         "innov-heading":"Innovaatio & Tekniikka",
 
-        "proc-t1":"Iterointi & Muotoilu",
+        "proc-t1":"Iteraatio & Muotoilu",
 
-        "proc-p1":"Arleyn estetiikka rakentuu arkkitehtonisen luonnostelun ja tarkan ergonomisen analyysin kautta. Jokainen siluetti käy läpi useita iterointivaiheita optimaalisen tasapainon, istuvuuden ja visuaalisen rytmin saavuttamiseksi.",
+        "proc-p1":"Arleyn muotokieli syntyy luonnostelun, materiaalitutkimuksen ja jatkuvan iteroinnin kautta. Jokainen kehys rakentuu vaihe vaiheelta. Linjoja hiotaan, mittasuhteita säädetään ja yksityiskohtia pelkistetään, kunnes kokonaisuus tuntuu tasapainoiselta sekä kädessä että kasvoilla. Urban Heritage -malliston suunnittelussa vaikutteita on haettu kaupunkiarkkitehtuurin rytmistä, kuluneista materiaaleista ja teollisista pinnoista. Lopputulos yhdistää selkeät muodot, hillityn rouheuden ja ergonomian tavalla, joka tuntuu yhtä aikaa modernilta ja tutulta. Jokainen siluetti käy läpi useita versioita ennen lopullista muotoaan. Ei vain ulkonäön, vaan myös istuvuuden ja päivittäisen käyttötuntuman vuoksi.",
 
-        "proc-t2":"Digitaalinen Tarkkuus",
+        "proc-t2":"Muodonhallinta",
 
-        "proc-p2":"Vision kääntäminen tarkasti suunnitelluksi digitaaliseksi geometriaksi. Kehittyneet parametriset DfAM-menetelmät mahdollistavat rakenteellisen eheyden optimoinnin hienovaraisimmassakin muotokielessä.",
+        "proc-p2":"Jokainen Arley-kehys rakentuu vision ja tarkasti hallitun geometrian tasapainosta. Luonnostellut ideat käännetään digitaalisiksi pinnoiksi ja rakenteiksi, joissa mittasuhteita, linjoja ja pintoja hiotaan tasapainoisen kokonaisuuden saavuttamiseksi. Kehittyneet DfAM-menetelmät mahdollistavat rakenteiden ja muotojen hienosäädön tarkkuudella, jossa keveys, kestävyys ja hienovarainen muotokieli voivat toimia saumattomasti yhdessä. Teknologia ei ohjaa lopputulosta, vaan toimii työkaluna muotoilulle, jossa jokainen pinta, siirtymä ja linja tuntuu harkitulta.",
 
-        "proc-t3":"Additiivinen Valmistus",
+        "proc-t3":"Muodon Toteutus",
 
-        "proc-p3":"Digitaalisen suunnittelun toteuttaminen fyysiseksi muodoksi korkean tarkkuuden EOS SLS -teknologian avulla. Kerrosrakenteinen valmistus mahdollistaa kevyet, monimutkaiset ja poikkeuksellisen kestävät geometriat ilman ylimääräistä hukkamateriaalia.",
+        "proc-p3":"Digitaalinen suunnittelu siirtyy fyysiseksi muodoksi korkean tarkkuuden EOS SLS -teknologian avulla. Kerrosrakenteinen valmistus mahdollistaa kevyiden, monimutkaisten ja poikkeuksellisen kestävien geometrioiden toteuttamisen tavalla, joka olisi vaikeasti saavutettavissa perinteisin valmistusmenetelmin. Jokainen kehys rakentuu tarkasti hallituista kerroksista, joissa materiaalin käyttö, rakenteellinen suorituskyky ja geometrinen vapaus kulkevat rinnakkain. Valmistusmenetelmä mahdollistaa yksityiskohtien ja rakenteiden toteuttamisen tarkkuudella, joka säilyttää suunnitteluprosessin alkuperäisen vision myös fyysisessä muodossa.",
 
         "tech-head-1":"VALMISTUSTEKNOLOGIA",
         "tech-head-2":"MATERIAALIOMINAISUUDET",
@@ -1361,11 +1392,11 @@ const translations = {
 
         "about-heading":"Kokemuksen muovaamaa suunnittelua",
 
-        "about-text":"Oulusta ponnistava Arley Eyewear ei ole pelkkä muotoilubrändi, vaan yli vuosikymmenen syvällisen Selective Laser Sintering (SLS) -osaamisen huipentuma.",
+        "about-text":"Arley Eyewear syntyi pitkäaikaisesta kiinnostuksesta rakenteisiin, materiaaleihin ja digitaalisen valmistuksen mahdollisuuksiin. Brändin taustalla on yli vuosikymmenen kokemus Selective Laser Sintering (SLS) -teknologiasta sekä jatkuva pyrkimys yhdistää tekninen tarkkuus harkittuun muotoiluun. Arley ei rakentunut perinteisen muotibrändin lähtökohdista, vaan tarpeesta kehittää silmälaseja, joissa keveys, ergonomia ja rakenteellinen suorituskyky voisivat toteutua ilman kompromisseja. Jokainen kehys on osa jatkuvaa tutkimusta siitä, miten digitaalinen suunnittelu ja modernit valmistusmenetelmät voivat vaikuttaa siihen, miltä silmälasit näyttävät, tuntuvat ja toimivat päivittäisessä käytössä. Suunnitteluprosessi yhdistää luonnostelun, parametrisen muodonhallinnan ja kerrosrakenteisen valmistuksen tavalla, jossa estetiikka ja teknologia tukevat toisiaan luonnollisesti. Lopputuloksena syntyy kehyksiä, jotka tuntuvat teknisesti edistyneiltä, mutta visuaalisesti hillityiltä ja ajattomilta.",
 
         "about-heading-2":"Kestävää arkkitehtuuria kasvoille",
 
-        "about-text-2":"Uskomme, että lasit ovat enemmän kuin väline – ne ovat osa kantajansa identiteettiä. Hallitsemalla koko tuotantoketjun ensimmäisestä digitaalisesta pisteestä aina viimeisteltyyn pintakäsittelyyn asti takaamme jokaiselle kehykselle poikkeuksellisen pitkän elinkaaren, keveyden ja ergonomian.",
+        "about-text-2":"Arleylle silmälasit ovat enemmän kuin käyttöesine — ne ovat osa kantajansa identiteettiä ja päivittäistä kokemusta. Siksi jokainen kehys suunnitellaan pitkäikäiseksi sekä rakenteellisesti että visuaalisesti. Kerrosrakenteinen valmistus mahdollistaa materiaalin käytön tarkasti siellä, missä sitä todella tarvitaan. Tämä vähentää ylimääräistä hukkamateriaalia ja mahdollistaa kevyet, kestävät rakenteet ilman tarpeetonta massaa. Samalla digitaalinen suunnitteluprosessi antaa vapauden kehittää geometrioita ja yksityiskohtia tarkkuudella, jota olisi vaikea saavuttaa perinteisin valmistusmenetelmin. Hallinnoimalla koko prosessia ensimmäisestä luonnoksesta viimeisteltyyn pintaan asti Arley pystyy säilyttämään täyden kontrollin materiaalien, rakenteiden ja lopullisen käyttökokemuksen suhteen. Tavoitteena ei ole ainoastaan valmistaa silmälaseja, vaan rakentaa kehyksiä, jotka kestävät aikaa sekä fyysisesti että visuaalisesti.",
 
         "contact-title":"Yhteystiedot",
 
@@ -1390,9 +1421,9 @@ const translations = {
         "nav-about":"About",
         "nav-contact":"Contact",
 
-        "hero-title":"Subtle design. Technological avant-garde.",
+        "hero-title":"Structures shaped by the rhythm of the city. Designed layer by layer.",
 
-        "hero-desc":"Arley combines advanced additive manufacturing and Scandinavian minimalism into lightweight, structurally durable and expressive eyewear frames.",
+        "hero-desc":"Urban Heritage combines architectural surfaces, digital design, and modern SLS manufacturing into lightweight and structurally durable eyewear.",
 
         "title-collection":"URBAN HERITAGE 26 - COLLECTION",
 
@@ -1404,15 +1435,15 @@ const translations = {
 
         "proc-t1":"Iteration & Design",
 
-        "proc-p1":"The Arley aesthetic is shaped through architectural sketching and ergonomic analysis. Every silhouette undergoes multiple iterations to achieve optimal balance, fit and visual rhythm.",
+        "proc-p1":"The Arley design language is shaped through sketching, material exploration, and continuous iteration. Every frame evolves step by step — lines are refined, proportions adjusted, and details reduced until the final form feels balanced both in hand and on the face. The Urban Heritage collection draws inspiration from the rhythm of urban architecture, weathered materials, and industrial surfaces. The result combines clean silhouettes, understated ruggedness, and ergonomic precision in a way that feels both modern and familiar. Each silhouette goes through multiple iterations before reaching its final form — not only in appearance, but also in fit, weight balance, and everyday comfort.",
 
-        "proc-t2":"Digital Precision",
+        "proc-t2":"Form Development",
 
-        "proc-p2":"Translating vision into precisely engineered digital geometry through advanced parametric DfAM methodologies.",
+        "proc-p2":"Every Arley frame is built through a balance of vision and carefully controlled geometry. Initial sketches are translated into digital surfaces and structures, where proportions, lines, and transitions are refined in pursuit of a balanced overall form. Advanced DfAM methodologies enable the fine-tuning of structures and geometries with a level of precision where lightness, durability, and refined form are carefully balanced. Technology does not dictate the outcome, but instead serves as a tool for shaping forms where every surface, transition, and line feels intentional.",
 
-        "proc-t3":"Additive Manufacturing",
+        "proc-t3":"Form Realization",
 
-        "proc-p3":"Realizing digital concepts through high-precision EOS SLS manufacturing. Layer-based production enables lightweight, complex and exceptionally durable geometries with minimal material waste.",
+        "proc-p3":"Digital design is translated into physical form through high-precision EOS SLS technology. Layer-based manufacturing enables lightweight, complex, and exceptionally durable geometries that would be difficult to achieve through traditional manufacturing methods. Each frame is constructed through precisely controlled layers, where material efficiency, structural performance, and geometric freedom exist in parallel. The manufacturing process allows intricate structures and fine details to be realized with a level of precision that preserves the integrity of the original design vision in its final physical form.",
 
         "tech-head-1":"MANUFACTURING TECHNOLOGY",
         "tech-head-2":"MATERIAL PROPERTIES",
@@ -1439,6 +1470,7 @@ const translations = {
 
         "about-heading":"Designed by Experience",
 
+        
         "about-text":"Hailing from Oulu, Finland, Arley Eyewear is not merely a design label, but the culmination of over a decade of deep Selective Laser Sintering expertise.",
 
         "about-heading-2":"Sustainable Architecture for the Face",
