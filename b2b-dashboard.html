@@ -124,7 +124,11 @@ header {
   border-radius: 6px;
   padding: 28px;
   box-sizing: border-box;
-  min-height: 72vh;
+
+  #view-order-form .main-panel,
+  #view-order-form .side-panel {
+    min-height: 72vh;
+  }
 
   display: flex;
   flex-direction: column;
@@ -938,6 +942,7 @@ textarea {
                 const [model, size, tex, col] = key.split('_');
                 const qty = currentCart[key];
                 const price = modelsData[model][size].price;
+                const sku = modelsData[model][size][tex][col].split('_')[1];
                 const totalRowPrice = price * qty;
                 grandTotal += totalRowPrice;
 
@@ -946,12 +951,19 @@ textarea {
                 row.innerHTML = `
                     <div class="summary-details">
                         <div>
-                            <span style="font-weight:500;">${model.toUpperCase()} (${size})</span> — ${tex} / ${col}<br>
-                            <span style="font-size:0.8rem; color:var(--text-muted);"><sup>${qty} kpl x ${price.toFixed(2)} €</sup></span>
+                            <span style="font-weight:500;">
+                              ${sku}
+                            </span><br>  
                         </div>
-                        <span style="font-weight:500; align-self:center;">${totalRowPrice.toFixed(2)} €</span>
+
+                        <span style="font-weight:500; align-self:center;">
+                          ${totalRowPrice.toFixed(2)} €
+                        </span>
                     </div>
-                    <button class="remove-item-btn" onclick="removeItemFromCart('${key}')">✕</button>
+
+                    <button class="remove-item-btn" onclick="removeItemFromCart('${key}')">
+                      x
+                    </button>
                 `;
                 container.appendChild(row);
             });
@@ -976,15 +988,42 @@ textarea {
         }
 
         function submitOrder() {
-            if (Object.keys(currentCart).length === 0) {
-                alert(translations[currentLang].alertEmpty);
-                return;
-            }
-            alert(translations[currentLang].alertSuccessLocal);
-            currentCart = {};
-            renderSummary();
-            loadModelMatrix();
-            document.getElementById('order-notes').value = '';
+            
+          if (Object.keys(currentCart).length === 0) {
+              alert(translations[currentLang].alertEmpty);
+              return;
+          }
+
+        let csvRows = [];
+
+        csvRows.push("SKU,QTY,UNIT_PRICE,TOTAL");
+
+        Object.Keys(currentCart).forEach(key => {
+            const [model, size, tex, col] = key.split('_');
+            const qty = currentCart[key];
+            const price = modelsData[model][size].price;
+            // FULL INTERNAL SKU
+            const fullSku = modelsData[model][size][tex][col];
+            const total = qty * price;
+
+            csvRows.push(
+              `${fullSku},${qty},${price.toFixed(2)},${total.toFixed(2)}`
+            );
+        });
+
+        const csvContent = csvRows.join("\n");
+
+        console.log(csvContent);
+
+        alert(translations[currentLang].alertSuccessLocal);
+        
+        currentCart = {};
+
+        renderSummary();
+
+        loadModelMatrix();
+
+        document.getElementById('order-notes').value = '';
         }
 
         /* MODAALIN LOGIIKKA */
@@ -1109,7 +1148,13 @@ textarea {
                 ? fiFile
                 : enFile;
 
-            document.getElementById('terms-frame').src = pdfPath;
+            // FORCE RELOAD SAFARILLE
+            const frame = document.getElementById('terms-frame');
+            frame.src = '';
+
+            setTimeout(() => {
+                frame.src = pdfPath;
+            }, 50);
 
             document.getElementById('download-terms-btn').href = pdfPath;
 
