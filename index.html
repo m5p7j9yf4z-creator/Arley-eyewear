@@ -153,7 +153,7 @@ nav a:hover{
 }
 
 .hero-content{
-    max-width:650px;
+    max-width:590px;
     background:rgba(251,251,250,.85);
     padding:40px;
     border-radius:4px;
@@ -169,14 +169,19 @@ nav a:hover{
 
 .hero-subline{
  display:block;
- font-size:1.18em;
- letter-spacing:-2.2px;
+ font-size:2.0rem;
+ line-height:1;
+ letter-spacing:-1.4px;
+ font-weight:360;
+ margin-top:12px;
+ margin-bottom:28px;
 }
 
 .hero p{
-    font-size:1.1rem;
-    font-weight:420;
-    margin:0;
+ font-size:1.08rem;
+ font-weight:340;
+ line-height:1.7;
+ margin:0;
 }
 
 .hero-gap{
@@ -884,18 +889,13 @@ EN
 <div class="hero-content">
 
 <h1 data-translate="hero-title">
-URBAN HERITAGE 26<br><br>
+URBAN HERITAGE 26
+</h1>
 
-<span class="hero-subline">
+<div class="hero-subline" data-translate="hero-subline">
 Urbaanin ympäristön muovaama
-</span>
+</div>
 
-</h1>
-
-<p data-translate="hero-desc">
-Urban Heritage yhdistää arkkitehtoniset pinnat...
-</p>
-</h1>
 <p data-translate="hero-desc">
 Urban Heritage yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.
 </p>
@@ -1360,7 +1360,8 @@ const translations = {
         "nav-innovation":"Innovaatio",
         "nav-about":"Tarina",
         "nav-contact":"Yhteys",
-        "hero-title":"URBAN HERITAGE 26 Urbaanin ympäristön muovaama",
+        "hero-title":"URBAN HERITAGE 26",
+        "hero-subline":"Urbaanin ympäristön muovaama",
         "hero-desc":"Urban Heritage 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
         "title-collection":"URBAN HERITAGE 26 - MALLISTO",
         "subtitle-collection":"Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.",
@@ -1408,7 +1409,8 @@ const translations = {
         "nav-innovation":"Innovation",
         "nav-about":"About",
         "nav-contact":"Contact",
-        "hero-title":"URBAN HERITAGE 26 Shaped by the urban environment",
+        "hero-title":"URBAN HERITAGE 26",
+        "hero-subline":"Shaped by the urban environment",
         "hero-desc":"Urban Heritage 26 combines architectural surfaces, digital design, and modern SLS manufacturing into lightweight and structurally durable eyewear.",
         "title-collection":"URBAN HERITAGE 26 - COLLECTION",
         "subtitle-collection":"Click on a product card to open preview, technical specifications and configuration options.",
