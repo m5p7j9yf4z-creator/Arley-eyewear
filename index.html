@@ -1996,28 +1996,20 @@ const modelsData = {
 
 function openPreviewModal(modelId){
 
-    activeModalModel = modelId;
+ activeModalModel = modelId;
 
-    modalOptions = {
-        texture:'plain',
-        color:'onyx',
-        size:'M'
-    };
+ modalOptions = {
+  texture:'plain',
+  color:'onyx',
+  size:'M'
+ };
 
-    document
-        .getElementById('preview-modal')
-        .classList.add('active');
+ document
+ .getElementById('preview-modal')
+ .classList.add('active');
 
-    document
-        .getElementById('m-size-m')
-        .classList.add('active');
-
-    document
-        .getElementById('m-size-l')
-        .classList.remove('active');
-
-    buildModalSelectors();
-    updateModalPreview();
+ buildModalSelectors();
+ updateModalPreview();
 }
 
 function closePreviewModal(){
@@ -2183,11 +2175,18 @@ function selectModalColor(color){
 
 function selectModalSize(size){
 
-    modalOptions.size = size;
+ modalOptions.size = size;
 
-    buildModalSelectors();
-    updateModalPreview();
+ document
+ .getElementById('m-size-m')
+ .classList.toggle('active', size === 'M');
 
+ document
+ .getElementById('m-size-l')
+ .classList.toggle('active', size === 'L');
+
+ buildModalSelectors();
+ updateModalPreview();
 }
 
 /* =========================================================
