@@ -178,9 +178,9 @@ nav a:hover{
 }
 
 .hero p{
- font-size:1.08rem;
- font-weight:340;
- line-height:1.7;
+ font-size:1.05rem;
+ font-weight:300;
+ line-height:1.8;
  margin:0;
 }
 
@@ -199,8 +199,8 @@ nav a:hover{
 
 .collection-intro h2{
     font-weight:300;
-    font-size:2.2rem;
-    letter-spacing:1px;
+    font-size:2rem;
+    letter-spacing:2px;
     line-height:1.18;
     margin:0 0 38px;
     position:relative;
@@ -219,9 +219,9 @@ nav a:hover{
 }
 
 .collection-intro p{
-    font-size:1.15rem;
+    font-size:1.05rem;
     font-weight:300;
-    line-height:1.7;
+    line-height:1.8;
     margin-bottom:30px;
     max-width:760px;
 }
@@ -586,7 +586,7 @@ nav a:hover{
 ========================================================= */
 .tech-card h3{
  font-weight:600;
- font-size:1rem;
+ font-size:1.08rem;
  letter-spacing:1.2px;
  line-height:1.5;
  margin:0 0 18px;
@@ -594,8 +594,8 @@ nav a:hover{
 
 .tech-card p{
  color:var(--text-muted);
- font-size:0.98rem;
- line-height:1.75;
+ font-size:1.05rem;
+ line-height:1.8;
  font-weight:300;
  margin:0 0 22px;
 }
@@ -615,8 +615,8 @@ nav a:hover{
 
 .about-section h2{
     font-weight:300;
-    font-size:2rem;
-    letter-spacing:2px;
+    font-size:1.05rem;
+    letter-spacing:1.8px;
     text-transform:uppercase;
     margin:0 0 60px;
 }
@@ -627,7 +627,7 @@ nav a:hover{
 
 .about-block h3{
     font-weight:520;
-    font-size:1rem;
+    font-size:1.08rem;
     letter-spacing:1px;
     text-transform:uppercase;
     margin:0 0 15px;
@@ -635,9 +635,9 @@ nav a:hover{
 
 .about-block p{
  color:var(--text-muted);
- font-size:1rem;
- line-height:1.7;
- font-weight:340;
+ font-size:1.05rem;
+ line-height:1.8;
+ font-weight:300;
  margin:0;
  width:100%;
  max-width:none;
@@ -704,7 +704,7 @@ nav a:hover{
 ========================================================= */
 
 .contact-section{
-    padding:80px 8% 110px;
+    padding:60px 8% 100px;
     border-top:1px solid var(--border);
 }
 
@@ -713,36 +713,42 @@ nav a:hover{
 }
 
 .contact-section h2{
- font-weight:300;
- font-size:2rem;
- letter-spacing:2px;
- text-transform:uppercase;
- margin:0 0 54px;
+    font-weight:300;
+    font-size:2rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin:0 0 60px;
+    padding-bottom:26px;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+}
+
+/* tämä wrapper tekee saman linjauksen kuin ABOUT-osiossa */
+
+.contact-content{
+    max-width:980px;
 }
 
 .contact-desc{
- color:var(--text-muted);
- font-size:1.05rem;
- font-weight:300;
- line-height:1.8;
- letter-spacing:0;
- margin:0 0 38px;
- max-width:760px;
+    color:var(--text-muted);
+    font-size:1.08rem;
+    line-height:1.8;
+    font-weight:300;
+    margin:0 0 28px;
 }
 
 .contact-email{
- font-size:1rem;
- font-weight:320;
+    font-size:1rem;
+    font-weight:320;
 }
 
 .contact-email a{
- color:var(--text);
- text-decoration:none;
- transition:opacity .25s ease;
+    color:var(--text);
+    text-decoration:none;
+    transition:opacity .25s ease;
 }
 
 .contact-email a:hover{
- opacity:.6;
+    opacity:.6;
 }
 
 /* =========================================================
@@ -1177,13 +1183,9 @@ Uskomme, että lasit ovat enemmän kuin väline – ne ovat osa kantajansa ident
 
 <section class="contact-section" id="contact">
 
-<div class="contact-container">
+<div class="contact-content">
 
-<h2 data-translate="contact-title">
-Yhteystiedot
-</h2>
-
-<p data-translate="contact-desc">
+<p class="contact-desc" data-translate="contact-desc">
 Ota yhteyttä — rakennetaan jotain poikkeuksellista yhdessä.
 </p>
 
@@ -1449,9 +1451,9 @@ const translations = {
         "tech-list-8":"Hinge System: High-performance hinges by OBE GmbH & Co selected for smooth actuation, material compatibility and long-term reliability.",
         "about-title":"Our Story & Vision",
         "about-heading":"Designed by Experience",
-        "about-text":"Hailing from Oulu, Finland, Arley Eyewear is not merely a design label, but the culmination of over a decade of deep Selective Laser Sintering expertise.",
+        "Arley Eyewear was born from a long-standing fascination with structures, materials, and the possibilities of digital manufacturing. Behind the brand lies more than a decade of experience in Selective Laser Sintering (SLS) technology and a continuous ambition to combine technical precision with deliberate, refined design. Arley did not emerge from the foundations of a traditional fashion brand, but from the desire to develop eyewear where lightweight construction, ergonomics, and structural performance could coexist without compromise. Each frame is part of an ongoing exploration into how digital design and modern manufacturing methods can influence the way eyewear looks, feels, and performs in everyday use. The design process combines sketching, parametric form development, and layer-based manufacturing in a way where aesthetics and technology naturally support one another. The result is eyewear that feels technologically advanced while remaining visually restrained and timeless.",
         "about-heading-2":"Sustainable Architecture for the Face",
-        "about-text-2":"We believe eyewear is more than a tool — it becomes part of the wearer's identity. By controlling the entire production chain from the first digital point to the final surface finish, we ensure exceptional longevity, lightweight comfort and ergonomics.",
+        "about-text-2":"For Arley, eyewear is more than a functional object — it is part of the wearer’s identity and daily experience. Every frame is therefore designed for longevity, both structurally and visually. Layer-based manufacturing enables material to be used precisely where it is truly needed. This reduces unnecessary waste while allowing lightweight yet durable structures without excessive mass. At the same time, the digital design process provides the freedom to develop geometries and details with a level of precision difficult to achieve through traditional manufacturing methods. By controlling the entire process from the initial sketch to the finished surface, Arley maintains full oversight of materials, structures, and the final user experience. The objective is not simply to produce eyewear, but to create frames that endure over time — both physically and visually."
         "contact-title":"Contact",
         "contact-desc":"Get in touch — let's build something exceptional together.",
         "modal-texture":"Select texture",
