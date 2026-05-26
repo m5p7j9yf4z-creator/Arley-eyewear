@@ -326,11 +326,11 @@ nav a:hover{
 .modal-container{
     background:var(--bg);
     width:90vw;
-    max-width:1200px;
+    max-width:1350px;
     height:85vh;
     border-radius:8px;
     display:grid;
-    grid-template-columns:1.2fr 1fr;
+    grid-template-columns:1.45fr .6fr;
     overflow:hidden;
     position:relative;
     box-shadow:0 20px 50px rgba(0,0,0,.15);
@@ -348,24 +348,54 @@ nav a:hover{
     z-index:2100;
 }
 
+/* =========================================================
+   GALLERY
+========================================================= */
+
 .modal-gallery{
-    background:#fff;
-    padding:20px;
-    overflow:hidden;
     display:flex;
     flex-direction:column;
-    gap:15px;
-    border-right:1px solid var(--border);
+    gap:18px;
+    padding:18px;
 }
 
 .modal-gallery img{
     width:100%;
-    flex:1;
+    height:100%;
     object-fit:cover;
+    display:block;
     background:#fafaf9;
     border-radius:4px;
-    min-height:0;
 }
+
+/* HERO */
+
+.gallery-hero{
+    height:420px;
+    overflow:hidden;
+    background:#f3f3f1;
+    border-radius:4px;
+}
+
+/* MIDDLE ROW */
+
+.gallery-row{
+    display:grid;
+    grid-template-columns:1fr .6fr;
+    gap:18px;
+}
+
+.gallery-side,
+.gallery-macro{
+    height:350px;
+    overflow:hidden;
+    background:#f3f3f1;
+    border-radius:4px;
+}
+
+/* =========================================================
+   DETAILS PANEL
+========================================================= */
 
 .modal-details{
     padding:40px;
@@ -385,6 +415,10 @@ nav a:hover{
     margin-bottom:15px;
     align-self:flex-start;
 }
+
+/* =========================================================
+   CONFIG SECTIONS
+========================================================= */
 
 .config-section{
     margin-bottom:20px;
@@ -406,6 +440,10 @@ nav a:hover{
     gap:8px;
     flex-wrap:wrap;
 }
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .preview-btn{
     background:none;
@@ -435,6 +473,10 @@ nav a:hover{
     box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--text);
 }
 
+/* =========================================================
+   SPECS TABLE
+========================================================= */
+
 .specs-table{
     width:100%;
     border-collapse:collapse;
@@ -451,7 +493,6 @@ nav a:hover{
     text-align:right;
     font-weight:500;
 }
-
 /* =========================================================
    INNOVATION
 ========================================================= */
@@ -616,7 +657,7 @@ nav a:hover{
 .about-section h2{
     font-weight:300;
     font-size:2rem;
-    letter-spacing:2px;
+    letter-spacing:px;
     text-transform:uppercase;
     margin:0 0 60px;
 }
@@ -1243,8 +1284,21 @@ onclick="closePreviewModal()">✕</button>
 
 <div class="modal-gallery">
 
-<img id="modal-main-img" src="" alt="">
-<img id="modal-front-img" src="" alt="">
+<div class="gallery-hero">
+<img id="modal-hero-img" src="" alt="">
+</div>
+
+<div class="gallery-row">
+
+<div class="gallery-side">
+<img id="modal-side-img" src="" alt="">
+</div>
+
+<div class="gallery-macro">
+<img id="modal-macro-img" src="" alt="">
+</div>
+
+</div>
 
 </div>
 
@@ -2221,14 +2275,24 @@ function updateModalPreview(){
             : '-';
 
     document
-        .getElementById('modal-main-img')
-        .src =
-        `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-main.webp`;
+     .getElementById('modal-hero-img')
+     .src =
+     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-hero.webp`;
 
     document
-        .getElementById('modal-front-img')
-        .src =
-        `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-front.webp`;
+     .getElementById('modal-side-img')
+     .src =
+     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-side.webp`;
+
+    document
+     .getElementById('modal-macro-img')
+     .src =
+     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-macro.webp`;
+
+    document
+     .getElementById('modal-texture-img')
+     .src =
+     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-texture.webp`;
 
     const specs =
         modelsData[m].specs[s];
