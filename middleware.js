@@ -1,23 +1,38 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-export function middleware(request) {
-  const authHeader = request.headers.get('authorization');
+export function middleware(request: NextRequest) {
+  const url = request.nextUrl;
 
-  // Voit vaihtaa tähän haluamasi tunnuksen ja salasanan.
-  // Nykyisellään tunnus on: arley ja salasana on: salasana123
-  if (authHeader !== 'Basic ' + btoa('arley:salasana123')) {
-    return new NextResponse('Suojattu tilausportaali', {
-      status: 401,
-      headers: {
-        'WWW-Authenticate': 'Basic realm="Syota salasana"',
-      },
-    });
+  // 1. Ohitetaan salasanasuojaus täysin, jos sivua ajetaan paikallisesti omalla koneella
+  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  // 2. Napataan selaimen lähettämä tunnistautumisyritys
+  const authHeader = request.headers.get('authorization');
+
+  if (authHeader) {
+    // Luetaan käyttäjätunnus ja salasana Base64-muodosta
+    const authValue = authHeader.split(' ')[1];
+    const [username, password] = atob(authValue).split(':');
+
+    // Määritetään vaadittu salasana (käyttäjätunnuksella ei ole väliä, jätetään se tyhjäksi tai miksi vain)
+    if (password === 'arley2026') {
+      return NextResponse.next();
+    }
+  }
+
+  // 3. Jos salasanaa ei ole annettu tai se on väärin, pyydetään selainta avaamaan kirjautumisikkuna
+  return new NextResponse('Pääsy evätty. Syötä oikea salasana.', {
+    status: 401,
+    headers: {
+      'WWW-Authenticate': 'Basic realm="Suojattu tilausportaali"',
+    },
+  });
 }
 
-// Tämä sääntö varmistaa, että suojaus koskee aivan jokaista sivua, kuvaa ja tiedostoa
+// Tämä määritys varmistaa, että suojaus koskee kaikkia sivuston osia (paitsi staattisia tiedostoja kuten kuvia)
 export const config = {
-  matcher: '/:path*',
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };

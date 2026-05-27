@@ -3,32 +3,6 @@
 
 <head>
 
-<script>
-  // Tarkistetaan, onko käyttäjä jo syöttänyt oikean salasanan aiemmin tässä istunnossa
-  if (sessionStorage.getItem('arley_auth') !== 'true') {
-    let authenticated = false;
-    
-    while (!authenticated) {
-      const password = prompt("Tämä on Arley Eyewearin suojattu B2B-portaali.\nSyötä salasana päästäksesi sisään:");
-      
-      // Jos käyttäjä klikkaa "Peruuta"
-      if (password === null) {
-        document.write("<body style='font-family:sans-serif; text-align:center; padding-top:100px;'><h3>Pääsy evätty.</h3></body>");
-        window.stop();
-        break;
-      }
-      
-      // Voit muuttaa tähän haluamasi salasanan (nyt se on: arley2026)
-      if (password === 'arley2026') {
-        sessionStorage.setItem('arley_auth', 'true');
-        authenticated = true;
-      } else {
-        alert("Väärä salasana, yritä uudelleen.");
-      }
-    }
-  }
-</script>    
-
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
