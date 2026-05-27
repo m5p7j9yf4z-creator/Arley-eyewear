@@ -3,6 +3,36 @@
 
 <head>
 
+<script>
+  // 1. Jos sivua ajetaan omalla koneella (Live Server), hypätään suojauksen yli
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    
+    // 2. Tarkistetaan, onko salasanaa jo syötetty tämän istunnon aikana
+    if (sessionStorage.getItem('arley_auth') !== 'true') {
+      let authenticated = false;
+      
+      while (!authenticated) {
+        const password = prompt("Tämä on suojattu tilausportaali. Syötä salasana päästäksesi sisään:");
+        
+        // Jos käyttäjä painaa "Peruuta" tai sulkee ikkunan
+        if (password === null) {
+          document.write("<h1 style='text-align:center; margin-top:20%; font-family:sans-serif;'>Pääsy evätty.</h1>");
+          window.stop();
+          break;
+        }
+        
+        // Tarkistetaan onko salasana oikein
+        if (password === 'arley2026') {
+          sessionStorage.setItem('arley_auth', 'true');
+          authenticated = true;
+        } else {
+          alert("Väärä salasana, yritä uudelleen.");
+        }
+      }
+    }
+  }
+</script>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
