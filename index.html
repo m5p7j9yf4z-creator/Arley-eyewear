@@ -111,6 +111,7 @@ header{
 nav{
     display:flex;
     align-items:center;
+    margin-left:auto;
 }
 
 nav a{
@@ -123,9 +124,6 @@ nav a{
     transition:color .3s ease;
 }
 
-nav a:hover{
-    color:var(--text-muted);
-}
 
 .b2b-link{
     margin-left:30px;
@@ -168,6 +166,42 @@ nav a:hover{
 }
 
 /* =========================================================
+   DYNAMIC LOGO
+========================================================= */
+
+
+nav a:hover {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.floating-logo {
+  position: fixed;
+
+  top: 202px;
+  left: 225px;
+  width:420px;
+
+  z-index: 1100;
+
+  transform-origin: top left;
+
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.floating-logo img {
+  width: 250px;
+
+  display: block;
+}
+
+header.scrolled {
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.72);
+}
+
+/* =========================================================
    HERO
 ========================================================= */
 
@@ -183,11 +217,8 @@ nav a:hover{
 }
 
 .hero-content{
-    max-width:570px;
-    background:rgba(251,251,250,.85);
-    padding:40px;
-    border-radius:4px;
-    backdrop-filter:blur(4px);
+    width:100%;
+    max-width:500px;
 }
 
 .hero h1{
@@ -273,7 +304,7 @@ nav a:hover{
 .portfolio-carousel{
     display:grid;
     grid-auto-flow:column;
-    grid-auto-columns:540px;
+    grid-auto-columns:650px;
     gap:35px;
     overflow-x:auto;
     padding:25px 8% 60px;
@@ -292,7 +323,7 @@ nav a:hover{
 }
 
 .portfolio-item{
-    aspect-ratio:5 / 4;
+    aspect-ratio:16 / 9;
     background-size:cover;
     background-position:center;
     background-color:#f4f4f2;
@@ -357,7 +388,7 @@ nav a:hover{
     background:var(--bg);
     width:90vw;
     max-width:1250px;
-    height:85vh;
+    height:76vh;
     border-radius:8px;
     display:grid;
     grid-template-columns:1.45fr .7fr;
@@ -401,7 +432,7 @@ nav a:hover{
 /* HERO */
 
 .gallery-hero{
-    height:420px;
+    height:460px;
     overflow:hidden;
     background:#f3f3f1;
     border-radius:4px;
@@ -411,13 +442,13 @@ nav a:hover{
 
 .gallery-row{
     display:grid;
-    grid-template-columns:1fr .6fr;
+    grid-template-columns:.8fr .8fr;
     gap:18px;
 }
 
 .gallery-side,
 .gallery-macro{
-    height:350px;
+    height:230px;
     overflow:hidden;
     background:#f3f3f1;
     border-radius:4px;
@@ -868,6 +899,8 @@ footer{
    MOBILE
 ========================================================= */
 
+
+
 @media(max-width:768px){
 
     body{
@@ -921,10 +954,6 @@ footer{
 
 <header>
 
-<a href="index.html" class="logo-link">
-<img src="images/logo.svg" alt="Arley Eyewear" class="logo-img">
-</a>
-
 <nav>
 
 <a href="#collections" data-translate="nav-collections">
@@ -968,6 +997,14 @@ EN
 </div>
 
 </nav>
+
+<!-- =========================================================
+     DYNAMIC LOGO
+========================================================= -->
+
+<div class="floating-logo">
+  <img src="images/logo.svg" alt="Arley">
+</div>
 
 </header>
 
@@ -1588,6 +1625,39 @@ function setLanguage(lang,event){
         .classList.toggle('active',lang==='en');
 
 }
+
+/* =========================================================
+   DYNAMIC LOGO & NAVBAR
+========================================================= */
+
+const logo = document.querySelector('.floating-logo');
+const navbar = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+
+  const scroll = window.scrollY;
+
+  /*
+    500px -> 300px
+    scale = 0.6
+  */
+
+  const progress = Math.min(scroll / 300, 1);
+
+  const scale = 1 - (0.55 * progress);
+
+  const translateY = -187 * progress;
+
+  logo.style.transform =
+    `translateY(${translateY}px) scale(${scale})`;
+
+  if (scroll > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+});
 
 /* =========================================================
    MODAL
@@ -2310,19 +2380,14 @@ function updateModalPreview(){
      `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-hero.webp`;
 
     document
-     .getElementById('modal-side-img')
+      .getElementById('modal-side-img')
      .src =
-     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-side.webp`;
+      `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-side.webp`;
 
     document
-     .getElementById('modal-macro-img')
-     .src =
-     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-macro.webp`;
-
-    document
-     .getElementById('modal-texture-img')
-     .src =
-     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-texture.webp`;
+      .getElementById('modal-macro-img')
+      .src =
+      `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-macro.webp`;
 
     const specs =
         modelsData[m].specs[s];
