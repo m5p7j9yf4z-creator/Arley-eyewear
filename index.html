@@ -239,12 +239,12 @@ nav a{
 }
 
 .collection-intro h3{
-    font-size:1.05rem;
-    font-weight:300;
-    line-height:1.2;
-    letter-spacing:-0.5px;
-
-    margin:0 0 28px;
+    font-size:1rem;
+    font-weight:600;
+    line-height:1.5;
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+    margin:0 0 14px;
 }
 
 .collection-intro h2::after{
@@ -259,11 +259,17 @@ nav a{
 }
 
 .collection-intro p{
-    font-size:0.95rem;
+    font-size:1rem;
     font-weight:300;
     line-height:1.8;
     margin-bottom:30px;
     max-width:760px;
+}
+
+.collection-note{
+    font-size:0.9rem;
+    color:var(--text-muted);
+    margin-top:-10px;
 }
 
 .welcome-tag{
@@ -339,7 +345,7 @@ nav a{
 .portfolio-item h3{
     margin:0;
     font-weight:400;
-    font-size:1.1rem;
+    font-size:1rem;
     letter-spacing:.5px;
     position:relative;
     z-index:2;
@@ -367,7 +373,7 @@ nav a{
     background:var(--bg);
     width:90vw;
     max-width:1150px;
-    height:93.3vh;
+    height:89.3vh;
     border-radius:8px;
     display:grid;
     grid-template-columns:1.45fr .7fr;
@@ -545,7 +551,7 @@ nav a{
 .innovation-section h2{
     font-weight:300;
     font-size:1.75rem;
-    letter-spacing:2px;
+    letter-spacing:1.5px;
     text-transform:uppercase;
     margin:0 0 38px;
     position:relative;
@@ -597,7 +603,7 @@ nav a{
 .process-card h3{
     font-weight:600;
     font-size:1rem;
-    letter-spacing:1.6px;
+    letter-spacing:1.5px;
     text-transform:uppercase;
     line-height:1.5;
     margin:0 0 14px;
@@ -607,7 +613,7 @@ nav a{
 
 .process-card p{
     color:var(--text-muted);
-    font-size:1.08rem;
+    font-size:1rem;
     line-height:1.82;
     font-weight:300;
     margin:0 0 34px;
@@ -675,7 +681,7 @@ nav a{
 
 .tech-card p{
  color:var(--text-muted);
- font-size:1.05rem;
+ font-size:1.0rem;
  line-height:1.8;
  font-weight:300;
  margin:0 0 22px;
@@ -697,7 +703,7 @@ nav a{
 .about-section h2{
     font-weight:300;
     font-size:1.75rem;
-    letter-spacing:px;
+    letter-spacing:1.5px;
     text-transform:uppercase;
     margin:0 0 60px;
 }
@@ -708,7 +714,7 @@ nav a{
 
 .about-block h3{
     font-weight:520;
-    font-size:1.08rem;
+    font-size:1rem;
     letter-spacing:1px;
     text-transform:uppercase;
     margin:0 0 15px;
@@ -716,7 +722,7 @@ nav a{
 
 .about-block p{
  color:var(--text-muted);
- font-size:1.05rem;
+ font-size:1rem;
  line-height:1.8;
  font-weight:300;
  margin:0;
@@ -764,18 +770,17 @@ nav a{
 
 @media(max-width:1024px){
 
-    .process-grid{
-        grid-template-columns:1fr;
-        gap:70px;
+    .modal-container{
+        height:85vh;
     }
 
-    .process-card p{
-        max-width:none;
+    .gallery-hero{
+        height:340px;
     }
 
-    .tech-specs{
-        grid-template-columns:1fr;
-        gap:50px;
+    .gallery-side,
+    .gallery-macro{
+        height:180px;
     }
 
 }
@@ -811,7 +816,7 @@ nav a{
 
 .contact-desc{
     color:var(--text-muted);
-    font-size:1.08rem;
+    font-size:1rem;
     line-height:1.8;
     font-weight:300;
     margin:0 0 28px;
@@ -1010,7 +1015,7 @@ EN
     kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.
 </p>
 
-<p data-translate="subtitle-collection">
+<p class="collection-note" data-translate="subtitle-collection">
 Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.
 </p>
 
