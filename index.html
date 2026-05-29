@@ -103,7 +103,7 @@ header{
 }
 
 .logo-img{
-    height:55px;
+    height:65px;
     width:auto;
     display:block;
 }
@@ -165,89 +165,59 @@ nav a{
     font-weight:600;
 }
 
-/* =========================================================
-   DYNAMIC LOGO
-========================================================= */
-
-
-nav a:hover {
-  filter: blur(0);
-  opacity: 1;
-}
-
-.floating-logo {
-  position: fixed;
-
-  top: 200px;
-  left: 225px;
-  width:420px;
-
-  z-index: 1100;
-
-  transform-origin: top left;
-
-  transition:
-    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.floating-logo img {
-  width: 250px;
-
-  display: block;
-}
-
-header.scrolled {
-  backdrop-filter: blur(10px);
-  background: rgba(255,255,255,0.72);
-}
 
 /* =========================================================
    HERO
 ========================================================= */
 
 .hero{
-    padding:100px 8%;
+    padding:32px 8% 80px;
     background-image:url('images/hero-main.webp');
     background-size:cover;
     background-position:center right;
     border-bottom:1px solid var(--border);
-    min-height:85vh;
+    min-height:calc(100vh - 95px);
     display:flex;
     align-items:center;
 }
 
+/* =========================================================
+   HERO TYPOGRAPHY
+========================================================= */
+
 .hero-content{
-    width:100%;
-    max-width:500px;
+    max-width:620px;
+    margin-top:60px;
 }
 
 .hero h1{
- font-weight:420;
- font-size:3.2rem;
- line-height:1.02;
- letter-spacing:-2.6px;
+    margin:0 0 18px 0;
+
+    font-weight:420;
+    font-size:3.0rem;
+    line-height:1.02;
+    letter-spacing:-2.6px;
 }
 
 .hero-subline{
- display:block;
- font-size:2.0rem;
- line-height:1;
- letter-spacing:-1.4px;
- font-weight:360;
- margin-top:10px;
- margin-bottom:28px;
+    margin:0 0 30px 0;
+
+    display:block;
+
+    font-size:2rem;
+    line-height:1.05;
+    letter-spacing:-1.4px;
+    font-weight:360;
 }
 
 .hero p{
- font-size:1.05rem;
- font-weight:300;
- line-height:1.8;
- margin:0;
-}
+    margin:0;
 
-.hero-gap{
- display:block;
- line-height:20px;
+    max-width:460px;
+
+    font-size:1.05rem;
+    font-weight:300;
+    line-height:1.9;
 }
 
 /* =========================================================
@@ -266,6 +236,15 @@ header.scrolled {
     margin:0 0 38px;
     position:relative;
     padding-bottom:26px;
+}
+
+.collection-intro h3{
+    font-size:2rem;
+    font-weight:300;
+    line-height:1.1;
+    letter-spacing:-1px;
+
+    margin:0 0 28px;
 }
 
 .collection-intro h2::after{
@@ -448,7 +427,7 @@ header.scrolled {
 
 .gallery-side,
 .gallery-macro{
-    height:230px;
+    height:265px;
     overflow:hidden;
     background:#f3f3f1;
     border-radius:4px;
@@ -954,6 +933,10 @@ footer{
 
 <header>
 
+<a href="#" class="logo-link">
+    <img src="images/logo.svg" alt="Arley" class="logo-img">
+</a>
+
 <nav>
 
 <a href="#collections" data-translate="nav-collections">
@@ -998,14 +981,6 @@ EN
 
 </nav>
 
-<!-- =========================================================
-     DYNAMIC LOGO
-========================================================= -->
-
-<div class="floating-logo">
-  <img src="images/logo.svg" alt="Arley">
-</div>
-
 </header>
 
 <!-- =========================================================
@@ -1013,23 +988,6 @@ EN
 ========================================================= -->
 
 <section class="hero">
-
-<div class="hero-content">
-
-<h1 data-translate="hero-title">
-URBAN HERITAGE 26
-</h1>
-
-<div class="hero-subline" data-translate="hero-subline">
-Urbaanin ympäristön muovaama
-</div>
-
-<p data-translate="hero-desc">
-Urban Heritage yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.
-</p>
-
-</div>
-
 </section>
 
 <!-- =========================================================
@@ -1039,8 +997,18 @@ Urban Heritage yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja m
 <section class="collection-intro" id="collections">
 
 <h2 data-translate="title-collection">
-URBAN HERITAGE 26 - MALLISTO
+    URBAN HERITAGE 26 - MALLISTO
 </h2>
+
+<h3 data-translate="collection-subtitle">
+    Urbaanin ympäristön muovaama
+</h3>
+
+<p data-translate="collection-description">
+    Urban Heritage 26 yhdistää arkkitehtoniset pinnat,
+    digitaalisen suunnittelun ja modernin SLS-valmistuksen
+    kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.
+</p>
 
 <p data-translate="subtitle-collection">
 Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.
@@ -1500,6 +1468,8 @@ const translations = {
         "hero-subline":"Urbaanin ympäristön muovaama",
         "hero-desc":"Urban Heritage 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
         "title-collection":"URBAN HERITAGE 26 - MALLISTO",
+        "collectionSubtitle":"Urbaanin ympäristön muovaama",
+        "collectionDescription":"Urban Heritage 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
         "subtitle-collection":"Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.",
         "collection-label":"TERVETULOA MALLISTOON",
         "innov-heading":"Innovaatio & Tekniikka",
@@ -1535,7 +1505,8 @@ const translations = {
         "spec-frame":"Kehyksen leveys",
         "spec-lens":"Linssin leveys",
         "spec-bridge":"Sillan leveys",
-        "spec-temple":"Aisan pituus"
+        "spec-temple":"Aisan pituus",
+        
 
     },
 
@@ -1549,6 +1520,8 @@ const translations = {
         "hero-subline":"Shaped by the urban environment",
         "hero-desc":"Urban Heritage 26 combines architectural surfaces, digital design, and modern SLS manufacturing into lightweight and structurally durable eyewear.",
         "title-collection":"URBAN HERITAGE 26 - COLLECTION",
+        "collectionSubtitle":"Shaped by the urban environment",
+        "collectionDescription":"Urban Heritage 26 combines architectural surfaces, digital design and modern SLS manufacturing into lightweight and structurally durable frames.",
         "subtitle-collection":"Click on a product card to open model previews and detailed technical specifications.",
         "collection-label":"WELCOME TO THE COLLECTION",
         "innov-heading":"Innovation & Engineering",
@@ -1627,31 +1600,14 @@ function setLanguage(lang,event){
 }
 
 /* =========================================================
-   DYNAMIC LOGO & NAVBAR
+   NAVBAR
 ========================================================= */
 
-const logo = document.querySelector('.floating-logo');
 const navbar = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
 
-  const scroll = window.scrollY;
-
-  /*
-    500px -> 300px
-    scale = 0.6
-  */
-
-  const progress = Math.min(scroll / 300, 1);
-
-  const scale = 1 - (0.55 * progress);
-
-  const translateY = -187 * progress;
-
-  logo.style.transform =
-    `translateY(${translateY}px) scale(${scale})`;
-
-  if (scroll > 50) {
+  if (window.scrollY > 50) {
     navbar.classList.add('scrolled');
   } else {
     navbar.classList.remove('scrolled');
