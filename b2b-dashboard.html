@@ -532,9 +532,12 @@ textarea {
   text-align: right; 
   font-weight: 500; 
 }
+
 .matrix-preview-btn{
     margin-top:8px;
-    padding:6px 10px;
+    padding:3px 0;
+
+    width:48px;
 
     border:1px solid var(--border);
     border-radius:4px;
@@ -550,6 +553,18 @@ textarea {
     cursor:pointer;
 
     transition:all .2s ease;
+}
+
+:root{
+    --matrix-control-width:60px;
+}
+
+.qty-input{
+    width:48px;
+}
+
+.matrix-preview-btn{
+    width:var(--matrix-control-width);
 }
 
 .matrix-preview-btn:hover{
