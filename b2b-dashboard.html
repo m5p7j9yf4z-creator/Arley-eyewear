@@ -158,10 +158,10 @@ header {
   border-bottom: 1px solid var(--border);
 }
 h2 { 
-  font-size: 1.25rem; 
-  font-weight: 400; 
+  font-size: 1.1rem; 
+  font-weight: 300; 
   margin: 0; 
-  letter-spacing: 1px; 
+  letter-spacing: 1.5px; 
   text-transform: uppercase; 
 }
 /* Tilauslomakkeen matriisityylit */
@@ -184,11 +184,11 @@ h2 {
   border-bottom: 1px solid var(--accent-danger); 
 }
 .form-group { 
-  margin-bottom: 18px; 
+  margin-bottom: 8px; 
 }
 label { 
   display: block; 
-  font-size: 0.75rem; 
+  font-size: 0.72rem; 
   font-weight: 600; 
   text-transform: uppercase; 
   letter-spacing: 1.5px; 
@@ -199,7 +199,7 @@ select, textarea {
   width: 100%; 
   padding: 10px 12px; 
   font-family: inherit; 
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   border: 1px solid var(--border); 
   border-radius: 4px; 
   background-color: var(--bg); 
@@ -230,7 +230,7 @@ textarea {
 .matrix-table td { 
   padding: 10px; 
   border-bottom: 1px solid var(--border); 
-  font-size: 0.9rem; 
+  font-size: 0.85rem; 
 }
 .qty-input { 
   width: 60px; 
@@ -239,7 +239,7 @@ textarea {
   border-radius: 4px; 
   text-align: center; 
   font-family: inherit; 
-  font-size: 0.9rem; 
+  font-size: 0.85rem; 
 }
 .qty-input:disabled { 
   background-color: #f5f5f3; 
@@ -255,7 +255,7 @@ textarea {
 }
 .sku-label { 
   font-family: monospace; 
-  font-size: 0.8rem; 
+  font-size: 0.72rem; 
   color: var(--text-muted); 
   display: block; 
   margin-top: 2px;
@@ -304,7 +304,7 @@ textarea {
   font-family: inherit;
   color: var(--white);
   border: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   text-transform: uppercase;
   height: 54px;
@@ -383,17 +383,23 @@ textarea {
 .modal-overlay.active { 
   display: flex; 
 }
-.modal-container { 
-  background: var(--bg); 
-  width: 90vw; 
-  max-width: 1200px; 
-  height: 85vh; 
-  border-radius: 8px; 
-  display: grid;
-  grid-template-columns: 1.2fr 1fr; 
-  overflow: hidden; 
-  position: relative; 
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+.modal-container{
+    background:var(--bg);
+
+    width:90vw;
+    max-width:1150px;
+
+    height:89.3vh;
+
+    border-radius:8px;
+
+    display:grid;
+    grid-template-columns:1.45fr .7fr;
+
+    overflow:hidden;
+    position:relative;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
 }
 .modal-close { 
   position: absolute; 
@@ -406,30 +412,68 @@ textarea {
   color: var(--text); 
   z-index: 2100; 
 }
-.modal-gallery { 
-  background: #fff; 
-  padding: 20px;
-  overflow: hidden; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 15px; 
-  border-right: 1px solid var(--border); 
-  height: 100%; 
-  box-sizing: border-box;
+.modal-gallery{
+    background:#fff;
+    padding:18px;
+    border-right:1px solid var(--border);
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+    box-sizing:border-box;
 }
-.modal-gallery img { 
-  width: 100%; 
-  flex: 1; 
-  object-fit: cover; 
-  background: #fafaf9; 
-  border-radius: 4px; 
-  min-height: 0; 
+.gallery-hero{
+    height:460px;
+    overflow:hidden;
+    border-radius:4px;
+    background:#fafaf9;
 }
-.modal-details { 
-  padding: 40px;
-  overflow-y: auto; 
-  display: flex; 
-  flex-direction: column; 
+.gallery-hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.gallery-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+.gallery-side,
+.gallery-macro{
+    height:265px;
+    overflow:hidden;
+    border-radius:4px;
+    background:#fafaf9;
+}
+.gallery-side img,
+.gallery-macro img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.modal-details{
+    padding:38px;
+    overflow-y:auto;
+
+    display:flex;
+    flex-direction:column;
+}
+.modal-title{
+    margin:0 0 8px;
+    font-weight:300;
+    font-size:1.75rem;
+    letter-spacing:1.5px;
+    line-height:1.15;
+}
+.modal-meta{
+    font-size:.8rem;
+    color:var(--text-muted);
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    margin-bottom:20px;
 }
 .modal-code-badge { 
   font-family: monospace; 
@@ -448,27 +492,14 @@ textarea {
   padding-top: 15px; 
 }
 .config-label { 
-  font-size: 0.75rem; 
+  font-size: 0.72rem; 
   font-weight: 600; 
   text-transform: uppercase; 
   letter-spacing: 1.5px; 
   margin-bottom: 10px; 
   color: var(--text-muted); 
 } 
-.option-group { 
-  display: flex; 
-  gap: 8px; 
-  flex-wrap: wrap; 
-}
-.preview-btn { 
-  background: none; 
-  border: 1px solid var(--border); 
-  padding: 6px 12px;
-  font-size: 0.8rem; 
-  cursor: pointer; 
-  border-radius: 4px; 
-  transition: all 0.25s;
-}
+
 .preview-btn.active { 
   background: var(--text); 
   color: var(--white); 
@@ -478,14 +509,7 @@ textarea {
   opacity: 0.15; 
   cursor: not-allowed; 
 }
-.preview-color-btn { 
-  width: 30px; 
-  height: 30px; 
-  border-radius: 4px; 
-  border: 1px solid var(--border); 
-  cursor: pointer; 
-  transition: all 0.2s; 
-}
+
 .preview-color-btn.active { 
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--text);
 }
@@ -790,50 +814,75 @@ textarea {
 </main>
 
 <div id="preview-modal" class="modal-overlay" onclick="closePreviewModal()">
-        <div class="modal-container" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closePreviewModal()">✕</button>
-            
-            <div class="modal-gallery">
-                <img id="modal-main-img" src="" alt="Main View">
-                <img id="modal-front-img" src="" alt="Front View">
+
+    <div class="modal-container" onclick="event.stopPropagation()">
+
+        <button class="modal-close" onclick="closePreviewModal()">✕</button>
+
+        <div class="modal-gallery">
+
+            <div class="gallery-hero">
+                <img id="modal-hero-img" src="" alt="">
             </div>
-            
-            <div class="modal-details">
-                <h2 id="modal-title" style="margin-bottom: 5px;">Urban Heritage 26</h2>
-                <div id="modal-meta" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:20px;"></div>
-                
-                <div id="modal-sku" class="modal-code-badge">-</div>
-                
-                <div class="config-section">
-                    <div class="config-label" data-translate="lbl-texture">Valitse tekstuuri</div>
-                    <div class="option-group" id="modal-texture-group"></div>
+
+            <div class="gallery-row">
+
+                <div class="gallery-side">
+                    <img id="modal-side-img" src="" alt="">
                 </div>
-                
-                <div class="config-section">
-                    <div class="config-label" data-translate="lbl-color">Valitse väri</div>
-                    <div class="option-group" id="modal-color-group"></div>
+
+                <div class="gallery-macro">
+                    <img id="modal-macro-img" src="" alt="">
                 </div>
-                
-                <div class="config-section">
-                    <div class="config-label" data-translate="lbl-size">Koko</div>
-                    <div class="option-group">
-                        <button class="preview-btn active" id="m-size-m" onclick="selectModalSize('M')">M</button>
-                        <button class="preview-btn" id="m-size-l" onclick="selectModalSize('L')">L</button>
-                    </div>
-                </div>
-                
-                <div class="config-section">
-                    <div class="config-label" data-translate="lbl-specs">Tekniset mitat</div>
-                    <table class="specs-table">
-                        <tr><td data-translate="spec-frame">Kehyksen leveys</td><td id="m-spec-frame">134 mm</td></tr>
-                        <tr><td data-translate="spec-lens">Linssin leveys</td><td id="m-spec-lens">49 mm</td></tr>
-                        <tr><td data-translate="spec-bridge">Sillan leveys</td><td id="m-spec-bridge">19 mm</td></tr>
-                        <tr><td data-translate="spec-temple">Aisan pituus</td><td id="m-spec-temple">130 mm</td></tr>
-                    </table>
-                </div>
+
             </div>
+
         </div>
+
+        <div class="modal-details">
+
+            <h2 id="modal-title" class="modal-title">
+                Urban Heritage 26
+            </h2>
+
+            <div id="modal-meta" class="modal-meta"></div>
+
+            <div id="modal-sku" class="modal-code-badge">
+                -
+            </div>
+
+            <div class="config-section">
+
+                <div class="config-label">
+                    Valittu kokoonpano
+                </div>
+
+                <table class="specs-table">
+
+                    <tr>
+                        <td>Tekstuuri</td>
+                        <td id="modal-selected-texture">-</td>
+                    </tr>
+
+                    <tr>
+                        <td>Väri</td>
+                        <td id="modal-selected-color">-</td>
+                    </tr>
+
+                    <tr>
+                        <td>Koko</td>
+                        <td id="modal-selected-size">-</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
     </div>
+
+</div>
 
     <script>
         let currentLang = 'fi';
@@ -933,14 +982,6 @@ textarea {
                 const tFile = texDataKey.toLowerCase();
                 const cFile = colDataKey.toLowerCase();
 
-                document.getElementById('modal-main-img').src = `images/${m}-${cFile}-${tFile}-main.png`;
-                document.getElementById('modal-front-img').src = `images/${m}-${cFile}-${tFile}-front.png`;
-
-                const specs = modelsData[m].specs[s];
-                document.getElementById('m-spec-frame').textContent = specs[0] + ' mm';
-                document.getElementById('m-spec-lens').textContent = specs[1] + ' mm';
-                document.getElementById('m-spec-bridge').textContent = specs[2] + ' mm';
-                document.getElementById('m-spec-temple').textContent = specs[3] + ' mm';
             }
         }
 
@@ -1137,151 +1178,142 @@ textarea {
         document.getElementById('order-notes').value = '';
         }
 
-        /* MODAALIN LOGIIKKA */
-        function openMatrixPreview(model, tex, col, size, event) {
+       /* =========================================================
+   MODAL PREVIEW
+========================================================= */
 
-            if (event) event.stopPropagation();
-            activeModalModel = model;
+function openMatrixPreview(model, tex, col, size, event) {
 
-            modalOptions.texture = tex;
-            modalOptions.color = col;
-            modalOptions.size = size;
+    if (event) event.stopPropagation();
 
-            document.getElementById('modal-title').textContent =
-                `Urban Heritage 26 – ${model.toUpperCase()}`;
-              
-              buildModalSelectors();
-              updateModalPreview();
+    activeModalModel = model;
 
-              document
-                .getElementById('preview-modal')
-                .classList.add('active');
-        }
-            
-        function closePreviewModal() {
-            document.getElementById('preview-modal').classList.remove('active');
-        }
+    modalOptions.texture = tex;
+    modalOptions.color = col;
+    modalOptions.size = size;
 
-        function buildModalSelectors() {
-            const texGroup = document.getElementById('modal-texture-group');
-            texGroup.innerHTML = '';
-            textures.forEach(t => {
-                const hasTexture = modelsData[activeModalModel]['M'][t] && Object.values(modelsData[activeModalModel]['M'][t]).some(v => v !== false);
-                if (hasTexture) {
-                    const btn = document.createElement('button');
-                    btn.className = `preview-btn ${modalOptions.texture === t ? 'active' : ''}`;
-                    btn.textContent = translations[currentLang]['tex' + t.charAt(0).toUpperCase() + t.slice(1)];
-                    btn.onclick = () => selectModalTexture(t);
-                    texGroup.appendChild(btn);
-                }
-            });
+    document.getElementById('modal-title').textContent =
+        `Urban Heritage 26 - ${model.toUpperCase()}`;
 
-            const colGroup = document.getElementById('modal-color-group');
-            colGroup.innerHTML = '';
-            colors.forEach(c => {
-                const sku = modelsData[activeModalModel][modalOptions.size][modalOptions.texture][c];
-                const btn = document.createElement('button');
-                btn.className = `preview-color-btn ${modalOptions.color === c ? 'active' : ''}`;
-                btn.style.backgroundColor = colorHex[c];
-                btn.title = translations[currentLang]['th' + c.charAt(0).toUpperCase() + c.slice(1)];
-                if (!sku) btn.disabled = true;
-                btn.onclick = () => selectModalColor(c);
-                colGroup.appendChild(btn);
-            });
+    updateModalPreview();
 
-            document.getElementById('m-size-m').classList.toggle('active', modalOptions.size === 'M');
-            document.getElementById('m-size-l').classList.toggle('active', modalOptions.size === 'L');
-        }
+    document
+        .getElementById('preview-modal')
+        .classList.add('active');
+}
 
-        function selectModalTexture(tex) {
-            modalOptions.texture = tex;
-            if (!modelsData[activeModalModel][modalOptions.size][tex][modalOptions.color]) {
-                for (let c of colors) {
-                    if (modelsData[activeModalModel][modalOptions.size][tex][c]) {
-                        modalOptions.color = c;
-                        break;
-                    }
-                }
-            }
-            buildModalSelectors();
-            updateModalPreview();
-        }
+function closePreviewModal() {
 
-        function selectModalColor(col) {
-            modalOptions.color = col;
-            buildModalSelectors();
-            updateModalPreview();
-        }
+    document
+        .getElementById('preview-modal')
+        .classList.remove('active');
+}
 
-        function selectModalSize(size) {
-            modalOptions.size = size;
-            buildModalSelectors();
-            updateModalPreview();
-        }
+function updateModalPreview() {
 
-        function updateModalPreview() {
-            const m = activeModalModel;
-            const texDataKey = modalOptions.texture;
-            const colDataKey = modalOptions.color;
-            const s = modalOptions.size;
+    const m = activeModalModel;
+    const t = modalOptions.texture;
+    const c = modalOptions.color;
+    const s = modalOptions.size;
 
-            const skuFull = modelsData[m][s][texDataKey][colDataKey];
-            document.getElementById('modal-sku').textContent = skuFull ? skuFull.split('_')[1] : '-';
+    const skuFull =
+        modelsData[m][s][t][c];
 
-            const modelMeta = modelsData[m];
-            const translatedGender = translations[currentLang][`genre-${modelMeta.gender}`];
-            document.getElementById('modal-meta').textContent = `${modelMeta.shape} | ${translatedGender}`;
+    document.getElementById('modal-sku').textContent =
+        skuFull
+            ? skuFull.split('_')[1]
+            : '-';
 
-            // Muutetaan kirjaimet pieniksi vain tiedostonimiä varten (.toLowerCase())
-            const tFile = texDataKey.toLowerCase();
-            const cFile = colDataKey.toLowerCase();
+    const modelMeta =
+        modelsData[m];
 
-            // Päivitetään dynaamiset PNG-kuvapolut uuden standardin mukaisesti
-            document.getElementById('modal-main-img').src = `images/${m}-${cFile}-${tFile}-main.png`;
-            document.getElementById('modal-front-img').src = `images/${m}-${cFile}-${tFile}-front.png`;
+    const translatedGender =
+        translations[currentLang][`genre-${modelMeta.gender}`];
 
-            const specs = modelsData[m].specs[s];
-            document.getElementById('m-spec-frame').textContent = specs[0] + ' mm';
-            document.getElementById('m-spec-lens').textContent = specs[1] + ' mm';
-            document.getElementById('m-spec-bridge').textContent = specs[2] + ' mm';
-            document.getElementById('m-spec-temple').textContent = specs[3] + ' mm';
-        }
+    document.getElementById('modal-meta').textContent =
+        `${modelMeta.shape} | ${translatedGender}`;
 
-        
-        function openTermsModal() {
+    document.getElementById('modal-selected-texture').textContent =
+        translations[currentLang][
+            'tex' + t.charAt(0).toUpperCase() + t.slice(1)
+        ];
 
-            const fiFile = "documents/arley-terms-fi.pdf";
-            const enFile = "documents/arley-terms-en.pdf";
+    document.getElementById('modal-selected-color').textContent =
+        c.charAt(0).toUpperCase() + c.slice(1);
 
-            const pdfPath = currentLang === 'fi'
-                ? fiFile
-                : enFile;
+    document.getElementById('modal-selected-size').textContent =
+        s;
 
-            // FORCE RELOAD SAFARILLE
-            const frame = document.getElementById('terms-frame');
-            frame.src = '';
+    const hero =
+        document.getElementById('modal-hero-img');
 
-            setTimeout(() => {
-                frame.src = pdfPath;
-            }, 50);
+    const side =
+        document.getElementById('modal-side-img');
 
-            document.getElementById('download-terms-btn').href = pdfPath;
+    const macro =
+        document.getElementById('modal-macro-img');
 
-            document.getElementById('terms-title').textContent =
-                currentLang === 'fi'
-                    ? 'Yleiset toimitus- ja sopimusehdot'
-                    : 'General Terms and Conditions';
+    if (hero) hero.src = '';
+    if (side) side.src = '';
+    if (macro) macro.src = '';
+}
 
-            document.getElementById('terms-modal').classList.add('active');
-        }
+/* =========================================================
+   TERMS MODAL
+========================================================= */
 
-        function closeTermsModal() {
-            document.getElementById('terms-modal').classList.remove('active');
-        }
+function openTermsModal() {
 
-        function printTerms() {
-            document.getElementById('terms-frame').contentWindow.print();
-        }
+    const fiFile =
+        "documents/arley-terms-fi.pdf";
+
+    const enFile =
+        "documents/arley-terms-en.pdf";
+
+    const pdfPath =
+        currentLang === 'fi'
+            ? fiFile
+            : enFile;
+
+    const frame =
+        document.getElementById('terms-frame');
+
+    frame.src = '';
+
+    setTimeout(() => {
+        frame.src = pdfPath;
+    }, 50);
+
+    document.getElementById(
+        'download-terms-btn'
+    ).href = pdfPath;
+
+    document.getElementById(
+        'terms-title'
+    ).textContent =
+        currentLang === 'fi'
+            ? 'Yleiset toimitus- ja sopimusehdot'
+            : 'General Terms and Conditions';
+
+    document
+        .getElementById('terms-modal')
+        .classList.add('active');
+}
+
+function closeTermsModal() {
+
+    document
+        .getElementById('terms-modal')
+        .classList.remove('active');
+}
+
+function printTerms() {
+
+    document
+        .getElementById('terms-frame')
+        .contentWindow
+        .print();
+}
 
 
         window.onload = () => {
