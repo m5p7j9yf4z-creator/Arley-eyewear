@@ -251,7 +251,7 @@ textarea {
 .matrix-table { 
   width: 100%; 
   border-collapse: collapse; 
-  margin-top: 15px; 
+  margin-top: 0px; 
 }
 
 .matrix-table th { 
@@ -1037,450 +1037,1089 @@ Valittu kokoonpano
 
 </div>
 
-    <script>
-        let currentLang = 'fi';
-        let currentCart = {};
-        
-        let activeModalModel = 'd001';
-        let modalOptions = { texture: 'plain', color: 'onyx', size: 'M' };
+<script>
 
-        const translations = {
-            fi: {
-                "nav-order": "Tilauslomake", "nav-collection": "Mallistot", "nav-history": "Tilaushistoria", "nav-logout": "Kirjaudu ulos",
-                customer: "Asiakas", formTitle: "Tilauslomake", clearBtn: "Tyhjennä tilaus", labelModel: "Valitse kehysmalli",
-                labelSize: "Koko", thTexture: "Tekstuuri / Väri", thOnyx: "Onyx", thSlate: "Deep Slate", thBrown: "Chocolate Brown", thPlum: "Ink Plum",
-                summaryTitle: "Yhteenveto", emptyCart: "Ei tuotteita valittuna.", totalLabel: "Yhteensä (alv 0%)", labelNotes: "Tilauksen lisätiedot / Viesti",
-                placeholderNotes: "Kirjoita tähän viestit valmistukselle...", submitBtn: "Lähetä tilaus", confirmClear: "Haluatko tyhjentää korin?",
-                alertEmpty: "Valitse vähintään yksi tuote.", alertSuccessLocal: "Tilaus ladattu CSV-muodossa!",
-                texPlain: "Plain", texFluted: "Fluted", texMicrodot: "Microdot", texStriated: "Striated", "lbl-texture": "Valitse tekstuuri",
-                "lbl-color": "Valitse väri", "lbl-size": "Koko", "lbl-specs": "Tekniset mitat", "spec-frame": "Kehyksen leveys", "spec-lens": "Linssin leveys",
-                "spec-bridge": "Sillan leveys", "spec-temple": "Aisan pituus", "btn-view": "Vaihtoehdot",
-                "genre-unisex": "Unisex", "genre-female": "Naiset",
-                "title-collection": "URBAN HERITAGE 26 - MALLISTO",
-                "subtitle-collection": "Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.",
-                "nav-terms": "Yleiset ehdot",
-                "download-pdf": "Lataa PDF",
-                "print-document": "Tulosta dokumentti",
-                "preview": "Näytä",
-                labelCollection: "Valitse mallisto"
-                
-            },
-            en: {
-                "nav-order": "Order Form", "nav-collection": "Collections", "nav-history": "Order History", "nav-logout": "Log out",
-                customer: "Customer", formTitle: "Order Form", clearBtn: "Clear order", labelModel: "Select frame model",
-                labelSize: "Size", thTexture: "Texture / Color", thOnyx: "Onyx", thSlate: "Deep Slate", thBrown: "Chocolate Brown", thPlum: "Ink Plum",
-                summaryTitle: "Summary", emptyCart: "No products selected.", totalLabel: "Total (VAT 0%)", labelNotes: "Order Notes",
-                placeholderNotes: "Enter details for manufacturing...", submitBtn: "Submit Order", confirmClear: "Clear all?",
-                alertEmpty: "Select at least one product.", alertSuccessLocal: "Order exported as CSV!",
-                texPlain: "Plain", texFluted: "Fluted", texMicrodot: "Microdot", texStriated: "Striated", "lbl-texture": "Select texture",
-                "lbl-color": "Select color", "lbl-size": "Size", "lbl-specs": "Technical specs", "spec-frame": "Frame width", "spec-lens": "Lens width",
-                "spec-bridge": "Bridge width", "spec-temple": "Temple length", "btn-view": "Options",
-                "genre-unisex": "Unisex", "genre-female": "Female Targeted",
-                "title-collection": "URBAN HERITAGE 26 - COLLECTION",
-                "subtitle-collection": "Click on any model card to open preview, technical details and order configurations.",
-                "nav-terms": "Terms & Conditions",
-                "download-pdf": "Download PDF",
-                "print-document": "Print document",
-                "preview": "View",
-                labelCollection: "Select collection"
-            }
-        };
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
 
-        const modelsData = {
-            'd001': { shape: 'Soft Rectangle', gender: 'unisex', specs: { M: [134, 49, 19, 130], L: [139, 51, 20, 135] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000001_D001POXM', 'slate': '000004_D001PDSM', 'brown': '000007_D001PCBM', 'plum': '000009_D001PIPM' }, 'fluted': { 'onyx': '000002_D001FOXM', 'slate': '000005_D001FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000003_D001DOXM', 'slate': '000006_D001DDSM', 'brown': '000008_D001DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000010_D001SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000011_D001POXL', 'slate': '000014_D001PDSL', 'brown': '000017_D001PCBL', 'plum': '000019_D001PIPL' }, 'fluted': { 'onyx': '000012_D001FOXL', 'slate': '000015_D001FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000013_D001DOXL', 'slate': '000016_D001DDSL', 'brown': '000018_D001DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000020_D001SIPL' } } },
-            'd002': { shape: 'Classic Panto', gender: 'unisex', specs: { M: [132, 47, 21, 140], L: [137, 49, 22, 145] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000021_D002POXM', 'slate': '000024_D002PDSM', 'brown': '000027_D002PCBM', 'plum': '000029_D002PIPM' }, 'fluted': { 'onyx': '000022_D002FOXM', 'slate': '000025_D002FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000023_D002DOXM', 'slate': '000026_D002DDSM', 'brown': '000028_D002DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000030_D002SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000031_D002POXL', 'slate': '000034_D002PDSL', 'brown': '000037_D002PCBL', 'plum': '000039_D002PIPL' }, 'fluted': { 'onyx': '000032_D002FOXL', 'slate': '000035_D002FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000033_D002DOXL', 'slate': '000036_D002DDSL', 'brown': '000038_D002DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000040_D002SIPL' } } },
-            'd003': { shape: 'Navigator', gender: 'unisex', specs: { M: [140, 55, 16, 145], L: [145, 57, 17, 150] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000041_D003POXM', 'slate': '000044_D003PDSM', 'brown': '000047_D003PCBM', 'plum': '000048_D003PIPM' }, 'fluted': { 'onyx': '000042_D003FOXM', 'slate': '000045_D003FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000043_D003DOXM', 'slate': '000046_D003DDSM', 'brown': false, 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000049_D003SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000050_D003POXL', 'slate': '000053_D003PDSL', 'brown': '000056_D003PCBL', 'plum': '000057_D003PIPL' }, 'fluted': { 'onyx': '000051_D003FOXL', 'slate': '000054_D003FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000052_D003DOXL', 'slate': '000055_D003DDSL', 'brown': false, 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000058_D003SIPL' } } },
-            'd004': { shape: 'Cat-Eye', gender: 'female', specs: { M: [133, 51, 18, 135], L: [138, 53, 19, 140] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000059_D004POXM', 'slate': '000061_D004PDSM', 'brown': '000063_D004PCBM', 'plum': '000065_D004PIPM' }, 'fluted': { 'onyx': false, 'slate': false, 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000060_D004DOXM', 'slate': '000062_D004DDSM', 'brown': '000064_D004DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000066_D004SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000067_D004POXL', 'slate': '000069_D004PDSL', 'brown': '000071_D004PCBL', 'plum': '000073_D004PIPL' }, 'fluted': { 'onyx': false, 'slate': false, 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000068_D004DOXL', 'slate': '000070_D004DDSL', 'brown': '000072_D004DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000074_D004SIPL' } } },
-            'd005': { shape: 'Panto', gender: 'unisex', specs: { M: [131, 46, 22, 140], L: [136, 48, 23, 145] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000075_D005POXM', 'slate': '000078_D005PDSM', 'brown': '000081_D005PCBM', 'plum': '000083_D005PIPM' }, 'fluted': { 'onyx': '000076_D005FOXM', 'slate': '000079_D005FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000077_D005DOXM', 'slate': '000080_D005DDSM', 'brown': '000082_D005DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000084_D005SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000085_D005POXL', 'slate': '000088_D005PDSL', 'brown': '000091_D005PCBL', 'plum': '000093_D005PIPL' }, 'fluted': { 'onyx': '000086_D005FOXL', 'slate': '000089_D005FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000087_D005DOXL', 'slate': '000090_D005DDSL', 'brown': '000092_D005DCBM', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000094_D005SIPL' } } },
-            'd006': { shape: 'Modern Panto', gender: 'unisex', specs: { M: [133, 48, 20, 140], L: [138, 50, 21, 145] }, 'M': { 'price': 85.00, 'plain': { 'onyx': '000095_D006POXM', 'slate': '000098_D006PDSM', 'brown': '000101_D006PCBM', 'plum': '000103_D006PIPM' }, 'fluted': { 'onyx': '000096_D006FOXM', 'slate': '000099_D006FDSM', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000107_D006DOXL', 'slate': '000110_D006DDSL', 'brown': '000112_D006DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000104_D006SIPM' } }, 'L': { 'price': 95.00, 'plain': { 'onyx': '000105_D006POXL', 'slate': '000108_D006PDSL', 'brown': '000111_D006PCBL', 'plum': '000113_D006PIPL' }, 'fluted': { 'onyx': '000106_D006FOXL', 'slate': '000109_D006FDSL', 'brown': false, 'plum': false }, 'microdot': { 'onyx': '000107_D006DOXL', 'slate': '000110_D006DDSL', 'brown': '000112_D006DCBL', 'plum': false }, 'striated': { 'onyx': false, 'slate': false, 'brown': false, 'plum': '000114_D006SIPL' } } }
-        };
+let currentLang='fi';
+let currentCart={};
 
-        const textures = ['plain', 'fluted', 'microdot', 'striated'];
-        const colors = ['onyx', 'slate', 'brown', 'plum'];
-        const colorHex = { onyx: '#1a1a1a', slate: '#3a3f47', brown: '#3d3025', plum: '#2e1e2d' };
+let activeModalModel='d001';
 
-        function setLanguage(langCode) {
-            currentLang = langCode;
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[currentLang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[currentLang][key];
-                    } else {
-                        el.textContent = translations[currentLang][key];
-                    }
-                }
-            });
-            document.getElementById('lang-fi').classList.toggle('active', langCode === 'fi');
-            document.getElementById('lang-en').classList.toggle('active', langCode === 'en');
-            updateStaticLabels();
-            loadModelMatrix();
-            
-            // Jos esikatseluikkuna on auki kieltä vaihdettaessa, päivitetään sen sisältö turvallisesti
-            if (document.getElementById('preview-modal').classList.contains('active')) {
-                const m = activeModalModel;
-                const s = modalOptions.size;
-                
-                const texDataKey = modalOptions.texture; 
-                const colDataKey = modalOptions.color;
+let modalOptions={
+    texture:'plain',
+    color:'onyx',
+    size:'M'
+};
 
-                const skuFull = modelsData[m][s][texDataKey][colDataKey];
-                document.getElementById('modal-sku').textContent = skuFull ? skuFull.split('_')[1] : '-';
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
 
-                const modelMeta = modelsData[m];
-                const translatedGender = translations[currentLang][`genre-${modelMeta.gender}`];
-                document.getElementById('modal-meta').textContent = `${modelMeta.shape} | ${translatedGender}`;
+const translations={
 
-                // Muutetaan kirjaimet pieniksi vain tiedostonimiä varten
-                const tFile = texDataKey.toLowerCase();
-                const cFile = colDataKey.toLowerCase();
+    fi:{
 
-            }
+        "nav-order":"Tilauslomake",
+        "nav-collection":"Mallistot",
+        "nav-history":"Tilaushistoria",
+        "nav-logout":"Kirjaudu ulos",
+
+        customer:"Asiakas",
+        formTitle:"Tilauslomake",
+        clearBtn:"Tyhjennä tilaus",
+        labelModel: "Valitse kehysmalli",
+        labelSize: "Koko",
+        thTexture: "Tekstuuri / Väri",
+        thOnyx: "Onyx",
+        thSlate: "Deep Slate",
+        thBrown: "Chocolate Brown",
+        thPlum: "Ink Plum",
+        summaryTitle: "Yhteenveto",
+        emptyCart: "Ei tuotteita valittuna.",
+        totalLabel: "Yhteensä (alv 0%)",
+        labelNotes: "Tilauksen lisätiedot / Viesti",
+        placeholderNotes: "Kirjoita tähän viestit valmistukselle...",
+        submitBtn: "Lähetä tilaus",
+        confirmClear: "Haluatko tyhjentää korin?",
+        alertEmpty: "Valitse vähintään yksi tuote.",
+        alertSuccessLocal: "Tilaus ladattu CSV-muodossa!",
+        texPlain: "Plain",
+        texFluted: "Fluted",
+        texMicrodot: "Microdot",
+        texStriated: "Striated",
+        "lbl-texture": "Valitse tekstuuri",
+        "lbl-color": "Valitse väri",
+        "lbl-size": "Koko",
+        "lbl-specs": "Tekniset mitat",
+        "spec-frame": "Kehyksen leveys",
+        "spec-lens": "Linssin leveys",
+        "spec-bridge": "Sillan leveys",
+        "spec-temple": "Aisan pituus",
+        "btn-view": "Vaihtoehdot",        
+        "genre-unisex": "Unisex",
+        "genre-female": "Naiset",
+        "title-collection": "URBAN HERITAGE 26 - MALLISTO",
+        "subtitle-collection": "Klikkaa tuotekorttia avataksesi mallin esikatselun, tarkemmat tekniset tiedot ja tilausvalinnat.",
+        "nav-terms": "Yleiset ehdot",
+        "download-pdf": "Lataa PDF",
+        "print-document": "Tulosta dokumentti",
+        "preview": "Näytä",
+        labelCollection: "Valitse mallisto"
+
+    },
+
+    en:{
+
+        "nav-order":"Order Form",
+        "nav-collection":"Collections",
+        "nav-history":"Order History",
+        "nav-logout":"Log out",
+
+        customer:"Customer",
+        formTitle:"Order Form",
+        clearBtn:"Clear order",
+        labelModel: "Select frame model",
+        labelSize: "Size",
+        thTexture: "Texture / Color",
+        thOnyx: "Onyx", thSlate: "Deep Slate",
+        thBrown: "Chocolate Brown",
+        thPlum: "Ink Plum",
+        summaryTitle: "Summary",
+        emptyCart: "No products selected.",
+        totalLabel: "Total (VAT 0%)",
+        labelNotes: "Order Notes",
+        placeholderNotes: "Enter details for manufacturing...",
+        submitBtn: "Submit Order",
+        confirmClear: "Clear all?",
+        alertEmpty: "Select at least one product.",
+        alertSuccessLocal: "Order exported as CSV!",
+        texPlain: "Plain",
+        texFluted: "Fluted",
+        texMicrodot: "Microdot",
+        texStriated: "Striated",
+        "lbl-texture": "Select texture",
+        "lbl-color": "Select color",
+        "lbl-size": "Size",
+        "lbl-specs": "Technical specs",
+        "spec-frame": "Frame width",
+        "spec-lens": "Lens width",
+        "spec-bridge": "Bridge width",
+        "spec-temple": "Temple length",
+        "btn-view": "Options",
+        "genre-unisex": "Unisex",
+        "genre-female":
+        "Female Targeted",
+        "title-collection": "URBAN HERITAGE 26 - COLLECTION",
+        "subtitle-collection": "Click on any model card to open preview, technical details and order configurations.",
+        "nav-terms": "Terms & Conditions",
+        "download-pdf": "Download PDF",
+        "print-document": "Print document",
+        "preview": "View",
+        labelCollection: "Select collection"
+
+    }
+
+};
+
+/* =========================================================
+   MODEL DATA
+========================================================= */
+
+const modelsData={
+
+    'd001': {
+
+    shape: 'Soft Rectangle',
+    gender: 'unisex',
+
+    specs: {
+        M: [134, 49, 19, 130],
+        L: [139, 51, 20, 135]
+    },
+
+    M: {
+
+        price: 85.00,
+
+        plain: {
+            onyx:  '000001_D001POXM',
+            slate: '000004_D001PDSM',
+            brown: '000007_D001PCBM',
+            plum:  '000009_D001PIPM'
+        },
+
+        fluted: {
+            onyx:  '000002_D001FOXM',
+            slate: '000005_D001FDSM',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000003_D001DOXM',
+            slate: '000006_D001DDSM',
+            brown: '000008_D001DCBM',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000010_D001SIPM'
         }
+    },
 
-        function updateStaticLabels() {
-            const t = translations[currentLang];
-            document.getElementById('nav-item-order').textContent = t["nav-order"];
-            document.getElementById('t-form-title').textContent = t.formTitle;
-            document.getElementById('t-label-collection').textContent = t.labelCollection;
-            document.getElementById('t-clear-btn').textContent = t.clearBtn;
-            document.getElementById('t-label-model').textContent = t.labelModel;
-            document.getElementById('t-label-size').textContent = t.labelSize;
-            document.getElementById('t-th-texture').textContent = t.thTexture;
-            document.getElementById('t-th-onyx').textContent = t.thOnyx;
-            document.getElementById('t-th-slate').textContent = t.thSlate;
-            document.getElementById('t-th-brown').textContent = t.thBrown;
-            document.getElementById('t-th-plum').textContent = t.thPlum;
-            document.getElementById('t-summary-title').textContent = t.summaryTitle;
-            document.getElementById('t-total-label').textContent = t.totalLabel;
-            document.getElementById('t-label-notes').textContent = t.labelNotes;
-            document.getElementById('t-submit-btn').textContent = t.submitBtn;
+    L: {
+
+        price: 95.00,
+
+        plain: {
+            onyx:  '000011_D001POXL',
+            slate: '000014_D001PDSL',
+            brown: '000017_D001PCBL',
+            plum:  '000019_D001PIPL'
+        },
+
+        fluted: {
+            onyx:  '000012_D001FOXL',
+            slate: '000015_D001FDSL',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000013_D001DOXL',
+            slate: '000016_D001DDSL',
+            brown: '000018_D001DCBL',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000020_D001SIPL'
         }
+    }
+},
+    'd002': {
 
+    shape: 'Classic Panto',
+    gender: 'unisex',
 
-        function switchView(viewId) {
-            document.querySelectorAll('.content-view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('nav .menu-item').forEach(m => m.classList.remove('active'));
-            document.querySelectorAll('.sub-menu-item').forEach(sm => sm.classList.remove('active'));
-            
-            document.getElementById(`view-${viewId}`).classList.add('active');
-            document.getElementById(`nav-item-${viewId}`).classList.add('active');
+    specs: {
+        M: [132, 47, 21, 140],
+        L: [137, 49, 22, 145]
+    },
+
+    M: {
+
+        price: 85.00,
+
+        plain: {
+            onyx:  '000021_D002POXM',
+            slate: '000024_D002PDSM',
+            brown: '000027_D002PCBM',
+            plum:  '000029_D002PIPM'
+        },
+
+        fluted: {
+            onyx:  '000022_D002FOXM',
+            slate: '000025_D002FDSM',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000023_D002DOXM',
+            slate: '000026_D002DDSM',
+            brown: '000028_D002DCBM',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000030_D002SIPM'
         }
+    },
 
+    L: {
 
-        function loadModelMatrix() {
-            const model = document.getElementById('model-select').value;
-            const size = document.getElementById('size-select').value;
-            const tbody = document.getElementById('matrix-body');
-            tbody.innerHTML = '';
+        price: 95.00,
 
-            const data = modelsData[model][size];
-            const price = data.price;
+        plain: {
+            onyx:  '000031_D002POXL',
+            slate: '000034_D002PDSL',
+            brown: '000037_D002PCBL',
+            plum:  '000039_D002PIPL'
+        },
 
-            textures.forEach(tex => {
-                const tr = document.createElement('tr');
-                const tdName = document.createElement('td');
-                tdName.innerHTML = `<strong>${translations[currentLang]['tex' + tex.charAt(0).toUpperCase() + tex.slice(1)]}</strong><span class="price-label">${price.toFixed(2)} €</span>`;
-                tr.appendChild(tdName);
+        fluted: {
+            onyx:  '000032_D002FOXL',
+            slate: '000035_D002FDSL',
+            brown: false,
+            plum:  false
+        },
 
-                colors.forEach(col => {
-                    const td = document.createElement('td');
-                    const sku = data[tex][col];
+        microdot: {
+            onyx:  '000033_D002DOXL',
+            slate: '000036_D002DDSL',
+            brown: '000038_D002DCBL',
+            plum:  false
+        },
 
-                    if (sku) {
-                        const cartKey = `${model}_${size}_${tex}_${col}`;
-                        const currentQty = currentCart[cartKey] || 0;
-                        td.innerHTML = `
-                             <input type="number"
-                             class="qty-input"
-                             min="0"
-                             max="99"
-                             value="${currentQty}"
-                             onchange="updateCart('${model}','${size}','${tex}','${col}', this.value)">
-                            <span class="sku-label">
-                              ${sku.split('_')[1]}
-                           </span> 
-
-                           <button
-                              class="matrix-preview-btn"
-                              type="button"
-                              onclick="openMatrixPreview('${model}','${tex}','${col}','${size}', event)"
-                             >
-                             ${translations[currentLang]['preview']}
-                           </button>
-                      
-                        `;
-                    } else {
-                        td.innerHTML = `<input type="number" class="qty-input" disabled value="0">`;
-                    }
-                    tr.appendChild(td);
-                });
-                tbody.appendChild(tr);
-            });
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000040_D002SIPL'
         }
+    }
+},
+    'd003': {
 
-        function updateCart(model, size, tex, col, qty) {
-            const cartKey = `${model}_${size}_${tex}_${col}`;
-            qty = parseInt(qty) || 0;
+    shape: 'Navigator',
+    gender: 'unisex',
 
-            if (qty > 0) {
-                currentCart[cartKey] = qty;
-            } else {
-                delete currentCart[cartKey];
-            }
-            renderSummary();
+    specs: {
+        M: [140, 55, 16, 145],
+        L: [145, 57, 17, 150]
+    },
+
+    M: {
+
+        price: 85.00,
+
+        plain: {
+            onyx:  '000041_D003POXM',
+            slate: '000044_D003PDSM',
+            brown: '000047_D003PCBM',
+            plum:  '000048_D003PIPM'
+        },
+
+        fluted: {
+            onyx:  '000042_D003FOXM',
+            slate: '000045_D003FDSM',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000043_D003DOXM',
+            slate: '000046_D003DDSM',
+            brown: false,
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000049_D003SIPM'
         }
+    },
 
-        function renderSummary() {
-            const container = document.getElementById('summary-items');
-            container.innerHTML = '';
-            let grandTotal = 0;
+    L: {
 
-            const keys = Object.keys(currentCart);
-            if (keys.length === 0) {
-                container.innerHTML = `<div style="color: var(--text-muted); font-size: 0.9rem;">${translations[currentLang].emptyCart}</div>`;
-                document.getElementById('total-price').textContent = '0,00 €';
-                return;
-            }
+        price: 95.00,
 
-            keys.forEach(key => {
-                const [model, size, tex, col] = key.split('_');
-                const qty = currentCart[key];
-                const price = modelsData[model][size].price;
-                const sku = modelsData[model][size][tex][col].split('_')[1];
-                const totalRowPrice = price * qty;
-                grandTotal += totalRowPrice;
+        plain: {
+            onyx:  '000050_D003POXL',
+            slate: '000053_D003PDSL',
+            brown: '000056_D003PCBL',
+            plum:  '000057_D003PIPL'
+        },
 
-                const row = document.createElement('div');
-                row.className = 'summary-row';
-                row.innerHTML = `
-                    <div class="summary-details">
-                        <div>
-                            <span style="font-weight:500;">
-                              ${sku}
-                            </span><br>  
-                        </div>
+        fluted: {
+            onyx:  '000051_D003FOXL',
+            slate: '000054_D003FDSL',
+            brown: false,
+            plum:  false
+        },
 
-                        <span style="font-weight:500; align-self:center;">
-                          ${totalRowPrice.toFixed(2)} €
-                        </span>
-                    </div>
+        microdot: {
+            onyx:  '000052_D003DOXL',
+            slate: '000055_D003DDSL',
+            brown: false,
+            plum:  false
+        },
 
-                    <button class="remove-item-btn" onclick="removeItemFromCart('${key}')">
-                      
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000058_D003SIPL'
+        }
+    }
+},
+
+    'd004': {
+
+    shape: 'Cat-Eye',
+    gender: 'female',
+
+    specs: {
+        M: [133, 51, 18, 135],
+        L: [138, 53, 19, 140]
+    },
+
+    M: {
+
+        price: 85.00,
+
+        plain: {
+            onyx:  '000059_D004POXM',
+            slate: '000061_D004PDSM',
+            brown: '000063_D004PCBM',
+            plum:  '000065_D004PIPM'
+        },
+
+        fluted: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000060_D004DOXM',
+            slate: '000062_D004DDSM',
+            brown: '000064_D004DCBM',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000066_D004SIPM'
+        }
+    },
+
+    L: {
+
+        price: 95.00,
+
+        plain: {
+            onyx:  '000067_D004POXL',
+            slate: '000069_D004PDSL',
+            brown: '000071_D004PCBL',
+            plum:  '000073_D004PIPL'
+        },
+
+        fluted: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000068_D004DOXL',
+            slate: '000070_D004DDSL',
+            brown: '000072_D004DCBL',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000074_D004SIPL'
+        }
+    }
+},
+    'd005': {
+
+    shape: 'Panto',
+    gender: 'unisex',
+
+    specs: {
+        M: [131, 46, 22, 140],
+        L: [136, 48, 23, 145]
+    },
+
+    M: {
+
+        price: 85.00,
+
+        plain: {
+            onyx:  '000075_D005POXM',
+            slate: '000078_D005PDSM',
+            brown: '000081_D005PCBM',
+            plum:  '000083_D005PIPM'
+        },
+
+        fluted: {
+            onyx:  '000076_D005FOXM',
+            slate: '000079_D005FDSM',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000077_D005DOXM',
+            slate: '000080_D005DDSM',
+            brown: '000082_D005DCBM',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000084_D005SIPM'
+        }
+    },
+
+    L: {
+
+        price: 95.00,
+
+        plain: {
+            onyx:  '000085_D005POXL',
+            slate: '000088_D005PDSL',
+            brown: '000091_D005PCBL',
+            plum:  '000093_D005PIPL'
+        },
+
+        fluted: {
+            onyx:  '000086_D005FOXL',
+            slate: '000089_D005FDSL',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000087_D005DOXL',
+            slate: '000090_D005DDSL',
+            brown: '000092_D005DCBM',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000094_D005SIPL'
+        }
+    }
+},
+    'd006': {
+
+    shape: 'Modern Panto',
+    gender: 'unisex',
+
+    specs: {
+        M: [133, 48, 20, 140],
+        L: [138, 50, 21, 145]
+    },
+
+    M: {
+
+        price: 85.00,
+
+        plain: {
+            onyx:  '000095_D006POXM',
+            slate: '000098_D006PDSM',
+            brown: '000101_D006PCBM',
+            plum:  '000103_D006PIPM'
+        },
+
+        fluted: {
+            onyx:  '000096_D006FOXM',
+            slate: '000099_D006FDSM',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000107_D006DOXL',
+            slate: '000110_D006DDSL',
+            brown: '000112_D006DCBL',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000104_D006SIPM'
+        }
+    },
+
+    L: {
+
+        price: 95.00,
+
+        plain: {
+            onyx:  '000105_D006POXL',
+            slate: '000108_D006PDSL',
+            brown: '000111_D006PCBL',
+            plum:  '000113_D006PIPL'
+        },
+
+        fluted: {
+            onyx:  '000106_D006FOXL',
+            slate: '000109_D006FDSL',
+            brown: false,
+            plum:  false
+        },
+
+        microdot: {
+            onyx:  '000107_D006DOXL',
+            slate: '000110_D006DDSL',
+            brown: '000112_D006DCBL',
+            plum:  false
+        },
+
+        striated: {
+            onyx:  false,
+            slate: false,
+            brown: false,
+            plum:  '000114_D006SIPL'
+        }
+    }
+}
+
+};
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const textures=[
+    'plain',
+    'fluted',
+    'microdot',
+    'striated'
+];
+
+const colors=[
+    'onyx',
+    'slate',
+    'brown',
+    'plum'
+];
+
+const colorHex={
+    onyx:'#1a1a1a',
+    slate:'#3a3f47',
+    brown:'#3d3025',
+    plum:'#2e1e2d'
+};
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+function setLanguage(langCode){
+
+currentLang = langCode;
+
+document
+.querySelectorAll('[data-translate]')
+.forEach(el => {
+
+const key =
+el.getAttribute('data-translate');
+
+if(translations[currentLang][key]){
+
+if(
+el.tagName === 'INPUT' ||
+el.tagName === 'TEXTAREA'
+){
+
+el.placeholder =
+translations[currentLang][key];
+
+}else{
+
+el.textContent =
+translations[currentLang][key];
+
+}
+
+}
+
+});
+
+document
+.getElementById('lang-fi')
+.classList.toggle(
+'active',
+langCode === 'fi'
+);
+
+document
+.getElementById('lang-en')
+.classList.toggle(
+'active',
+langCode === 'en'
+);
+
+updateStaticLabels();
+
+loadModelMatrix();
+
+if(
+document
+.getElementById('preview-modal')
+.classList.contains('active')
+){
+
+const m = activeModalModel;
+const s = modalOptions.size;
+
+const texDataKey =
+modalOptions.texture;
+
+const colDataKey =
+modalOptions.color;
+
+const skuFull =
+modelsData[m][s][texDataKey][colDataKey];
+
+document
+.getElementById('modal-sku')
+.textContent =
+skuFull
+? skuFull.split('_')[1]
+: '-';
+
+const modelMeta =
+modelsData[m];
+
+const translatedGender =
+translations[currentLang][
+`genre-${modelMeta.gender}`
+];
+
+document
+.getElementById('modal-meta')
+.textContent =
+`${modelMeta.shape} | ${translatedGender}`;
+
+}
+
+}
+/* =========================================================
+   STATIC LABELS
+========================================================= */
+
+function updateStaticLabels(){
+
+const t =
+translations[currentLang];
+
+document
+.getElementById('nav-item-order')
+.textContent =
+t["nav-order"];
+
+document
+.getElementById('t-form-title')
+.textContent =
+t.formTitle;
+
+document
+.getElementById('t-label-collection')
+.textContent =
+t.labelCollection;
+
+document
+.getElementById('t-clear-btn')
+.textContent =
+t.clearBtn;
+
+document
+.getElementById('t-label-model')
+.textContent =
+t.labelModel;
+
+document
+.getElementById('t-label-size')
+.textContent =
+t.labelSize;
+
+document
+.getElementById('t-th-texture')
+.textContent =
+t.thTexture;
+
+document
+.getElementById('t-th-onyx')
+.textContent =
+t.thOnyx;
+
+document
+.getElementById('t-th-slate')
+.textContent =
+t.thSlate;
+
+document
+.getElementById('t-th-brown')
+.textContent =
+t.thBrown;
+
+document
+.getElementById('t-th-plum')
+.textContent =
+t.thPlum;
+
+document
+.getElementById('t-summary-title')
+.textContent =
+t.summaryTitle;
+
+document
+.getElementById('t-total-label')
+.textContent =
+t.totalLabel;
+
+document
+.getElementById('t-label-notes')
+.textContent =
+t.labelNotes;
+
+document
+.getElementById('t-submit-btn')
+.textContent =
+t.submitBtn;
+
+}
+
+/* =========================================================
+   MODEL MATRIX
+========================================================= */
+
+function loadModelMatrix() {
+
+    const model =
+        document.getElementById('model-select').value;
+
+    const size =
+        document.getElementById('size-select').value;
+
+    const tbody =
+        document.getElementById('matrix-body');
+
+    tbody.innerHTML = '';
+
+    const data =
+        modelsData[model][size];
+
+    const price =
+        data.price;
+
+    textures.forEach(tex => {
+
+        const tr =
+            document.createElement('tr');
+
+        const tdName =
+            document.createElement('td');
+
+        tdName.innerHTML = `
+            <strong>
+                ${translations[currentLang]['tex' + tex.charAt(0).toUpperCase() + tex.slice(1)]}
+            </strong>
+
+            <span class="price-label">
+                ${price.toFixed(2)} €
+            </span>
+        `;
+
+        tr.appendChild(tdName);
+
+        colors.forEach(col => {
+
+            const td =
+                document.createElement('td');
+
+            const sku =
+                data[tex][col];
+
+            if (sku) {
+
+                const cartKey =
+                    `${model}_${size}_${tex}_${col}`;
+
+                const currentQty =
+                    currentCart[cartKey] || 0;
+
+                td.innerHTML = `
+                    <input
+                        type="number"
+                        class="qty-input"
+                        min="0"
+                        max="99"
+                        value="${currentQty}"
+                        onchange="updateCart(
+                            '${model}',
+                            '${size}',
+                            '${tex}',
+                            '${col}',
+                            this.value
+                        )">
+
+                    <span class="sku-label">
+                        ${sku.split('_')[1]}
+                    </span>
+
+                    <button
+                        class="matrix-preview-btn"
+                        type="button"
+                        onclick="openMatrixPreview(
+                            '${model}',
+                            '${tex}',
+                            '${col}',
+                            '${size}',
+                            event
+                        )">
+                        ${translations[currentLang]['preview']}
                     </button>
                 `;
-                container.appendChild(row);
-            });
 
-            document.getElementById('total-price').textContent = grandTotal.toFixed(2).replace('.', ',') + ' €';
-        }
+            } else {
 
-        function removeItemFromCart(key) {
-            delete currentCart[key];
-            renderSummary();
-            loadModelMatrix();
-        }
-
-        function clearEntireOrder() {
-            if (Object.keys(currentCart).length === 0) return;
-            if (confirm(translations[currentLang].confirmClear)) {
-                currentCart = {};
-                renderSummary();
-                loadModelMatrix();
-                document.getElementById('order-notes').value = '';
+                td.innerHTML = `
+                    <input
+                        type="number"
+                        class="qty-input"
+                        disabled
+                        value="0">
+                `;
             }
-        }
 
-        function submitOrder() {
-            
-          if (Object.keys(currentCart).length === 0) {
-              alert(translations[currentLang].alertEmpty);
-              return;
-          }
+            tr.appendChild(td);
 
-        let csvRows = [];
-
-        csvRows.push("SKU,QTY,UNIT_PRICE,TOTAL");
-
-        Object.keys(currentCart).forEach(key => {
-            const [model, size, tex, col] = key.split('_');
-            const qty = currentCart[key];
-            const price = modelsData[model][size].price;
-            // FULL INTERNAL SKU
-            const fullSku = modelsData[model][size][tex][col];
-            const total = qty * price;
-
-            csvRows.push(
-              `${fullSku},${qty},${price.toFixed(2)},${total.toFixed(2)}`
-            );
         });
 
-        const csvContent = csvRows.join("\n");
+        tbody.appendChild(tr);
 
-        console.log(csvContent);
+    });
 
-        alert(translations[currentLang].alertSuccessLocal);
-        
-        currentCart = {};
+}
 
-        renderSummary();
+/* =========================================================
+   MODAL IMAGE LOADER
+========================================================= */
 
-        loadModelMatrix();
+function loadModalImages(skuCode){
 
-        document.getElementById('order-notes').value = '';
-        }
+    const modelCode=
+    skuCode.substring(0,4);
+
+    document.getElementById('modal-hero-img').src=
+    `images/UH26/${modelCode}/${skuCode}/hero.webp`;
+
+    document.getElementById('modal-side-img').src=
+    `images/UH26/${modelCode}/${skuCode}/side.webp`;
+
+    document.getElementById('modal-macro-img').src=
+    `images/UH26/${modelCode}/${skuCode}/macro.webp`;
+
+}
 
 /* =========================================================
    MODAL PREVIEW
 ========================================================= */
 
-function openMatrixPreview(model, tex, col, size, event) {
+function openMatrixPreview(model,tex,col,size,event){
 
-    if (event) event.stopPropagation();
+    if(event) event.stopPropagation();
 
-    activeModalModel = model;
+    activeModalModel=model;
 
-    modalOptions.texture = tex;
-    modalOptions.color = col;
-    modalOptions.size = size;
+    modalOptions.texture=tex;
+    modalOptions.color=col;
+    modalOptions.size=size;
 
-    document.getElementById('modal-title').textContent =
-        `Urban Heritage 26 - ${model.toUpperCase()}`;
+    document.getElementById('modal-title').textContent=
+    `Urban Heritage 26 - ${model.toUpperCase()}`;
 
     updateModalPreview();
 
-    document
-        .getElementById('preview-modal')
-        .classList.add('active');
+    document.getElementById('preview-modal')
+    .classList.add('active');
 
-    const gallery =
-        document.querySelector('.modal-gallery');
+    const gallery=
+    document.querySelector('.modal-gallery');
 
     gallery.scrollTo({
-        top: 0,
+        top:0,
         behavior:'instant'
     });
-  }
 
-function closePreviewModal() {
-
-    document
-        .getElementById('preview-modal')
-        .classList.remove('active');
 }
 
-function updateModalPreview() {
 
-    const m = activeModalModel;
-    const t = modalOptions.texture;
-    const c = modalOptions.color;
-    const s = modalOptions.size;
+function closePreviewModal(){
 
-    const skuFull =
-        modelsData[m][s][t][c];
+    document.getElementById('preview-modal')
+    .classList.remove('active');
 
-    document.getElementById('modal-sku').textContent =
-        skuFull
-            ? skuFull.split('_')[1]
-            : '-';
+}
 
-    const modelMeta =
-        modelsData[m];
 
-    const translatedGender =
-        translations[currentLang][`genre-${modelMeta.gender}`];
+function updateModalPreview(){
 
-    document.getElementById('modal-meta').textContent =
-        `${modelMeta.shape} | ${translatedGender}`;
+    const m=activeModalModel;
+    const t=modalOptions.texture;
+    const c=modalOptions.color;
+    const s=modalOptions.size;
 
-    document.getElementById('modal-selected-texture').textContent =
-        translations[currentLang][
-            'tex' + t.charAt(0).toUpperCase() + t.slice(1)
-        ];
+    const skuFull=
+    modelsData[m][s][t][c];
 
-    document.getElementById('modal-selected-color').textContent =
-        c.charAt(0).toUpperCase() + c.slice(1);
+    if(skuFull){
 
-    document.getElementById('modal-selected-size').textContent =
-        s;
+        const skuCode=
+        skuFull.split('_')[1];
 
-    const hero =
-        document.getElementById('modal-hero-img');
+        loadModalImages(skuCode);
 
-    const side =
-        document.getElementById('modal-side-img');
+    }
 
-    const macro =
-        document.getElementById('modal-macro-img');
+    document.getElementById('modal-sku').textContent=
+    skuFull
+    ? skuFull.split('_')[1]
+    : '-';
 
-    if (hero) hero.src = '';
-    if (side) side.src = '';
-    if (macro) macro.src = '';
+    const modelMeta=
+    modelsData[m];
+
+    const translatedGender=
+    translations[currentLang][`genre-${modelMeta.gender}`];
+
+    document.getElementById('modal-meta').textContent=
+    `${modelMeta.shape} | ${translatedGender}`;
+
+    document.getElementById('modal-selected-texture').textContent=
+    translations[currentLang][
+        'tex'+t.charAt(0).toUpperCase()+t.slice(1)
+    ];
+
+    document.getElementById('modal-selected-color').textContent=
+    c.charAt(0).toUpperCase()+c.slice(1);
+
+    document.getElementById('modal-selected-size').textContent=
+    s;
+
 }
 
 /* =========================================================
    TERMS MODAL
 ========================================================= */
 
-function openTermsModal() {
+function openTermsModal(){
 
-    const fiFile =
-        "documents/arley-terms-fi.pdf";
+    const fiFile='documents/arley-terms-fi.pdf';
+    const enFile='documents/arley-terms-en.pdf';
 
-    const enFile =
-        "documents/arley-terms-en.pdf";
+    const pdfPath=
+    currentLang==='fi'
+    ? fiFile
+    : enFile;
 
-    const pdfPath =
-        currentLang === 'fi'
-            ? fiFile
-            : enFile;
+    const frame=
+    document.getElementById('terms-frame');
 
-    const frame =
-        document.getElementById('terms-frame');
+    frame.src='';
 
-    frame.src = '';
+    setTimeout(()=>{
 
-    setTimeout(() => {
-        frame.src = pdfPath;
-    }, 50);
+        frame.src=pdfPath;
 
-    document.getElementById(
-        'download-terms-btn'
-    ).href = pdfPath;
+    },50);
 
-    document.getElementById(
-        'terms-title'
-    ).textContent =
-        currentLang === 'fi'
-            ? 'Yleiset toimitus- ja sopimusehdot'
-            : 'General Terms and Conditions';
+    document.getElementById('download-terms-btn').href=pdfPath;
 
-    document
-        .getElementById('terms-modal')
-        .classList.add('active');
-}
+    document.getElementById('terms-title').textContent=
+    currentLang==='fi'
+    ? 'Yleiset toimitus- ja sopimusehdot'
+    : 'General Terms and Conditions';
 
-function closeTermsModal() {
+    document.getElementById('terms-modal')
+    .classList.add('active');
 
-    document
-        .getElementById('terms-modal')
-        .classList.remove('active');
-}
-
-function printTerms() {
-
-    document
-        .getElementById('terms-frame')
-        .contentWindow
-        .print();
 }
 
 
-        window.onload = () => {
-            setLanguage('fi');
-        };
-    </script>
+function closeTermsModal(){
+
+    document.getElementById('terms-modal')
+    .classList.remove('active');
+
+}
+
+
+function printTerms(){
+
+    document.getElementById('terms-frame')
+    .contentWindow.print();
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+window.onload=()=>{
+
+    setLanguage('fi');
+
+};
+</script>
 
 <div
 id="terms-modal"
