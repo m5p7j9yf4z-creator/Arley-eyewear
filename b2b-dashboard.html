@@ -1950,6 +1950,189 @@ function loadModelMatrix() {
 }
 
 /* =========================================================
+   CART MANAGEMENT
+========================================================= */
+
+function updateCart(model,size,tex,col,qty){
+
+    const key=
+        `${model}_${size}_${tex}_${col}`;
+
+    qty=
+        parseInt(qty)||0;
+
+    if(qty>0){
+
+        currentCart[key]=qty;
+
+    }else{
+
+        delete currentCart[key];
+    }
+
+    updateSummary();
+}
+
+/* =========================================================
+   ORDER SUMMARY
+========================================================= */
+
+function updateSummary(){
+
+    const container=
+        document.getElementById('summary-items');
+
+    const totalPriceEl=
+        document.getElementById('total-price');
+
+    container.innerHTML='';
+
+    let total=0;
+
+    Object.keys(currentCart).forEach(key=>{
+
+        const [model,size,tex,col]=
+            key.split('_');
+
+        const qty=
+            currentCart[key];
+
+        const price=
+            modelsData[model][size].price;
+
+        const lineTotal=
+            price*qty;
+
+        total+=lineTotal;
+
+        const item=
+            document.createElement('div');
+
+        item.className='summary-item';
+
+        item.innerHTML=`
+            <div class="summary-row">
+                <span>
+                    ${model.toUpperCase()}
+                    ${size}
+                    /
+                    ${tex}
+                    /
+                    ${col}
+                    × ${qty}
+                </span>
+                <span>
+                    ${lineTotal.toFixed(2)} €
+                </span>
+            </div>
+        `;
+
+        container.appendChild(item);
+
+    });
+
+    totalPriceEl.textContent=
+        `${total.toFixed(2).replace('.',',')} €`;
+}
+
+/* =========================================================
+   CLEAR ORDER
+========================================================= */
+
+function clearEntireOrder(){
+
+    if(
+        !confirm(
+            translations[currentLang]
+            .confirmClear
+        )
+    ) return;
+
+    currentCart={};
+
+    document
+        .querySelectorAll('.qty-input')
+        .forEach(input=>{
+
+            if(!input.disabled)
+                input.value=0;
+
+        });
+
+    updateSummary();
+}
+
+/* =========================================================
+   SUBMIT ORDER
+========================================================= */
+
+function submitOrder(){
+
+    if(
+        Object.keys(currentCart).length===0
+    ){
+
+        alert(
+            translations[currentLang]
+            .alertEmpty
+        );
+
+        return;
+    }
+
+    const csvRows=[];
+
+    csvRows.push(
+        'SKU,QTY,UNIT_PRICE,TOTAL'
+    );
+
+    Object.keys(currentCart).forEach(key=>{
+
+        const [model,size,tex,col]=
+            key.split('_');
+
+        const qty=
+            currentCart[key];
+
+        const price=
+            modelsData[model][size].price;
+
+        const sku=
+            modelsData[model][size][tex][col];
+
+        csvRows.push(
+            `${sku},${qty},${price},${qty*price}`
+        );
+
+    });
+
+    const csv=
+        csvRows.join('\n');
+
+    const blob=
+        new Blob(
+            [csv],
+            {type:'text/csv;charset=utf-8;'}
+        );
+
+    const link=
+        document.createElement('a');
+
+    link.href=
+        URL.createObjectURL(blob);
+
+    link.download=
+        'arley-order.csv';
+
+    link.click();
+
+    alert(
+        translations[currentLang]
+        .alertSuccessLocal
+    );
+}
+
+/* =========================================================
    MODAL IMAGE LOADER
 ========================================================= */
 
