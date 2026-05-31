@@ -15,6 +15,7 @@
   --accent-hover: #b5b5b2;
   --accent-danger: #a94442;
 }
+
 body { 
   font-family: 'Inter', sans-serif; 
   margin: 0;
@@ -24,6 +25,7 @@ body {
   color: var(--text); 
   -webkit-font-smoothing: antialiased; 
 }
+
 /* Sivupalkki */
 nav { 
   width: 250px; 
@@ -34,10 +36,12 @@ nav {
   background: #fff; 
   box-sizing: border-box; 
 }
+
 .logo-img { 
   width: 140px; 
   margin-bottom: 50px; 
 }
+
 .menu-item { 
   margin-bottom: 25px; 
   cursor: pointer; 
@@ -47,11 +51,14 @@ nav {
   letter-spacing: 1px; 
   transition: color 0.2s; 
 }
+
 .menu-item:hover, .menu-item.active { 
   color: var(--text); 
   font-weight: 600; 
 }
+
 /* Alavalikon tyylit (Accordion) */
+
 .submenu {
   max-height: 0;
   overflow: hidden;
@@ -60,9 +67,11 @@ nav {
   margin-top: -10px;
   margin-bottom: 15px;
 }
+
 .submenu.open { 
   max-height: 200px; 
 }
+
 .sub-menu-item {
   font-size: 0.7rem;
   color: var(--text-muted);
@@ -72,21 +81,26 @@ nav {
   cursor: pointer;
   transition: color 0.2s;
 }
+
 .sub-menu-item:hover, .sub-menu-item.active { 
   color: var(--text); 
   font-weight: 500; 
 }
+
 .nav-footer { 
   margin-top: auto; 
 }
+
 /* Pääsisältö */
-main { 
+main {
+
   flex: 1; 
   padding: 40px; 
   overflow-y: auto; 
   display: flex; 
   flex-direction: column; 
 }
+
 header { 
   display: flex; 
   justify-content: space-between;
@@ -94,10 +108,12 @@ header {
   margin-bottom: 40px; 
   flex-shrink: 0; 
 }
+
 .lang-switch { 
   font-size: 0.8rem; 
   letter-spacing: 1px; 
 }
+
 .lang-btn { 
   background: none; 
   border: none; 
@@ -106,18 +122,24 @@ header {
   padding: 0 5px;
   font-family: inherit; 
 }
+
 .lang-btn.active { 
   color: #222; 
   font-weight: 600; 
 }
+
 /* Dynaamiset näkymät (Tabit) */
+
 .content-view { 
   display: none; 
 }
+
 .content-view.active { 
   display: block; 
 }
+
 /* Paneelit ja yleisasettelu */
+
 .main-panel, .side-panel {
   background: var(--white);
   border: 1px solid var(--border);
@@ -128,27 +150,33 @@ header {
   display: flex;
   flex-direction: column;
 }
+
 .portal-grid { 
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 36px;
   align-items: stretch;
 }
+
 .side-panel {
   position: sticky;
   top: 40px;
 }
+
 .side-panel {
   justify-content: space-between;
 }
+
 .side-panel-content {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
+
 .summary-items-container {
   flex: 1;
 }
+
 .panel-header { 
   display: flex; 
   justify-content: space-between; 
@@ -157,6 +185,7 @@ header {
   padding-bottom: 24px;
   border-bottom: 1px solid var(--border);
 }
+
 h2 { 
   font-size: 1.1rem; 
   font-weight: 300; 
@@ -164,6 +193,7 @@ h2 {
   letter-spacing: 1.5px; 
   text-transform: uppercase; 
 }
+
 /* Tilauslomakkeen matriisityylit */
 
 .clear-btn { 
@@ -179,13 +209,16 @@ h2 {
   border-bottom: 1px solid transparent;
   transition: all 0.2s ease; 
 }
+
 .clear-btn:hover { 
   color: var(--accent-danger); 
   border-bottom: 1px solid var(--accent-danger); 
 }
+
 .form-group { 
   margin-bottom: 8px; 
 }
+
 label { 
   display: block; 
   font-size: 0.72rem; 
@@ -195,6 +228,7 @@ label {
   margin-bottom: 8px; 
   color: var(--text-muted); 
 }
+
 select, textarea { 
   width: 100%; 
   padding: 10px 12px; 
@@ -207,16 +241,19 @@ select, textarea {
   outline: none; 
   box-sizing: border-box; 
 }
+
 textarea { 
   resize: vertical; 
   min-height: 70px; 
   font-size: 0.85rem; 
 }
+
 .matrix-table { 
   width: 100%; 
   border-collapse: collapse; 
   margin-top: 15px; 
 }
+
 .matrix-table th { 
   text-align: left;
   padding: 10px; 
@@ -227,11 +264,13 @@ textarea {
   color: var(--text-muted); 
   border-bottom: 2px solid var(--border); 
 }
+
 .matrix-table td { 
   padding: 10px; 
   border-bottom: 1px solid var(--border); 
   font-size: 0.85rem; 
 }
+
 .qty-input { 
   width: 60px; 
   padding: 6px; 
@@ -241,11 +280,13 @@ textarea {
   font-family: inherit; 
   font-size: 0.85rem; 
 }
+
 .qty-input:disabled { 
   background-color: #f5f5f3; 
   opacity: 0.4; 
   cursor: not-allowed; 
 }
+
 .price-label { 
   display: block; 
   font-size: 0.8rem; 
@@ -253,6 +294,7 @@ textarea {
   color: var(--text); 
   margin-top: 4px; 
 }
+
 .sku-label { 
   font-family: monospace; 
   font-size: 0.72rem; 
@@ -260,12 +302,15 @@ textarea {
   display: block; 
   margin-top: 2px;
 }
+
 /* Yhteenveto */
+
 .summary-items-container { 
   margin-bottom: 18px; 
   max-height: 280px; 
   overflow-y: auto; 
 }
+
 .summary-row { 
   display: flex;
   justify-content: space-between; 
@@ -273,12 +318,14 @@ textarea {
   margin-bottom: 10px; 
   font-size: 0.95rem; 
 }
+
 .summary-details { 
   display: flex; 
   justify-content: space-between; 
   flex-grow: 1;
   margin-right: 15px; 
 }
+
 .remove-item-btn { 
   background: none; 
   border: none; 
@@ -287,9 +334,11 @@ textarea {
   font-size: 0.85rem; 
   padding: 2px 6px;
 }
+
 .remove-item-btn:hover { 
   color: var(--accent-danger); 
 }
+
 .summary-total { 
   border-top: 1px solid var(--border);
   padding-top: 12px; 
@@ -297,6 +346,7 @@ textarea {
   font-weight: 600; 
   font-size: 1.1rem;
 }
+
 .submit-btn {
   width: 100%;
   background-color: var(--text);
@@ -313,11 +363,14 @@ textarea {
   border-radius: 4px;
   transition: opacity 0.2s ease;
 }
+
 .submit-btn:hover { 
   opacity: 0.9;
 }
 
+
 /* VAALEA MASKI KUVAN PÄÄLLE */
+
 .portfolio-item::before { 
   content: ""; 
   position: absolute;
@@ -329,13 +382,16 @@ textarea {
   z-index: 1; 
   transition: opacity 0.3s ease; 
 }
+
 .portfolio-item:hover { 
   transform: translateY(-4px); 
   border-color: var(--accent-hover);
 }
+
 .portfolio-item:hover::before { 
   opacity: 0;
 }
+
 .portfolio-item h3 { 
   margin: 0; 
   font-weight: 400;
@@ -345,6 +401,7 @@ textarea {
   color: var(--text); 
   transition: color 0.3s ease;
 }
+
 .view-details-btn { 
   position: absolute; 
   top: 40px; 
@@ -362,45 +419,49 @@ textarea {
   transition: all 0.2s ease;
   z-index: 10; 
 }
+
 .view-details-btn:hover { 
   background: var(--text); 
   color: var(--white); 
   border-color: var(--text); 
 }
+
 /* MODAALINEN ESIKATSELU-NÄKYMÄ */
-.modal-overlay { 
-  display: none;
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  background: rgba(0,0,0,0.4); 
-  z-index: 2000; 
-  justify-content: center; 
-  align-items: center;
+
+.modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    z-index:2000;
+    justify-content:center;
+    align-items:center;
 }
+
 .modal-overlay.active { 
   display: flex; 
 }
+
 .modal-container{
     background:var(--bg);
 
-    width:90vw;
-    max-width:1150px;
+    width:1250px;
+    height:595px;
 
-    height:93.2vh;
+    max-width:95vw;
+    max-height:95vh;
 
     border-radius:8px;
 
     display:grid;
-    grid-template-columns:1.45fr .7fr;
+    grid-template-columns:1.3fr .7fr;
 
     overflow:hidden;
     position:relative;
 
     box-shadow:0 20px 50px rgba(0,0,0,.15);
 }
+
 .modal-close { 
   position: absolute; 
   top: 25px; 
@@ -412,60 +473,52 @@ textarea {
   color: var(--text); 
   z-index: 2100; 
 }
-.modal-gallery{
-    background:#fff;
-    padding:18px;
-    border-right:1px solid var(--border);
 
+.modal-gallery{
     display:flex;
     flex-direction:column;
     gap:18px;
+    padding:0px 0px 0px 0px;
+    height:100%;
+    overflow-y:auto;
+    scroll-snap-type:y mandatory;
+}
 
-    box-sizing:border-box;
-}
-.gallery-hero{
-    height:460px;
-    overflow:hidden;
-    border-radius:4px;
-    background:#fafaf9;
-}
-.gallery-hero img{
+.modal-gallery img{
     width:100%;
     height:100%;
     object-fit:cover;
+    display:block;
+    background:#fafaf9;
+    border-radius:4px;
 }
-.gallery-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
+
+.gallery-hero,
 .gallery-side,
 .gallery-macro{
-    height:265px;
-    overflow:hidden;
+    aspect-ratio:12 / 9;
+    width:100%;
+    flex-shrink:0;
     border-radius:4px;
     background:#fafaf9;
+    scroll-snap-align:center;
 }
-.gallery-side img,
-.gallery-macro img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-.modal-details{
-    padding:38px;
-    overflow-y:auto;
 
+.modal-details{
+    padding:30px;
+    overflow-y:auto;
     display:flex;
     flex-direction:column;
 }
-.modal-title{
+
+#modal-title{
     margin:0 0 8px;
     font-weight:300;
-    font-size:1.75rem;
+    font-size:1.4rem;
     letter-spacing:1.5px;
     line-height:1.15;
 }
+
 .modal-meta{
     font-size:.8rem;
     color:var(--text-muted);
@@ -475,6 +528,7 @@ textarea {
 
     margin-bottom:20px;
 }
+
 .modal-code-badge { 
   font-family: monospace; 
   font-size: 1.1rem; 
@@ -483,14 +537,16 @@ textarea {
   padding: 6px 12px; 
   display: inline-block; 
   border-radius: 4px; 
-  margin-bottom: 15px; 
+  margin-bottom: 8px; 
   align-self: flex-start; 
 }
+
 .config-section { 
   margin-bottom: 20px; 
   border-top: 1px solid var(--border);
-  padding-top: 15px; 
+  padding-top: 11px; 
 }
+
 .config-label { 
   font-size: 0.72rem; 
   font-weight: 600; 
@@ -505,6 +561,7 @@ textarea {
   color: var(--white); 
   border-color: var(--text); 
 }
+
 .preview-btn:disabled { 
   opacity: 0.15; 
   cursor: not-allowed; 
@@ -513,21 +570,25 @@ textarea {
 .preview-color-btn.active { 
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--text);
 }
+
 .preview-color-btn:disabled { 
   opacity: 0.15; 
   cursor: not-allowed; 
 }
+
 .specs-table { 
   width: 100%; 
   border-collapse: collapse; 
   margin-top: 5px;
 }
+
 .specs-table td { 
   padding: 8px 0; 
   border-bottom: 1px solid var(--border); 
   font-size: 0.85rem; 
   font-weight: 300;
 }
+
 .specs-table td:last-child { 
   text-align: right; 
   font-weight: 500; 
@@ -535,7 +596,7 @@ textarea {
 
 .matrix-preview-btn{
     margin-top:8px;
-    padding:3px 0;
+    padding:6px 0;
 
     width:48px;
 
@@ -576,326 +637,403 @@ textarea {
 </head>
 <body>
 <nav>
-  <img src="images/logo.svg" alt="Arley Eyewear" class="logo-img">
-  <div id="nav-item-order" class="menu-item active" onclick="switchView('order')" data-translate="nav-order">Tilauslomake</div>
-  <div
-  id="nav-item-history"
-  class="menu-item"
-  onclick="switchView('history')"
-  data-translate="nav-history"
->
-  Tilaushistoria
-  
+
+<img
+src="images/logo.svg"
+alt="Arley Eyewear"
+class="logo-img">
+
+<div
+id="nav-item-order"
+class="menu-item active"
+onclick="switchView('order')"
+data-translate="nav-order">
+Tilauslomake
 </div>
-  <div id="nav-item-terms" class="menu-item" onclick="openTermsModal()" data-translate="nav-terms">
-  Yleiset ehdot
+
+<div
+id="nav-item-history"
+class="menu-item"
+onclick="switchView('history')"
+data-translate="nav-history">
+Tilaushistoria
 </div>
-  <div class="nav-footer">
-    <div class="menu-item" style="margin-bottom: 0;" onclick="window.close()" data-translate="nav-logout">Kirjaudu ulos</div>
-  </div>
+
+<div
+id="nav-item-terms"
+class="menu-item"
+onclick="openTermsModal()"
+data-translate="nav-terms">
+Yleiset ehdot
+</div>
+
+<div class="nav-footer">
+
+<div
+class="menu-item"
+style="margin-bottom:0;"
+onclick="window.close()"
+data-translate="nav-logout">
+Kirjaudu ulos
+</div>
+
+</div>
+
 </nav>
 <main>
-  <header>
-    <div style="font-size: 0.85rem; color: var(--text-muted);">
-      <span data-translate="customer">Asiakas</span>: <strong>Synsam Finland Oy</strong> (ID: 40921)
-    </div>
-    <div class="lang-switch">
-      <button class="lang-btn active" id="lang-fi" onclick="setLanguage('fi')">FI</button> | 
-      <button class="lang-btn" id="lang-en" onclick="setLanguage('en')">EN</button>
-    </div>
-  </header>
+<header>
+
+<div
+style="font-size:0.85rem; color:var(--text-muted);">
+
+<span data-translate="customer">
+Asiakas
+</span>
+
+:
+
+<strong>
+Synsam Finland Oy
+</strong>
+
+(ID: 40921)
+
+</div>
+
+<div class="lang-switch">
+
+<button
+class="lang-btn active"
+id="lang-fi"
+onclick="setLanguage('fi')">
+FI
+</button>
+
+|
+
+<button
+class="lang-btn"
+id="lang-en"
+onclick="setLanguage('en')">
+EN
+</button>
+
+</div>
+
+</header>
   
-<div id="view-order" class="content-view active">
+<div
+id="view-order"
+class="content-view active">
 
-  <div class="portal-grid">
+<div class="portal-grid">
 
-    <div class="main-panel">
+<div class="main-panel">
 
-      <div class="panel-header">
-        <h2 id="t-form-title">Tilauslomake</h2>
+<div class="panel-header">
 
-        <button
-          id="t-clear-btn"
-          class="clear-btn"
-          onclick="clearEntireOrder()"
-        >
-          Tyhjennä tilaus
-        </button>
-      </div>
+<h2 id="t-form-title">
+Tilauslomake
+</h2>
 
-      <div class="form-group">
+<button
+id="t-clear-btn"
+class="clear-btn"
+onclick="clearEntireOrder()">
+Tyhjennä tilaus
+</button>
 
-  <label
-  id="t-label-collection"
-  for="collection-select"
->
-  Valitse mallisto
+</div>
+
+<div class="form-group">
+
+<label
+id="t-label-collection"
+for="collection-select">
+Valitse mallisto
 </label>
 
-  <select id="collection-select">
+<select id="collection-select">
 
-    <option value="urban-heritage-26">
-      Urban Heritage 26
-    </option>
+<option value="urban-heritage-26">
+URBAN HERITAGE 26
+</option>
 
-  </select>
-
-</div>
-      
-      <!-- MODEL -->
-
-      <div class="form-group">
-
-        <label
-          id="t-label-model"
-          for="model-select"
-        >
-          Valitse kehysmalli
-        </label>
-
-        <select
-          id="model-select"
-          onchange="loadModelMatrix()"
-        >
-          <option value="d001">
-            D001 (Soft Rectangle)
-          </option>
-
-          <option value="d002">
-            D002 (Classic Panto)
-          </option>
-
-          <option value="d003">
-            D003 (Navigator)
-          </option>
-
-          <option value="d004">
-            D004 (Cat-Eye)
-          </option>
-
-          <option value="d005">
-            D005 (Panto)
-          </option>
-
-          <option value="d006">
-            D006 (Modern Panto)
-          </option>
-
-        </select>
-      
-      </div>
-
-      <!-- SIZE -->
-
-      <div class="form-group">
-
-        <label
-          id="t-label-size"
-          for="size-select"
-        >
-          Koko
-        </label>
-
-        <select
-          id="size-select"
-          onchange="loadModelMatrix()"
-        >
-          <option value="M">
-            Medium (M)
-          </option>
-
-          <option value="L">
-            Large (L)
-          </option>
-        </select>
-
-      </div>
-
-      <!-- MATRIX -->
-
-      <table class="matrix-table">
-
-        <thead>
-          <tr>
-            <th id="t-th-texture">
-              Tekstuuri / Väri
-            </th>
-
-            <th id="t-th-onyx">
-              Onyx
-            </th>
-
-            <th id="t-th-slate">
-              Deep Slate
-            </th>
-
-            <th id="t-th-brown">
-              Chocolate Brown
-            </th>
-
-            <th id="t-th-plum">
-              Ink Plum
-            </th>
-          </tr>
-        </thead>
-
-        <tbody id="matrix-body"></tbody>
-
-      </table>
-
-    </div>
-
-    <!-- SIDE PANEL -->
-
-    <div class="side-panel">
-
-      <h2 id="t-summary-title">
-        Yhteenveto
-      </h2>
-
-      <div
-        class="summary-items-container"
-        id="summary-items"
-      ></div>
-
-      <div class="summary-total">
-
-        <div
-          class="summary-row"
-          style="margin-bottom:0;"
-        >
-          <span id="t-total-label">
-            Yhteensä (alv 0%)
-          </span>
-
-          <span id="total-price">
-            0,00 €
-          </span>
-        </div>
-
-      </div>
-
-      <div class="form-group">
-
-        <label
-          id="t-label-notes"
-          for="order-notes"
-        >
-          Tilauksen lisätiedot / Viesti
-        </label>
-
-        <textarea id="order-notes"></textarea>
-
-      </div>
-
-      <button
-        id="t-submit-btn"
-        class="submit-btn"
-        onclick="submitOrder()"
-      >
-        Lähetä tilaus
-      </button>
-
-    </div>
-
-  </div>
+</select>
 
 </div>
 
-<!-- HISTORY VIEW -->
+<!-- =========================================================
+     MODEL
+========================================================= -->
 
-<div id="view-history" class="content-view">
+<div class="form-group">
 
-  <div class="main-panel">
+<label
+id="t-label-model"
+for="model-select">
+Valitse kehysmalli
+</label>
 
-    <div class="panel-header">
-      <h2>Tilaushistoria</h2>
-    </div>
+<select
+id="model-select"
+onchange="loadModelMatrix()">
 
-    <p
-      style="
-        margin-top:15px;
-        color:var(--text-muted);
-        font-size:0.95rem;
-      "
-    >
-      Ei aiempia tilauksia.
-    </p>
+<option value="d001">
+D001 (Soft Rectangle)
+</option>
 
-  </div>
+<option value="d002">
+D002 (Classic Panto)
+</option>
+
+<option value="d003">
+D003 (Navigator)
+</option>
+
+<option value="d004">
+D004 (Cat-Eye)
+</option>
+
+<option value="d005">
+D005 (Panto)
+</option>
+
+<option value="d006">
+D006 (Modern Panto)
+</option>
+
+</select>
 
 </div>
 
+<!-- =========================================================
+     SIZE
+========================================================= -->
+
+<div class="form-group">
+
+<label
+id="t-label-size"
+for="size-select">
+Koko
+</label>
+
+<select
+id="size-select"
+onchange="loadModelMatrix()">
+
+<option value="M">
+Medium (M)
+</option>
+
+<option value="L">
+Large (L)
+</option>
+
+</select>
+
+</div>
+
+<!-- =========================================================
+     MATRIX
+========================================================= -->
+
+<table class="matrix-table">
+
+<thead>
+
+<tr>
+
+<th id="t-th-texture">
+Tekstuuri / Väri
+</th>
+
+<th id="t-th-onyx">
+Onyx
+</th>
+
+<th id="t-th-slate">
+Deep Slate
+</th>
+
+<th id="t-th-brown">
+Chocolate Brown
+</th>
+
+<th id="t-th-plum">
+Ink Plum
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="matrix-body">
+</tbody>
+
+</table>
+
+</div>
+
+<!-- SIDE PANEL -->
+
+<div class="side-panel">
+
+<h2 id="t-summary-title">
+Yhteenveto
+</h2>
+
+<div
+class="summary-items-container"
+id="summary-items">
+</div>
+
+<div class="summary-total">
+
+<div
+class="summary-row"
+style="margin-bottom:0;">
+
+<span id="t-total-label">
+Yhteensä (alv 0%)
+</span>
+
+<span id="total-price">
+0,00 €
+</span>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label
+id="t-label-notes"
+for="order-notes">
+Tilauksen lisätiedot / Viesti
+</label>
+
+<textarea id="order-notes">
+</textarea>
+
+</div>
+
+<button
+id="t-submit-btn"
+class="submit-btn"
+onclick="submitOrder()">
+Lähetä tilaus
+</button>
+
+</div>
+
+<!-- =========================================================
+     HISTORY VIEW
+========================================================= -->
+
+<div
+id="view-history"
+class="content-view">
+
+<div class="main-panel">
+
+<div class="panel-header">
+
+<h2>
+Tilaushistoria
+</h2>
+
+</div>
+
+<p
+style="
+margin-top:15px;
+color:var(--text-muted);
+font-size:0.95rem;
+">
+Ei aiempia tilauksia.
+</p>
+
+</div>
+
+</div>
 </main>
 
-<div id="preview-modal" class="modal-overlay" onclick="closePreviewModal()">
+<div id="preview-modal"
+class="modal-overlay"
+onclick="closePreviewModal()">
 
-    <div class="modal-container" onclick="event.stopPropagation()">
+<div class="modal-container"
+onclick="event.stopPropagation()">
 
-        <button class="modal-close" onclick="closePreviewModal()">✕</button>
+<button
+class="modal-close"
+onclick="closePreviewModal()">
+✕
+</button>
 
-        <div class="modal-gallery">
+<div class="modal-gallery">
 
-            <div class="gallery-hero">
-                <img id="modal-hero-img" src="" alt="">
-            </div>
+<div class="gallery-hero">
+<img id="modal-hero-img">
+</div>
 
-            <div class="gallery-row">
+<div class="gallery-side">
+<img id="modal-side-img">
+</div>
 
-                <div class="gallery-side">
-                    <img id="modal-side-img" src="" alt="">
-                </div>
+<div class="gallery-macro">
+<img id="modal-macro-img">
+</div>
 
-                <div class="gallery-macro">
-                    <img id="modal-macro-img" src="" alt="">
-                </div>
+</div>
 
-            </div>
+<div class="modal-details">
 
-        </div>
+<h2 id="modal-title">
+URBAN HERITAGE 26
+</h2>
 
-        <div class="modal-details">
+<div
+id="modal-meta"
+class="modal-meta">
+</div>
 
-            <h2 id="modal-title" class="modal-title">
-                Urban Heritage 26
-            </h2>
+<div
+id="modal-sku"
+class="modal-code-badge">
+</div>
 
-            <div id="modal-meta" class="modal-meta"></div>
+<div class="config-section">
 
-            <div id="modal-sku" class="modal-code-badge">
-                -
-            </div>
+<div class="config-label">
+Valittu kokoonpano
+</div>
 
-            <div class="config-section">
+<table class="specs-table">
 
-                <div class="config-label">
-                    Valittu kokoonpano
-                </div>
+<tr>
+<td>Tekstuuri</td>
+<td id="modal-selected-texture">-</td>
+</tr>
 
-                <table class="specs-table">
+<tr>
+<td>Väri</td>
+<td id="modal-selected-color">-</td>
+</tr>
 
-                    <tr>
-                        <td>Tekstuuri</td>
-                        <td id="modal-selected-texture">-</td>
-                    </tr>
+<tr>
+<td>Koko</td>
+<td id="modal-selected-size">-</td>
+</tr>
 
-                    <tr>
-                        <td>Väri</td>
-                        <td id="modal-selected-color">-</td>
-                    </tr>
+</table>
 
-                    <tr>
-                        <td>Koko</td>
-                        <td id="modal-selected-size">-</td>
-                    </tr>
+</div>
 
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
@@ -1129,7 +1267,7 @@ textarea {
                     </div>
 
                     <button class="remove-item-btn" onclick="removeItemFromCart('${key}')">
-                      x
+                      
                     </button>
                 `;
                 container.appendChild(row);
@@ -1193,7 +1331,7 @@ textarea {
         document.getElementById('order-notes').value = '';
         }
 
-       /* =========================================================
+/* =========================================================
    MODAL PREVIEW
 ========================================================= */
 
@@ -1215,7 +1353,15 @@ function openMatrixPreview(model, tex, col, size, event) {
     document
         .getElementById('preview-modal')
         .classList.add('active');
-}
+
+    const gallery =
+        document.querySelector('.modal-gallery');
+
+    gallery.scrollTo({
+        top: 0,
+        behavior:'instant'
+    });
+  }
 
 function closePreviewModal() {
 
@@ -1336,46 +1482,65 @@ function printTerms() {
         };
     </script>
 
-<div id="terms-modal" class="modal-overlay" onclick="closeTermsModal()">
+<div
+id="terms-modal"
+class="modal-overlay"
+onclick="closeTermsModal()">
 
-  <div class="modal-container" onclick="event.stopPropagation()" style="grid-template-columns: 1fr; max-width: 900px; height: 90vh;">
+<div
+class="modal-container"
+onclick="event.stopPropagation()"
+style="grid-template-columns:1fr; max-width:900px; height:90vh;">
 
-    <button class="modal-close" onclick="closeTermsModal()">✕</button>
+<button
+class="modal-close"
+onclick="closeTermsModal()">
+✕
+</button>
 
-    <div class="modal-details" style="padding-top:60px;">
+<div
+class="modal-details"
+style="padding-top:60px;">
 
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+<div
+style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
 
-        <h2 id="terms-title">Terms & Conditions</h2>
+<h2 id="terms-title">
+Terms & Conditions
+</h2>
 
-        <div style="display:flex; gap:10px;">
+<div
+style="display:flex; gap:10px;">
 
-          <a
-            id="download-terms-btn"
-            class="preview-btn active"
-            href=""
-            download>
-            Download PDF
-          </a>
+<a
+id="download-terms-btn"
+class="preview-btn active"
+href=""
+download>
+Download PDF
+</a>
 
-          <button class="preview-btn" onclick="printTerms()">
-            Print
-          </button>
-
-        </div>
-
-      </div>
-
-      <iframe
-        id="terms-frame"
-        src=""
-        style="width:100%; height:100%; border:1px solid var(--border); border-radius:6px; background:#fff;">
-      </iframe>
-
-    </div>
-
-  </div>
+<button
+class="preview-btn"
+onclick="printTerms()">
+Print
+</button>
 
 </div>
+
+</div>
+
+<iframe
+id="terms-frame"
+src=""
+style="width:100%; height:100%; border:1px solid var(--border); border-radius:6px; background:#fff;">
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
 </body>
 </html>

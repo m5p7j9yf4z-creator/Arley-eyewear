@@ -4,33 +4,53 @@
 <head>
 
 <script>
-  // 1. Jos sivua ajetaan omalla koneella (Live Server), hypätään suojauksen yli
-  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    
-    // 2. Tarkistetaan, onko salasanaa jo syötetty tämän istunnon aikana
-    if (sessionStorage.getItem('arley_auth') !== 'true') {
-      let authenticated = false;
-      
-      while (!authenticated) {
-        const password = prompt("Tämä on suojattu tilausportaali. Syötä salasana päästäksesi sisään:");
-        
-        // Jos käyttäjä painaa "Peruuta" tai sulkee ikkunan
-        if (password === null) {
-          document.write("<h1 style='text-align:center; margin-top:20%; font-family:sans-serif;'>Pääsy evätty.</h1>");
-          window.stop();
-          break;
+
+/* =========================================================
+   ACCESS CONTROL
+========================================================= */
+
+if(
+    window.location.hostname !== 'localhost' &&
+    window.location.hostname !== '127.0.0.1'
+){
+
+    if(sessionStorage.getItem('arley_auth') !== 'true'){
+
+        let authenticated = false;
+
+        while(!authenticated){
+
+            const password = prompt(
+                "Tämä on suojattu tilausportaali. Syötä salasana päästäksesi sisään:"
+            );
+
+            if(password === null){
+
+                document.write(
+                    "<h1 style='text-align:center; margin-top:20%; font-family:sans-serif;'>Pääsy evätty.</h1>"
+                );
+
+                window.stop();
+                break;
+
+            }
+
+            if(password === 'arley2026'){
+
+                sessionStorage.setItem('arley_auth','true');
+                authenticated = true;
+
+            }else{
+
+                alert("Väärä salasana, yritä uudelleen.");
+
+            }
+
         }
-        
-        // Tarkistetaan onko salasana oikein
-        if (password === 'arley2026') {
-          sessionStorage.setItem('arley_auth', 'true');
-          authenticated = true;
-        } else {
-          alert("Väärä salasana, yritä uudelleen.");
-        }
-      }
+
     }
-  }
+
+}
 </script>
 
 <meta charset="UTF-8" />
@@ -371,14 +391,21 @@ nav a{
 
 .modal-container{
     background:var(--bg);
-    width:90vw;
-    max-width:1150px;
-    height:93.2vh;
+
+    width:1250px;
+    height:571px;
+
+    max-width:95vw;
+    max-height:95vh;
+
     border-radius:8px;
+
     display:grid;
-    grid-template-columns:1.45fr .7fr;
+    grid-template-columns:1.3fr .7fr;
+
     overflow:hidden;
     position:relative;
+
     box-shadow:0 20px 50px rgba(0,0,0,.15);
 }
 
@@ -398,11 +425,32 @@ nav a{
    GALLERY
 ========================================================= */
 
+#modal-title{
+    margin:0 0 8px;
+    font-weight:300;
+    font-size:1.4rem;
+    letter-spacing:1.5px;
+    line-height:1.15;
+}
+
+.modal-meta{
+    font-size:.8rem;
+    color:var(--text-muted);
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    margin-bottom:20px;
+}
+
 .modal-gallery{
     display:flex;
     flex-direction:column;
     gap:18px;
-    padding:18px;
+     padding:0px 0px 0px 0px;
+    height:100%;
+    overflow-y:auto;
+    scroll-snap-type:y mandatory;
 }
 
 .modal-gallery img{
@@ -414,29 +462,15 @@ nav a{
     border-radius:4px;
 }
 
-/* HERO */
-
-.gallery-hero{
-    height:460px;
-    overflow:hidden;
-    background:#f3f3f1;
-    border-radius:4px;
-}
-
-/* MIDDLE ROW */
-
-.gallery-row{
-    display:grid;
-    grid-template-columns:.8fr .8fr;
-    gap:18px;
-}
-
+.gallery-hero,
 .gallery-side,
 .gallery-macro{
-    height:265px;
-    overflow:hidden;
-    background:#f3f3f1;
+    aspect-ratio:12 / 9;
+    width:100%;
+    flex-shrink:0;
     border-radius:4px;
+    background:#fafaf9;
+    scroll-snap-align:center;
 }
 
 /* =========================================================
@@ -444,7 +478,7 @@ nav a{
 ========================================================= */
 
 .modal-details{
-    padding:38px;
+    padding:30px;
     overflow-y:auto;
     display:flex;
     flex-direction:column;
@@ -458,7 +492,7 @@ nav a{
     padding:6px 12px;
     display:inline-block;
     border-radius:4px;
-    margin-bottom:15px;
+    margin-bottom:8px;
     align-self:flex-start;
 }
 
@@ -469,7 +503,7 @@ nav a{
 .config-section{
     margin-bottom:20px;
     border-top:1px solid var(--border);
-    padding-top:15px;
+    padding-top:11px;
 }
 
 .config-label{
@@ -477,7 +511,7 @@ nav a{
     font-weight:600;
     text-transform:uppercase;
     letter-spacing:1.5px;
-    margin-bottom:10px;
+    margin-bottom:5px;
     color:var(--text-muted);
 }
 
@@ -529,7 +563,7 @@ nav a{
 }
 
 .specs-table td{
-    padding:8px 0;
+    padding:4px 0;
     border-bottom:1px solid var(--border);
     font-size:.85rem;
     font-weight:300;
@@ -1023,7 +1057,7 @@ EN
 </h3>
 
 <p data-translate="collection-description">
-    Urban Heritage 26 yhdistää arkkitehtoniset pinnat,
+    URBAN HERITAGE 26 yhdistää arkkitehtoniset pinnat,
     digitaalisen suunnittelun ja modernin SLS-valmistuksen
     kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.
 </p>
@@ -1039,37 +1073,37 @@ Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.
 <div class="portfolio-item"
 onclick="openPreviewModal('d001')"
 style="background-image:url('images/carousel-uh26/d001/d001.webp');">
-<h3>Urban Heritage 26 – D001</h3>
+<h3>URBAN HERITAGE 26 – D001</h3>
 </div>
 
 <div class="portfolio-item"
 onclick="openPreviewModal('d002')"
 style="background-image:url('images/carousel-uh26/d002/d002.webp');">
-<h3>Urban Heritage 26 – D002</h3>
+<h3>URBAN HERITAGE 26 – D002</h3>
 </div>
 
 <div class="portfolio-item"
 onclick="openPreviewModal('d003')"
 style="background-image:url('images/carousel-uh26/d003/d003.webp');">
-<h3>Urban Heritage 26 – D003</h3>
+<h3>URBAN HERITAGE 26 – D003</h3>
 </div>
 
 <div class="portfolio-item"
 onclick="openPreviewModal('d004')"
 style="background-image:url('images/carousel-uh26/d004/d004.webp');">
-<h3>Urban Heritage 26 – D004</h3>
+<h3>URBAN HERITAGE 26 – D004</h3>
 </div>
 
 <div class="portfolio-item"
 onclick="openPreviewModal('d005')"
 style="background-image:url('images/carousel-uh26/d005/d005.webp');">
-<h3>Urban Heritage 26 – D005</h3>
+<h3>URBAN HERITAGE 26 – D005</h3>
 </div>
 
 <div class="portfolio-item"
 onclick="openPreviewModal('d006')"
 style="background-image:url('images/carousel-uh26/d006/d006.webp');">
-<h3>Urban Heritage 26 – D006</h3>
+<h3>URBAN HERITAGE 26 – D006</h3>
 </div>
 
 </div>
@@ -1077,153 +1111,166 @@ style="background-image:url('images/carousel-uh26/d006/d006.webp');">
 <!-- =========================================================
      INNOVATION
 ========================================================= -->
+
 <section class="innovation-section" id="innovation">
 
-    <h2 data-translate="innov-heading">
-        Innovaatio & Tekniikka
-    </h2>
+<h2 data-translate="innov-heading">
+Innovaatio & Tekniikka
+</h2>
 
-    <div class="innovation-container">
+<div class="innovation-container">
 
-        <!-- PROCESS GRID -->
-        <div class="process-grid">
+<!-- PROCESS GRID -->
 
-            <!-- CARD 01 -->
-            <div class="process-card">
+<div class="process-grid">
 
-                <h3 data-translate="proc-t1">
-                    Muotoilu & Iterointi
-                </h3>
+<!-- CARD 01 -->
 
-                <p data-translate="proc-p1">
-                    Arleyn estetiikka rakentuu arkkitehtonisen luonnostelun ja tarkan ergonomisen analyysin kautta. Jokainen siluetti käy läpi useita iterointivaiheita optimaalisen tasapainon, istuvuuden ja visuaalisen rytmin saavuttamiseksi.
-                </p>
+<div class="process-card">
 
-                <div class="process-image">
-                    <img
-                        src="images/process-design.webp"
-                        alt="Arley eyewear technical sketch"
-                    >
-                </div>
+<h3 data-translate="proc-t1">
+Muotoilu & Iterointi
+</h3>
 
-            </div>
+<p data-translate="proc-p1">
+Arleyn estetiikka rakentuu arkkitehtonisen luonnostelun ja tarkan ergonomisen analyysin kautta. Jokainen siluetti käy läpi useita iterointivaiheita optimaalisen tasapainon, istuvuuden ja visuaalisen rytmin saavuttamiseksi.
+</p>
 
-            <!-- CARD 02 -->
-            <div class="process-card">
+<div class="process-image">
 
-                <h3 data-translate="proc-t2">
-                    Digitaalinen Suunnittelu
-                </h3>
+<img
+src="images/process-design.webp"
+alt="Arley eyewear technical sketch">
 
-                <p data-translate="proc-p2">
-                    Vision kääntäminen tarkasti suunnitelluksi digitaaliseksi geometriaksi. Kehittyneet parametriset DfAM-menetelmät mahdollistavat rakenteellisen eheyden optimoinnin hienovaraisimmassakin muotokielessä.
-                </p>
+</div>
 
-                <div class="process-image">
-                    <img
-                        src="images/process-cad.webp"
-                        alt="CAD workflow controller illustration"
-                    >
-                </div>
+</div>
 
-            </div>
+<!-- CARD 02 -->
 
-            <!-- CARD 03 -->
-            <div class="process-card">
+<div class="process-card">
 
-                <h3 data-translate="proc-t3">
-                    Kerrosrakenteinen Valmistus
-                </h3>
+<h3 data-translate="proc-t2">
+Digitaalinen Suunnittelu
+</h3>
 
-                <p data-translate="proc-p3">
-                    Digitaalisen suunnittelun toteuttaminen fyysiseksi muodoksi korkean tarkkuuden EOS SLS -teknologian avulla. Kerrosrakenteinen valmistus mahdollistaa kevyet, monimutkaiset ja poikkeuksellisen kestävät geometriat ilman ylimääräistä hukkamateriaalia.
-                </p>
+<p data-translate="proc-p2">
+Vision kääntäminen tarkasti suunnitelluksi digitaaliseksi geometriaksi. Kehittyneet parametriset DfAM-menetelmät mahdollistavat rakenteellisen eheyden optimoinnin hienovaraisimmassakin muotokielessä.
+</p>
 
-                <div class="process-image">
-                    <img
-                        src="images/process-sls.webp"
-                        alt="EOS SLS manufacturing illustration"
-                    >
-                </div>
+<div class="process-image">
 
-            </div>
+<img
+src="images/process-cad.webp"
+alt="CAD workflow controller illustration">
 
-        </div>
+</div>
 
-        <!-- TECH SPECS -->
-        <div class="tech-specs">
+</div>
 
-            <!-- TECH 01 -->
-            <div class="tech-card">
+<!-- CARD 03 -->
 
-                <h3 data-translate="tech-head-1">
-                    VALMISTUSTEKNOLOGIA
-                </h3>
+<div class="process-card">
 
-                <p data-translate="tech-list-1">
-                    Optimoitu EOS-pohjainen SLS-valmistus rakenteellisesti tarkkoihin ja kevyisiin geometrioihin.
-                </p>
+<h3 data-translate="proc-t3">
+Kerrosrakenteinen Valmistus
+</h3>
 
-                <p data-translate="tech-list-2">
-                    Teollisuustason additive manufacturing -prosessi erittäin tarkalla mittapysyvyydellä.
-                </p>
+<p data-translate="proc-p3">
+Digitaalisen suunnittelun toteuttaminen fyysiseksi muodoksi korkean tarkkuuden EOS SLS -teknologian avulla. Kerrosrakenteinen valmistus mahdollistaa kevyet, monimutkaiset ja poikkeuksellisen kestävät geometriat ilman ylimääräistä hukkamateriaalia.
+</p>
 
-            </div>
+<div class="process-image">
 
-            <!-- TECH 02 -->
-            <div class="tech-card">
+<img
+src="images/process-sls.webp"
+alt="EOS SLS manufacturing illustration">
 
-                <h3 data-translate="tech-head-2">
-                    MATERIAALI
-                </h3>
+</div>
 
-                <p data-translate="tech-list-3">
-                    Polyamidi 12 [PA12]
-                </p>
+</div>
 
-                <p data-translate="tech-list-4">
-                    Kevyt, erittäin kestävä ja ihoystävällinen tekninen materiaali päivittäiseen käyttöön.
-                </p>
+</div>
 
-            </div>
+<!-- TECH SPECS -->
 
-            <!-- TECH 03 -->
-            <div class="tech-card">
+<div class="tech-specs">
 
-                <h3 data-translate="tech-head-3">
-                    PINTAKÄSITTELY
-                </h3>
+<!-- TECH 01 -->
 
-                <p data-translate="tech-list-5">
-                    Automatisoitu DyeMansion PowerShot C + S -viimeistely luo tasaisen ja hienostuneen pinnan.
-                </p>
+<div class="tech-card">
 
-                <p data-translate="tech-list-6">
-                    DeepDye Coloring [DDC] mahdollistaa pitkäikäisen ja syvävärjätyn lopputuloksen.
-                </p>
+<h3 data-translate="tech-head-1">
+VALMISTUSTEKNOLOGIA
+</h3>
 
-            </div>
+<p data-translate="tech-list-1">
+Optimoitu EOS-pohjainen SLS-valmistus rakenteellisesti tarkkoihin ja kevyisiin geometrioihin.
+</p>
 
-            <!-- TECH 04 -->
-            <div class="tech-card">
+<p data-translate="tech-list-2">
+Teollisuustason additive manufacturing -prosessi erittäin tarkalla mittapysyvyydellä.
+</p>
 
-                <h3 data-translate="tech-head-4">
-                    KOMPONENTIT
-                </h3>
+</div>
 
-                <p data-translate="tech-list-7">
-                    Integroitu UV-stabilointi auttaa säilyttämään materiaalin pitkäaikaisen kestävyyden.
-                </p>
+<!-- TECH 02 -->
 
-                <p data-translate="tech-list-8">
-                    OBE GmbH & Co -saranajärjestelmät sulavaan liikkeeseen ja rakenteelliseen luotettavuuteen.
-                </p>
+<div class="tech-card">
 
-            </div>
+<h3 data-translate="tech-head-2">
+MATERIAALI
+</h3>
 
-        </div>
+<p data-translate="tech-list-3">
+Polyamidi 12 [PA12]
+</p>
 
-    </div>
+<p data-translate="tech-list-4">
+Kevyt, erittäin kestävä ja ihoystävällinen tekninen materiaali päivittäiseen käyttöön.
+</p>
+
+</div>
+
+<!-- TECH 03 -->
+
+<div class="tech-card">
+
+<h3 data-translate="tech-head-3">
+PINTAKÄSITTELY
+</h3>
+
+<p data-translate="tech-list-5">
+Automatisoitu DyeMansion PowerShot C + S -viimeistely luo tasaisen ja hienostuneen pinnan.
+</p>
+
+<p data-translate="tech-list-6">
+DeepDye Coloring [DDC] mahdollistaa pitkäikäisen ja syvävärjätyn lopputuloksen.
+</p>
+
+</div>
+
+<!-- TECH 04 -->
+
+<div class="tech-card">
+
+<h3 data-translate="tech-head-4">
+KOMPONENTIT
+</h3>
+
+<p data-translate="tech-list-7">
+Integroitu UV-stabilointi auttaa säilyttämään materiaalin pitkäaikaisen kestävyyden.
+</p>
+
+<p data-translate="tech-list-8">
+OBE GmbH & Co -saranajärjestelmät sulavaan liikkeeseen ja rakenteelliseen luotettavuuteen.
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
@@ -1295,25 +1342,24 @@ Ota yhteyttä — rakennetaan jotain poikkeuksellista yhdessä.
 
 <footer>
 
-    <div class="footer-container">
+<div class="footer-container">
 
-        <div class="footer-bottom">
-            © 2026 Arley Eyewear
-        </div>
+<div class="footer-bottom">
+© 2026 Arley Eyewear
+</div>
 
-        <div class="footer-socials">
+<div class="footer-socials">
 
-            <a
-                href="https://instagram.com/arleyeyewear"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Instagram
-            </a>
+<a
+href="https://instagram.com/arleyeyewear"
+target="_blank"
+rel="noopener noreferrer">
+Instagram
+</a>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </footer>
 
@@ -1334,34 +1380,28 @@ onclick="closePreviewModal()">✕</button>
 <div class="modal-gallery">
 
 <div class="gallery-hero">
-<img id="modal-hero-img" src="" alt="">
+<img id="modal-hero-img">
 </div>
 
-<div class="gallery-row">
-
 <div class="gallery-side">
-<img id="modal-side-img" src="" alt="">
+<img id="modal-side-img">
 </div>
 
 <div class="gallery-macro">
-<img id="modal-macro-img" src="" alt="">
-</div>
-
+<img id="modal-macro-img">
 </div>
 
 </div>
 
 <div class="modal-details">
 
-<h2 id="modal-title">Urban Heritage 26</h2>
+<h2 id="modal-title">URBAN HERITAGE 26</h2>
 
-<div id="modal-meta"
-style="font-size:.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;">
-</div>
+<div id="modal-meta" class="modal-meta"></div>
 
 <div id="modal-sku"
 class="modal-code-badge">
--
+
 </div>
 
 <div class="config-section">
@@ -1480,15 +1520,15 @@ const translations = {
         "nav-contact":"Yhteys",
         "hero-title":"URBAN HERITAGE 26",
         "hero-subline":"Urbaanin ympäristön muovaama",
-        "hero-desc":"Urban Heritage 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
+        "hero-desc":"URBAN HERITAGE 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
         "title-collection":"URBAN HERITAGE 26 - MALLISTO",
         "collectionSubtitle":"Urbaanin ympäristön muovaama",
-        "collectionDescription":"Urban Heritage 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
+        "collectionDescription":"URBAN HERITAGE 26 yhdistää arkkitehtoniset pinnat, digitaalisen suunnittelun ja modernin SLS-valmistuksen kevyiksi ja rakenteellisesti kestäviksi kehyksiksi.",
         "subtitle-collection":"Klikkaa tuotekorttia avataksesi mallin esikatselun ja tarkemmat tekniset tiedot.",
         "collection-label":"TERVETULOA MALLISTOON",
         "innov-heading":"Innovaatio & Tekniikka",
         "proc-t1":"Iteraatio & Muotoilu",
-        "proc-p1":"Arleyn muotokieli syntyy luonnostelun, materiaalitutkimuksen ja jatkuvan iteroinnin kautta. Jokainen kehys rakentuu vaihe vaiheelta. Linjoja hiotaan, mittasuhteita säädetään ja yksityiskohtia pelkistetään, kunnes kokonaisuus tuntuu tasapainoiselta sekä kädessä että kasvoilla. Urban Heritage -malliston suunnittelussa vaikutteita on haettu kaupunkiarkkitehtuurin rytmistä, kuluneista materiaaleista ja teollisista pinnoista. Lopputulos yhdistää selkeät muodot, hillityn rouheuden ja ergonomian tavalla, joka tuntuu yhtä aikaa modernilta ja tutulta. Jokainen siluetti käy läpi useita versioita ennen lopullista muotoaan. Ei vain ulkonäön, vaan myös istuvuuden ja päivittäisen käyttötuntuman vuoksi.",
+        "proc-p1":"Arleyn muotokieli syntyy luonnostelun, materiaalitutkimuksen ja jatkuvan iteroinnin kautta. Jokainen kehys rakentuu vaihe vaiheelta. Linjoja hiotaan, mittasuhteita säädetään ja yksityiskohtia pelkistetään, kunnes kokonaisuus tuntuu tasapainoiselta sekä kädessä että kasvoilla. URBAN HERITAGE 26 -malliston suunnittelussa vaikutteita on haettu kaupunkiarkkitehtuurin rytmistä, kuluneista materiaaleista ja teollisista pinnoista. Lopputulos yhdistää selkeät muodot, hillityn rouheuden ja ergonomian tavalla, joka tuntuu yhtä aikaa modernilta ja tutulta. Jokainen siluetti käy läpi useita versioita ennen lopullista muotoaan. Ei vain ulkonäön, vaan myös istuvuuden ja päivittäisen käyttötuntuman vuoksi.",
         "proc-t2":"Muodonhallinta",
         "proc-p2":"Jokainen Arley-kehys rakentuu vision ja tarkasti hallitun geometrian tasapainosta. Luonnostellut ideat käännetään digitaalisiksi pinnoiksi ja rakenteiksi, joissa mittasuhteita, linjoja ja pintoja hiotaan tasapainoisen kokonaisuuden saavuttamiseksi. Kehittyneet DfAM-menetelmät mahdollistavat rakenteiden ja muotojen hienosäädön tarkkuudella, jossa keveys, kestävyys ja hienovarainen muotokieli voivat toimia saumattomasti yhdessä. Teknologia ei ohjaa lopputulosta, vaan toimii työkaluna muotoilulle, jossa jokainen pinta, siirtymä ja linja tuntuu harkitulta.",
         "proc-t3":"Muodon Toteutus",
@@ -1540,7 +1580,7 @@ const translations = {
         "collection-label":"WELCOME TO THE COLLECTION",
         "innov-heading":"Innovation & Engineering",
         "proc-t1":"Iteration & Design",
-        "proc-p1":"The Arley design language is shaped through sketching, material exploration, and continuous iteration. Every frame evolves step by step — lines are refined, proportions adjusted, and details reduced until the final form feels balanced both in hand and on the face. The Urban Heritage collection draws inspiration from the rhythm of urban architecture, weathered materials, and industrial surfaces. The result combines clean silhouettes, understated ruggedness, and ergonomic precision in a way that feels both modern and familiar. Each silhouette goes through multiple iterations before reaching its final form — not only in appearance, but also in fit, weight balance, and everyday comfort.",
+        "proc-p1":"The Arley design language is shaped through sketching, material exploration, and continuous iteration. Every frame evolves step by step — lines are refined, proportions adjusted, and details reduced until the final form feels balanced both in hand and on the face. The URBAN HERITAGE 26 collection draws inspiration from the rhythm of urban architecture, weathered materials, and industrial surfaces. The result combines clean silhouettes, understated ruggedness, and ergonomic precision in a way that feels both modern and familiar. Each silhouette goes through multiple iterations before reaching its final form — not only in appearance, but also in fit, weight balance, and everyday comfort.",
         "proc-t2":"Form Development",
         "proc-p2":"Every Arley frame is built through a balance of vision and carefully controlled geometry. Initial sketches are translated into digital surfaces and structures, where proportions, lines, and transitions are refined in pursuit of a balanced overall form. Advanced DfAM methodologies enable the fine-tuning of structures and geometries with a level of precision where lightness, durability, and refined form are carefully balanced. Technology does not dictate the outcome, but instead serves as a tool for shaping forms where every surface, transition, and line feels intentional.",
         "proc-t3":"Form Realization",
@@ -1583,33 +1623,33 @@ const translations = {
 
 function setLanguage(lang,event){
 
-    if(event){
-        event.preventDefault();
-    }
+if(event){
+event.preventDefault();
+}
 
-    document
-        .querySelectorAll('[data-translate]')
-        .forEach(el=>{
+document
+.querySelectorAll('[data-translate]')
+.forEach(el=>{
 
-            const key =
-                el.getAttribute('data-translate');
+const key =
+el.getAttribute('data-translate');
 
-            if(translations[lang][key]){
+if(translations[lang][key]){
 
-                el.textContent =
-                    translations[lang][key];
+el.textContent =
+translations[lang][key];
 
-            }
+}
 
-        });
+});
 
-    document
-        .getElementById('btn-lang-fi')
-        .classList.toggle('active',lang==='fi');
+document
+.getElementById('btn-lang-fi')
+.classList.toggle('active',lang==='fi');
 
-    document
-        .getElementById('btn-lang-en')
-        .classList.toggle('active',lang==='en');
+document
+.getElementById('btn-lang-en')
+.classList.toggle('active',lang==='en');
 
 }
 
@@ -1630,12 +1670,26 @@ window.addEventListener('scroll', () => {
 });
 
 /* =========================================================
-   MODAL
+   MODAL OPTIONS
 ========================================================= */
 
-const textures = ['plain','fluted','microdot','striated'];
+const textures = [
+    'plain',
+    'fluted',
+    'microdot',
+    'striated'
+];
 
-const colors = ['onyx','slate','brown','plum'];
+const colors = [
+    'onyx',
+    'slate',
+    'brown',
+    'plum'
+];
+
+/* =========================================================
+   MODAL COLORS
+========================================================= */
 
 const colorHex = {
     onyx:'#1a1a1a',
@@ -1643,6 +1697,10 @@ const colorHex = {
     brown:'#3d3025',
     plum:'#2e1e2d'
 };
+
+/* =========================================================
+   MODAL CODES
+========================================================= */
 
 const textureCodes = {
     plain:'P',
@@ -1658,6 +1716,10 @@ const colorCodes = {
     plum:'IP'
 };
 
+/* =========================================================
+   MODAL STATE
+========================================================= */
+
 let activeModalModel = 'd001';
 
 let modalOptions = {
@@ -1665,6 +1727,10 @@ let modalOptions = {
     color:'onyx',
     size:'M'
 };
+
+/* =========================================================
+   MODEL DATABASE
+========================================================= */
 
 const modelsData = {
 
@@ -1744,7 +1810,7 @@ const modelsData = {
 
     d002:{
         shape:'Classic Panto',
-        gender:'unisex',
+        gender:'Unisex',
 
         specs:{
             M:[132,47,21,140],
@@ -1818,7 +1884,7 @@ const modelsData = {
 
     d003:{
         shape:'Navigator',
-        gender:'unisex',
+        gender:'Unisex',
 
         specs:{
             M:[140,55,16,145],
@@ -1892,7 +1958,7 @@ const modelsData = {
 
     d004:{
         shape:'Cat-Eye',
-        gender:'female',
+        gender:'Female',
 
         specs:{
             M:[133,51,18,135],
@@ -1966,7 +2032,7 @@ const modelsData = {
 
     d005:{
         shape:'Panto',
-        gender:'unisex',
+        gender:'Unisex',
 
         specs:{
             M:[131,46,22,140],
@@ -2040,7 +2106,7 @@ const modelsData = {
 
     d006:{
         shape:'Modern Panto',
-        gender:'unisex',
+        gender:'Unisex',
 
         specs:{
             M:[133,48,20,140],
@@ -2120,20 +2186,29 @@ const modelsData = {
 
 function openPreviewModal(modelId){
 
- activeModalModel = modelId;
+    activeModalModel = modelId;
 
- modalOptions = {
-  texture:'plain',
-  color:'onyx',
-  size:'M'
- };
+    modalOptions = {
+        texture:'plain',
+        color:'onyx',
+        size:'M'
+    };
 
- document
- .getElementById('preview-modal')
- .classList.add('active');
+    document
+        .getElementById('preview-modal')
+        .classList.add('active');
 
- buildModalSelectors();
- updateModalPreview();
+    buildModalSelectors();
+    updateModalPreview();
+
+    const gallery =
+        document.querySelector('.modal-gallery');
+
+    gallery.scrollTo({
+        top:0,
+        behavior:'instant'
+    });
+
 }
 
 function closePreviewModal(){
@@ -2164,7 +2239,9 @@ function buildModalSelectors(){
 
         btn.className =
             `preview-btn ${
-                modalOptions.texture === texture ? 'active' : ''
+                modalOptions.texture === texture
+                    ? 'active'
+                    : ''
             }`;
 
         btn.textContent =
@@ -2178,7 +2255,7 @@ function buildModalSelectors(){
 
         const hasAnyVariant =
             Object.values(textureData)
-            .some(v => v !== false);
+            .some(v=>v !== false);
 
         if(!hasAnyVariant){
 
@@ -2217,7 +2294,9 @@ function buildModalSelectors(){
 
         btn.className =
             `preview-color-btn ${
-                modalOptions.color === color ? 'active' : ''
+                modalOptions.color === color
+                    ? 'active'
+                    : ''
             }`;
 
         btn.style.backgroundColor =
@@ -2257,7 +2336,7 @@ function selectModalTexture(texture){
         [modalOptions.color]
     ){
 
-        for(let c of colors){
+        for(const c of colors){
 
             if(
                 modelsData[activeModalModel]
@@ -2299,18 +2378,19 @@ function selectModalColor(color){
 
 function selectModalSize(size){
 
- modalOptions.size = size;
+    modalOptions.size = size;
 
- document
- .getElementById('m-size-m')
- .classList.toggle('active', size === 'M');
+    document
+        .getElementById('m-size-m')
+        .classList.toggle('active',size === 'M');
 
- document
- .getElementById('m-size-l')
- .classList.toggle('active', size === 'L');
+    document
+        .getElementById('m-size-l')
+        .classList.toggle('active',size === 'L');
 
- buildModalSelectors();
- updateModalPreview();
+    buildModalSelectors();
+    updateModalPreview();
+
 }
 
 /* =========================================================
@@ -2327,7 +2407,7 @@ function updateModalPreview(){
     document
         .getElementById('modal-title')
         .textContent =
-        `Urban Heritage 26 – ${m.toUpperCase()}`;
+        `URBAN HERITAGE 26 – ${m.toUpperCase()}`;
 
     document
         .getElementById('modal-meta')
@@ -2344,20 +2424,23 @@ function updateModalPreview(){
             ? skuFull.split('_')[1]
             : '-';
 
-    document
-     .getElementById('modal-hero-img')
-     .src =
-     `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-hero.webp`;
+    const imageBase =
+        `${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}`;
 
     document
-      .getElementById('modal-side-img')
-     .src =
-      `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-side.webp`;
+        .getElementById('modal-hero-img')
+        .src =
+        `images/modal/${m}/${t}/${imageBase}-hero.webp`;
 
     document
-      .getElementById('modal-macro-img')
-      .src =
-      `images/modal/${m}/${t}/${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}-macro.webp`;
+        .getElementById('modal-side-img')
+        .src =
+        `images/modal/${m}/${t}/${imageBase}-side.webp`;
+
+    document
+        .getElementById('modal-macro-img')
+        .src =
+        `images/modal/${m}/${t}/${imageBase}-macro.webp`;
 
     const specs =
         modelsData[m].specs[s];
