@@ -491,6 +491,9 @@ textarea {
     display:block;
     background:#fafaf9;
     border-radius:4px;
+
+    transition:transform .3s ease;
+    transform-origin:center;
 }
 
 .gallery-hero,
@@ -502,6 +505,7 @@ textarea {
     border-radius:4px;
     background:#fafaf9;
     scroll-snap-align:center;
+    overflow:hidden;
 }
 
 .modal-details{
@@ -2200,18 +2204,22 @@ function submitOrder(){
 
 function loadModalImages(skuCode){
 
-    const modelCode=
-    skuCode.substring(0,4);
+    const modelCode =
+        skuCode.substring(0,4).toLowerCase();
 
-    document.getElementById('modal-hero-img').src=
-    `images/UH26/${modelCode}/${skuCode}/hero.webp`;
+    const imageBase =
+        skuCode
+            .toLowerCase()
+            .replace(/m$/, 'l');
 
-    document.getElementById('modal-side-img').src=
-    `images/UH26/${modelCode}/${skuCode}/side.webp`;
+    document.getElementById('modal-hero-img').src =
+        `images/uh26/${modelCode}/modal/${imageBase}-modal-hero.webp`;
 
-    document.getElementById('modal-macro-img').src=
-    `images/UH26/${modelCode}/${skuCode}/macro.webp`;
+    document.getElementById('modal-side-img').src =
+        `images/uh26/${modelCode}/modal/${imageBase}-modal-front.webp`;
 
+    document.getElementById('modal-macro-img').src =
+        `images/uh26/${modelCode}/modal/${imageBase}-modal-macro.webp`;
 }
 
 /* =========================================================
@@ -2290,7 +2298,7 @@ function updateModalPreview(){
 
     document.getElementById('modal-selected-texture').textContent=
     translations[currentLang][
-        'tex'+t.charAt(0).toUpperCase()+t.slice(1)
+    'tex'+t.charAt(0).toUpperCase()+t.slice(1)
     ];
 
     document.getElementById('modal-selected-color').textContent=
@@ -2298,6 +2306,16 @@ function updateModalPreview(){
 
     document.getElementById('modal-selected-size').textContent=
     s;
+
+    /* VISUAL SIZE EFFECT */
+
+    const scale = (s === 'L') ? 1.02 : 1;
+
+    document
+    .querySelectorAll('.modal-gallery img')
+    .forEach(img => {
+    img.style.transform = `scale(${scale})`;
+    });
 
 }
 

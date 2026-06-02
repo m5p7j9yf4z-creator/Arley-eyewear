@@ -461,6 +461,9 @@ nav a{
     display:block;
     background:#fafaf9;
     border-radius:4px;
+
+    transition:transform .3s ease;
+    transform-origin:center;
 }
 
 .gallery-hero,
@@ -2427,23 +2430,19 @@ function updateModalPreview(){
             ? skuFull.split('_')[1]
             : '-';
 
-    const imageBase =
-        `${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}${s.toLowerCase()}`;
+    const collection = 'uh26';
 
-    document
-        .getElementById('modal-hero-img')
-        .src =
-        `images/modal/${m}/${t}/${imageBase}-hero.webp`;
+        const imageBase =
+        `${m}${textureCodes[t].toLowerCase()}${colorCodes[c].toLowerCase()}l`;
 
-    document
-        .getElementById('modal-side-img')
-        .src =
-        `images/modal/${m}/${t}/${imageBase}-side.webp`;
+        document.getElementById('modal-hero-img').src =
+        `images/${collection}/${m}/modal/${imageBase}-modal-hero.webp`;
 
-    document
-        .getElementById('modal-macro-img')
-        .src =
-        `images/modal/${m}/${t}/${imageBase}-macro.webp`;
+        document.getElementById('modal-side-img').src =
+        `images/${collection}/${m}/modal/${imageBase}-modal-front.webp`;
+
+        document.getElementById('modal-macro-img').src =
+        `images/${collection}/${m}/modal/${imageBase}-modal-macro.webp`;
 
     const specs =
         modelsData[m].specs[s];
@@ -2468,7 +2467,18 @@ function updateModalPreview(){
         .textContent =
         specs[3] + ' mm';
 
+    /* VISUAL SIZE EFFECT */
+
+    const scale = (s === 'L') ? 1.02 : 1;
+
+    document
+    .querySelectorAll('.modal-gallery img')
+    .forEach(img => {
+        img.style.transform = `scale(${scale})`;
+    });
+
 }
+
 
 /* =========================================================
    INIT
