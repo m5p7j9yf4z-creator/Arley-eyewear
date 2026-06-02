@@ -144,7 +144,7 @@ header {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 28px;
+  padding: 35px;
   box-sizing: border-box;
   
   display: flex;
@@ -594,6 +594,64 @@ textarea {
   font-weight: 500; 
 }
 
+/* =========================================================
+   TERMS MODAL
+========================================================= */
+
+.terms-container{
+    background:var(--bg);
+
+    width:900px;
+    height:90vh;
+
+    max-width:95vw;
+    max-height:95vh;
+
+    border-radius:8px;
+
+    display:flex;
+    flex-direction:column;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
+.terms-content{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:60px 30px 30px;
+}
+
+.terms-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.terms-actions{
+    display:flex;
+    gap:10px;
+}
+
+.terms-frame{
+    flex:1;
+
+    width:100%;
+
+    border:1px solid var(--border);
+    border-radius:6px;
+
+    background:#fff;
+}
+
 .matrix-preview-btn{
     margin-top:8px;
     padding:6px 0;
@@ -927,7 +985,11 @@ onclick="submitOrder()">
 Lähetä tilaus
 </button>
 
-</div>
+</div> <!-- side-panel -->
+
+</div> <!-- portal-grid -->
+
+</div> <!-- view-order -->
 
 <!-- =========================================================
      HISTORY VIEW
@@ -2240,42 +2302,52 @@ function updateModalPreview(){
 }
 
 /* =========================================================
-   TERMS MODAL
+   VIEW SWITCHING
 ========================================================= */
 
-function openTermsModal(){
+function switchView(view){
 
-    const fiFile='documents/arley-terms-fi.pdf';
-    const enFile='documents/arley-terms-en.pdf';
+    document
+    .querySelectorAll('.content-view')
+    .forEach(el=>{
 
-    const pdfPath=
-    currentLang==='fi'
-    ? fiFile
-    : enFile;
+        el.classList.remove('active');
 
-    const frame=
-    document.getElementById('terms-frame');
+    });
 
-    frame.src='';
+    document
+    .getElementById(`view-${view}`)
+    .classList.add('active');
 
-    setTimeout(()=>{
+    document
+    .querySelectorAll(
+        '#nav-item-order,#nav-item-history'
+    )
+    .forEach(el=>{
 
-        frame.src=pdfPath;
+        el.classList.remove('active');
 
-    },50);
+    });
 
-    document.getElementById('download-terms-btn').href=pdfPath;
-
-    document.getElementById('terms-title').textContent=
-    currentLang==='fi'
-    ? 'Yleiset toimitus- ja sopimusehdot'
-    : 'General Terms and Conditions';
-
-    document.getElementById('terms-modal')
+    document
+    .getElementById(`nav-item-${view}`)
     .classList.add('active');
 
 }
 
+/* =========================================================
+   TERMS MODAL
+========================================================= */
+
+function openTermsModal() {
+
+    const pdfPath =
+        currentLang === 'fi'
+        ? 'https://www.arley-eyewear.com/documents/arley-terms-fi.pdf'
+        : 'https://www.arley-eyewear.com/documents/arley-terms-en.pdf';
+
+    window.open(pdfPath, '_blank');
+}
 
 function closeTermsModal(){
 
@@ -2309,60 +2381,69 @@ id="terms-modal"
 class="modal-overlay"
 onclick="closeTermsModal()">
 
-<div
-class="modal-container"
-onclick="event.stopPropagation()"
-style="grid-template-columns:1fr; max-width:900px; height:90vh;">
+    <div
+    class="terms-container"
+    onclick="event.stopPropagation()">
 
-<button
-class="modal-close"
-onclick="closeTermsModal()">
-✕
-</button>
+        <button
+        class="modal-close"
+        onclick="closeTermsModal()">
+        ✕
+        </button>
 
-<div
-class="modal-details"
-style="padding-top:60px;">
+        <div class="terms-content">
 
-<div
-style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+            <div class="terms-header">
 
-<h2 id="terms-title">
-Terms & Conditions
-</h2>
+                <h2 id="terms-title">
+                    Terms & Conditions
+                </h2>
 
-<div
-style="display:flex; gap:10px;">
+                <div class="terms-actions">
 
-<a
-id="download-terms-btn"
-class="preview-btn active"
-href=""
-download>
-Download PDF
-</a>
+                    <a
+                    id="download-terms-btn"
+                    class="preview-btn active"
+                    href=""
+                    download>
+                    Download PDF
+                    </a>
 
-<button
-class="preview-btn"
-onclick="printTerms()">
-Print
-</button>
+                    <button
+                    class="preview-btn"
+                    onclick="printTerms()">
+                    Print
+                    </button>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-<iframe
-id="terms-frame"
-src=""
-style="width:100%; height:100%; border:1px solid var(--border); border-radius:6px; background:#fff;">
-</iframe>
+            <iframe
+            id="terms-frame"
+            class="terms-frame"
+            src="">
+            </iframe>
 
-</div>
+        </div>
+
+    </div>
 
 </div>
 
-</div>
+<script>
+
+console.log(
+    'TERMS MODAL:',
+    document.getElementById('terms-modal')
+);
+
+console.log(
+    'TERMS FRAME:',
+    document.getElementById('terms-frame')
+);
+
+</script>
 
 </body>
 </html>
