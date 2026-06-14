@@ -109,9 +109,9 @@ header{
 
     border-bottom:1px solid rgba(255,255,255,0.15);
 
-    background:rgba(251,251,250,0.82);
+    background:rgba(251,251,250,0.72);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:blur(16px);
     -webkit-backdrop-filter:blur(12px);
 
     position:fixed;
@@ -149,6 +149,81 @@ nav a{
     text-transform:uppercase;
     transition:color .3s ease;
 }
+
+.nav-dropdown{
+    position:relative;
+}
+
+.nav-dropdown-btn{
+
+    background:none;
+    border:none;
+
+    cursor:pointer;
+
+    color:var(--text);
+
+    font-family:inherit;
+    font-size:.8rem;
+    font-weight:400;
+    line-height:1;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    padding:0;
+}
+
+.nav-dropdown-menu{
+
+    position:absolute;
+
+    ttop:calc(100% + 10px);
+    left:50%;
+
+    transform:translateX(-50%) translateY(8px);
+
+    width:max-content;
+    min-width:auto;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.25s ease;
+
+    background:white;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:12px;
+
+    padding:10px 0;
+
+    z-index:1000;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-menu a{
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:12px 18px;
+
+    color:#222;
+
+    text-decoration:none;
+}
+
 
 
 .b2b-link{
@@ -197,32 +272,185 @@ nav a{
 ========================================================= */
 
 .hero{
-    padding:32px 8% 80px;
-    background-image:url('images/hero-main-city.webp');
+    position:relative;
+
+    min-height:90vh;
+
+    background-image:url('images/uh26-hero.webp');
     background-size:cover;
-    background-position:center right;
+    background-position:center 28%;
+    background-repeat:no-repeat;
+
     border-bottom:1px solid var(--border);
-    min-height:calc(100vh - 95px);
+
     display:flex;
+    justify-content:center;
     align-items:center;
+
+    overflow:hidden;
+}
+
+/* =========================================================
+   HERO MODEL SELECTOR
+========================================================= */
+
+.uh-hero-selector{
+
+    position:absolute;
+
+    right:40px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+    flex-direction:column;
+
+    gap:12px;
+
+    padding:14px;
+
+    border-radius:24px;
+
+    background:rgba(10,10,10,.18);
+
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    z-index:5;
+}
+
+/* =========================================================
+   MODEL CARD
+========================================================= */
+
+.uh-model-card{
+
+    width:140px;
+    height:100px;
+
+    padding:8px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.uh-model-card:hover{
+
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,.08);
+
+    border-color:rgba(255,255,255,.20);
+}
+
+/* =========================================================
+   MODEL IMAGE
+========================================================= */
+
+.uh-model-card img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+
+    transition:transform .25s ease;
+}
+
+.uh-model-card:hover img{
+
+    transform:scale(1.04);
+}
+
+/* =========================================================
+   MODEL TOOLTIP
+========================================================= */
+
+.uh-model-card{
+    position:relative;
+}
+
+.uh-model-tooltip{
+
+    position:absolute;
+
+    right:115%;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    min-width:220px;
+
+    padding:12px 16px;
+
+    border-radius:14px;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    color:#fff;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.25s ease;
+
+    pointer-events:none;
+
+    text-align:left;
+}
+
+.uh-model-card:hover .uh-model-tooltip{
+
+    opacity:1;
+    visibility:visible;
+}
+
+.uh-model-tooltip strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+    font-size:1rem;
+    font-weight:500;
+
+    letter-spacing:1px;
+}
+
+.uh-model-tooltip span{
+
+    display:block;
+
+    font-size:.82rem;
+
+    line-height:1.4;
+
+    opacity:.85;
 }
 
 /* =========================================================
    HERO TYPOGRAPHY
+   (voidaan jättää talteen myöhempää käyttöä varten)
 ========================================================= */
 
 .hero-content{
     max-width:620px;
     margin-top:60px;
-}
-
-.hero h1{
-    margin:0 0 18px 0;
-
-    font-weight:420;
-    font-size:2.7rem;
-    line-height:1.02;
-    letter-spacing:-2.6px;
 }
 
 .hero-subline{
@@ -244,6 +472,44 @@ nav a{
     font-size:1.05rem;
     font-weight:300;
     line-height:1.9;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:768px){
+
+    @media(max-width:768px){
+
+    .uh-hero-selector{
+
+        left:50%;
+        right:auto;
+
+        top:auto;
+        bottom:20px;
+
+        transform:translateX(-50%);
+
+        flex-direction:row;
+        flex-wrap:wrap;
+
+        width:90vw;
+
+        gap:10px;
+
+        padding:16px;
+    }
+
+    .uh-model-card{
+
+        width:90px;
+        height:65px;
+    }
+
+}
+
 }
 
 /* =========================================================
@@ -307,75 +573,6 @@ nav a{
     color:var(--text-muted);
     border-left:2px solid var(--text);
     padding-left:15px;
-}
-
-/* =========================================================
-   CAROUSEL
-========================================================= */
-
-.portfolio-carousel{
-    display:grid;
-    grid-auto-flow:column;
-    grid-auto-columns:550px;
-    gap:35px;
-    overflow-x:auto;
-    padding:0px 8% 30px;
-    scroll-snap-type:x mandatory;
-    scrollbar-width:thin;
-    scrollbar-color:var(--border) transparent;
-}
-
-.portfolio-carousel::-webkit-scrollbar{
-    height:4px;
-}
-
-.portfolio-carousel::-webkit-scrollbar-thumb{
-    background:var(--border);
-    border-radius:10px;
-}
-
-.portfolio-item{
-    aspect-ratio:16 / 9;
-    background-size:cover;
-    background-position:center;
-    background-color:#f4f4f2;
-    border:1px solid var(--border);
-    border-radius:4px;
-    position:relative;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    padding:25px;
-    overflow:hidden;
-    transition:transform .3s ease,border-color .3s ease;
-}
-
-.portfolio-item::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(255,255,255,.75);
-    z-index:1;
-    transition:opacity .3s ease;
-}
-
-.portfolio-item:hover{
-    transform:translateY(-4px);
-    border-color:var(--accent-hover);
-}
-
-.portfolio-item:hover::before{
-    opacity:0;
-}
-
-.portfolio-item h3{
-    margin:0;
-    font-weight:400;
-    font-size:1rem;
-    letter-spacing:.5px;
-    position:relative;
-    z-index:2;
 }
 
 /* =========================================================
@@ -968,12 +1165,6 @@ footer{
         font-size:2.4rem;
     }
 
-    .portfolio-carousel{
-        grid-auto-columns:82vw;
-        padding-left:4%;
-        padding-right:4%;
-    }
-
     .modal-container{
         grid-template-columns:1fr;
         height:95vh;
@@ -1003,9 +1194,23 @@ footer{
 
 <nav>
 
-<a href="#collections" data-translate="nav-collections">
-Mallistot
-</a>
+<div class="nav-dropdown">
+
+    <button
+        class="nav-dropdown-btn"
+        data-translate="nav-collections">
+        Mallistot ▾
+    </button>
+
+    <div class="nav-dropdown-menu">
+
+        <a href="#uh26">
+            Urban Heritage 26
+        </a>
+
+    </div>
+
+</div>
 
 <a href="#innovation" data-translate="nav-innovation">
 Innovaatio
@@ -1051,72 +1256,67 @@ EN
      HERO
 ========================================================= -->
 
-<section class="hero">
+<section class="hero" id="uh26">
+
+    <div class="uh-hero-selector">
+
+        <div class="uh-model-card" onclick="openPreviewModal('d001')">
+            <img src="images/d001-thumb.webp" alt="D001">
+
+            <div class="uh-model-tooltip">
+                <strong>D001</strong>
+                <span>View colours & textures →</span>
+            </div>
+        </div>
+
+        <div class="uh-model-card" onclick="openPreviewModal('d002')">
+            <img src="images/d002-thumb.webp" alt="D002">
+
+            <div class="uh-model-tooltip">
+                <strong>D002</strong>
+                <span>View colours & textures →</span>
+            </div>
+        </div>
+
+        <div class="uh-model-card" onclick="openPreviewModal('d003')">
+            <img src="images/d003-thumb.webp" alt="D003">
+
+            <div class="uh-model-tooltip">
+                <strong>D003</strong>
+                <span>View colours & textures →</span>
+            </div>
+        </div>
+
+        <div class="uh-model-card" onclick="openPreviewModal('d004')">
+            <img src="images/d004-thumb.webp" alt="D004">
+
+            <div class="uh-model-tooltip">
+                <strong>D004</strong>
+                <span>View colours & textures →</span>
+            </div>
+        </div>
+
+        <div class="uh-model-card" onclick="openPreviewModal('d005')">
+            <img src="images/d005-thumb.webp" alt="D005">
+
+            <div class="uh-model-tooltip">
+                <strong>D005</strong>
+                <span>View colours & textures →</span>
+            </div>
+        </div>
+
+        <div class="uh-model-card" onclick="openPreviewModal('d006')">
+            <img src="images/d006-thumb.webp" alt="D006">
+
+            <div class="uh-model-tooltip">
+                <strong>D006</strong>
+                <span>View colours & textures →</span>
+            </div>
+        </div>
+
+    </div>
+
 </section>
-
-<!-- =========================================================
-     COLLECTION
-========================================================= -->
-
-<section class="collection-intro" id="collections">
-
-<h2 data-translate="title-collection">
-    URBAN HERITAGE 26 - MALLISTO
-</h2>
-
-<p data-translate="collection-subtitle">
-    Kerros kerrokselta valmistettu, urbaaneja vivahteita sisältävä mestarillinen mallisto.
-</p>
-
-<p data-translate="collection-description">
-    URBAN HERITAGE 26 yhdistää visuaaliset pintatekstuurit, digitaalisen suunnittelun ja modernin SLS-valmistuksen ergonomisiksi, kevyiksi ja mekaanisesti kestäviksi kehyksiksi.
-</p>
-
-<p class="collection-note" data-translate="subtitle-collection">
-Tutustu tekstuuri-, väri- ja kokovaihtoehtoihin
-</p>
-
-</section>
-
-<div class="portfolio-carousel">
-
-<div class="portfolio-item"
-onclick="openPreviewModal('d001')"
-style="background-image:url('images/carousel-uh26/d001/d001.webp');">
-<h3>URBAN HERITAGE 26 – D001</h3>
-</div>
-
-<div class="portfolio-item"
-onclick="openPreviewModal('d002')"
-style="background-image:url('images/carousel-uh26/d002/d002.webp');">
-<h3>URBAN HERITAGE 26 – D002</h3>
-</div>
-
-<div class="portfolio-item"
-onclick="openPreviewModal('d003')"
-style="background-image:url('images/carousel-uh26/d003/d003.webp');">
-<h3>URBAN HERITAGE 26 – D003</h3>
-</div>
-
-<div class="portfolio-item"
-onclick="openPreviewModal('d004')"
-style="background-image:url('images/carousel-uh26/d004/d004.webp');">
-<h3>URBAN HERITAGE 26 – D004</h3>
-</div>
-
-<div class="portfolio-item"
-onclick="openPreviewModal('d005')"
-style="background-image:url('images/carousel-uh26/d005/d005.webp');">
-<h3>URBAN HERITAGE 26 – D005</h3>
-</div>
-
-<div class="portfolio-item"
-onclick="openPreviewModal('d006')"
-style="background-image:url('images/carousel-uh26/d006/d006.webp');">
-<h3>URBAN HERITAGE 26 – D006</h3>
-</div>
-
-</div>
 
 <!-- =========================================================
      INNOVATION
