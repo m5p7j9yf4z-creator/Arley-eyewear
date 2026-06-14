@@ -150,82 +150,6 @@ nav a{
     transition:color .3s ease;
 }
 
-.nav-dropdown{
-    position:relative;
-}
-
-.nav-dropdown-btn{
-
-    background:none;
-    border:none;
-
-    cursor:pointer;
-
-    color:var(--text);
-
-    font-family:inherit;
-    font-size:.8rem;
-    font-weight:400;
-    line-height:1;
-
-    letter-spacing:1px;
-    text-transform:uppercase;
-
-    padding:0;
-}
-
-.nav-dropdown-menu{
-
-    position:absolute;
-
-    ttop:calc(100% + 10px);
-    left:50%;
-
-    transform:translateX(-50%) translateY(8px);
-
-    width:max-content;
-    min-width:auto;
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.25s ease;
-
-    background:white;
-
-    border:1px solid rgba(0,0,0,.08);
-
-    border-radius:12px;
-
-    padding:10px 0;
-
-    z-index:1000;
-}
-
-.nav-dropdown:hover .nav-dropdown-menu{
-
-    opacity:1;
-    visibility:visible;
-
-    transform:translateX(-50%) translateY(0);
-}
-
-.nav-dropdown-menu a{
-
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    padding:12px 18px;
-
-    color:#222;
-
-    text-decoration:none;
-}
-
-
-
 .b2b-link{
     margin-left:30px;
     text-decoration:none;
@@ -288,6 +212,53 @@ nav a{
     align-items:center;
 
     overflow:hidden;
+}
+
+.hero-collection-nav{
+
+    position:absolute;
+
+    top:40px;
+    left:40px;
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    z-index:10;
+}
+
+.hero-collection-title{
+
+    color:white;
+
+    font-size:.85rem;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.hero-arrow{
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:1.2rem;
+
+    cursor:pointer;
+
+    opacity:.7;
+
+    transition:.25s;
+}
+
+.hero-arrow:hover{
+
+    opacity:1;
 }
 
 /* =========================================================
@@ -479,8 +450,6 @@ nav a{
 ========================================================= */
 
 @media(max-width:768px){
-
-    @media(max-width:768px){
 
     .uh-hero-selector{
 
@@ -1194,24 +1163,6 @@ footer{
 
 <nav>
 
-<div class="nav-dropdown">
-
-    <button
-        class="nav-dropdown-btn"
-        data-translate="nav-collections">
-        Mallistot ▾
-    </button>
-
-    <div class="nav-dropdown-menu">
-
-        <a href="#uh26">
-            Urban Heritage 26
-        </a>
-
-    </div>
-
-</div>
-
 <a href="#innovation" data-translate="nav-innovation">
 Innovaatio
 </a>
@@ -1258,14 +1209,37 @@ EN
 
 <section class="hero" id="uh26">
 
+<!-- =========================================================
+     FUTURE COLLECTION NAVIGATION
+     ENABLE WHEN MULTIPLE COLLECTIONS EXIST
+=========================================================
+
+<div class="hero-collection-nav">
+
+    <button class="hero-arrow">
+        ←
+    </button>
+
+    <span class="hero-collection-title">
+        URBAN HERITAGE 26
+    </span>
+
+    <button class="hero-arrow">
+        →
+    </button>
+
+</div>
+
+-->
+
     <div class="uh-hero-selector">
 
         <div class="uh-model-card" onclick="openPreviewModal('d001')">
             <img src="images/d001-thumb.webp" alt="D001">
 
             <div class="uh-model-tooltip">
-                <strong>D001</strong>
-                <span>View colours & textures →</span>
+                <strong>URBAN HERITAGE 26 D001</strong>
+                <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
 
@@ -1273,8 +1247,8 @@ EN
             <img src="images/d002-thumb.webp" alt="D002">
 
             <div class="uh-model-tooltip">
-                <strong>D002</strong>
-                <span>View colours & textures →</span>
+                <strong>URBAN HERITAGE 26 D002</strong>
+                <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
 
@@ -1282,8 +1256,8 @@ EN
             <img src="images/d003-thumb.webp" alt="D003">
 
             <div class="uh-model-tooltip">
-                <strong>D003</strong>
-                <span>View colours & textures →</span>
+                <strong>URBAN HERITAGE 26 D003</strong>
+                <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
 
@@ -1291,8 +1265,8 @@ EN
             <img src="images/d004-thumb.webp" alt="D004">
 
             <div class="uh-model-tooltip">
-                <strong>D004</strong>
-                <span>View colours & textures →</span>
+                <strong>URBAN HERITAGE 26 D004</strong>
+                <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
 
@@ -1300,8 +1274,8 @@ EN
             <img src="images/d005-thumb.webp" alt="D005">
 
             <div class="uh-model-tooltip">
-                <strong>D005</strong>
-                <span>View colours & textures →</span>
+                <strong>URBAN HERITAGE 26 D005</strong>
+                <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
 
@@ -1309,8 +1283,8 @@ EN
             <img src="images/d006-thumb.webp" alt="D006">
 
             <div class="uh-model-tooltip">
-                <strong>D006</strong>
-                <span>View colours & textures →</span>
+                <strong>URBAN HERITAGE 26 D006</strong>
+                <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
 
@@ -1541,8 +1515,8 @@ Ota yhteyttä — rakennetaan jotain poikkeuksellista yhdessä.
 </p>
 
 <div class="contact-email">
-  <a href="mailto:info@arley-eyewear.com">
-    info@arley-eyewear.com
+  <a href="mailto:sales@arley-eyewear.com">
+    sales@arley-eyewear.com
   </a>
 </div>
 
@@ -1728,7 +1702,6 @@ Aisan pituus
 const translations = {
   fi: {
     // Navigaatio
-    "nav-collections": "Mallistot",
     "nav-innovation": "Innovaatio",
     "nav-about": "Tarina",
     "nav-contact": "Yhteys",
@@ -1788,7 +1761,6 @@ const translations = {
   },
   en: {
     // Navigation
-    "nav-collections": "Collections",
     "nav-innovation": "Innovation",
     "nav-about": "Our Story",
     "nav-contact": "Contact",
