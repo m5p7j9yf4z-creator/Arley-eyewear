@@ -505,6 +505,53 @@ nav a{
 }
 
 /* =========================================================
+   COMING SOON
+========================================================= */
+
+#coming-soon{
+
+    position:absolute;
+
+    right:90px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    display:none;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:6px;
+
+    color:#F5F4F1;
+
+    text-align:right;
+
+    z-index:5;
+}
+
+#coming-soon span{
+
+    font-size:1.2rem;
+
+    letter-spacing:4px;
+
+    font-weight:500;
+}
+
+#coming-soon small{
+
+    font-size:.75rem;
+
+    letter-spacing:3px;
+
+    opacity:.75;
+}
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -1353,28 +1400,33 @@ EN
 
 <section class="hero" id="uh26">
 
-<!-- =========================================================
-     FUTURE COLLECTION NAVIGATION
-     ENABLE WHEN MULTIPLE COLLECTIONS EXIST
-=========================================================
-
 <div class="hero-collection-nav">
 
-    <button class="hero-arrow">
+    <button
+    class="hero-arrow"
+    id="hero-prev">
+
         ←
+
     </button>
 
-    <span class="hero-collection-title">
+    <span
+    class="hero-collection-title"
+    id="hero-title">
+
         URBAN HERITAGE 26
+
     </span>
 
-    <button class="hero-arrow">
+    <button
+    class="hero-arrow"
+    id="hero-next">
+
         →
+
     </button>
 
 </div>
-
--->
 
     <div class="uh-hero-selector">
 
@@ -1431,6 +1483,14 @@ EN
                 <span>Explore colours, textures & sizes →</span>
             </div>
         </div>
+
+    </div>
+
+    <div id="coming-soon">
+
+        <span>COMING SOON</span>
+
+        <small>SPPRING 2027</small>
 
     </div>
 
@@ -2828,6 +2888,252 @@ window.onload = ()=>{
     setLanguage('fi');
 
 };
+
+/* =========================================================
+   COLLECTION ENGINE V1
+========================================================= */
+
+const collections = [
+
+{
+
+title:'URBAN HERITAGE 26',
+
+image:'images/uh26-hero.webp'
+
+},
+
+{
+
+title:'NORDIC HORIZON 27',
+
+image:'images/nh27-hero.webp'
+
+}
+
+];
+
+let activeCollection = 0;
+
+
+/* =========================================================
+   UPDATE HERO
+========================================================= */
+
+function updateCollection(){
+
+    const hero =
+
+    document.getElementById('uh26');
+
+    const title =
+
+    document.getElementById('hero-title');
+
+    const selector =
+
+    document.querySelector('.uh-hero-selector');
+
+    const comingSoon =
+
+    document.getElementById('coming-soon');
+
+
+    hero.style.backgroundImage =
+
+    `url('${collections[activeCollection].image}')`;
+
+
+    title.textContent =
+
+    collections[activeCollection].title;
+
+    if(activeCollection === 0){
+
+    selector.style.display = 'flex';
+
+    comingSoon.style.display = 'none';
+
+}
+
+else{
+
+    selector.style.display = 'none';
+
+    comingSoon.style.display = 'flex';
+
+}
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextCollection(){
+
+    activeCollection =
+
+    (activeCollection + 1)
+
+    % collections.length;
+
+
+    updateCollection();
+
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousCollection(){
+
+    activeCollection =
+
+    (activeCollection - 1
+
+    + collections.length)
+
+    % collections.length;
+
+
+    updateCollection();
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener(
+
+'DOMContentLoaded',
+
+()=>{
+
+    document
+
+    .getElementById('hero-next')
+
+    .addEventListener(
+
+        'click',
+
+        nextCollection
+
+    );
+
+
+    document
+
+    .getElementById('hero-prev')
+
+    .addEventListener(
+
+        'click',
+
+        previousCollection
+
+    );
+
+
+    updateCollection();
+
+});
+
+/* =========================================================
+   COLLECTION AUTOPLAY
+========================================================= */
+
+let collectionAutoplay;
+
+let userInteracted = false;
+
+
+/* =========================================================
+   AUTOPLAY
+========================================================= */
+
+function startCollectionAutoplay(){
+
+    clearInterval(collectionAutoplay);
+
+    collectionAutoplay =
+
+    setInterval(()=>{
+
+        if(!userInteracted){
+
+            nextCollection();
+
+        }
+
+    },10000);
+
+}
+
+
+/* =========================================================
+   USER INTERACTION
+========================================================= */
+
+function pauseAutoplay(){
+
+    userInteracted = true;
+
+    clearTimeout(window.autoplayTimeout);
+
+    window.autoplayTimeout =
+
+    setTimeout(()=>{
+
+        userInteracted = false;
+
+    },15000);
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+
+'DOMContentLoaded',
+
+()=>{
+
+    startCollectionAutoplay();
+
+
+    [
+
+    'mousemove',
+
+    'click',
+
+    'scroll',
+
+    'touchstart'
+
+    ].forEach(event=>{
+
+        document.addEventListener(
+
+            event,
+
+            pauseAutoplay
+
+        );
+
+    });
+
+});
 
 </script>
 
